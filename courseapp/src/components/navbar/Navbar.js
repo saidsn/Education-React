@@ -3,6 +3,10 @@ import './Navbar.scss';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import logo from '../../assets/images/logo.png.webp';
+import {FiPhoneCall} from "react-icons/fi";
+
+
 
 
 function MyNavbar() {
@@ -14,9 +18,9 @@ function MyNavbar() {
         <Container>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <div className='img'>
-              <img src="./images/logo.png.webp" alt="" />
-              <span>{"Course".toUpperCase()}</span>
+            <div className='logo'>
+              <img src={logo} alt="" />
+              <span>Course</span>
             </div>
             <Nav className="me-auto my-auto">
               <Nav.Link href="#home">Home</Nav.Link>
@@ -30,7 +34,7 @@ function MyNavbar() {
         </Container>
       </div>
       <div className='contact'>
-        <i className="fa-solid fa-phone-volume"></i>
+        <FiPhoneCall style={{fontSize:"25px",marginRight:"10px"}}/>
         <span>+994 50 500 50 50</span>
       </div>
     </Navbar>

@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::selection {
+    background-color: #FFB606;
+    color: white;
+}
+
+.main {
+    position: relative;
+
+    .banner {
+        position: absolute;
+        justify-content: space-evenly;
+        display: flex;
+        width: 100%;
+        z-index: 1;
+        bottom: 70px;
+
+        .card {
+
+            &:hover {
+                background-color: #FFB606;
+            }
+
+            &:hover span {
+                color: #fff !important;
+            }
+
+            width: 330px;
+            height: 140px;
+            background-color:black;
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            transition: 0.2s;
+            align-items: center;
+            gap: 25px;
+
+            span {
+                color: #FFB606;
+                font-size: 60px;
+                margin-bottom: 10px;
+            }
+
+            .card-content {
+
+                h2,
+                a {
+                    color: #fff;
+                }
+
+                a {
+                    text-decoration: none;
+                }
+            }
+
+        }
+    }
+
+    .my-image {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        .animation {
+            position: absolute;
+            z-index: 10;
+            color: white;
+            font-size: 70px;
+
+            span {
+                background-color: #FFB606;
+                padding: 0 10px;
+            }
+        }
+    }
+}

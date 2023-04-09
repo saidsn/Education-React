@@ -1,43 +1,43 @@
 import React from 'react';
-import './Navbar.scss';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import logo from '../../assets/images/logo.png.webp';
-import {FiPhoneCall} from "react-icons/fi";
-
-
+import { FiPhoneCall } from "react-icons/fi";
 
 
 function MyNavbar() {
 
   return (
 
-    <Navbar className='navArea'>
-      <div className='myNavbar'>
-        <Container>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <div className='logo'>
-              <img src={logo} alt="" />
-              <span>Course</span>
-            </div>
-            <Nav className="me-auto my-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">About Us</Nav.Link>
-              <Nav.Link href="#link">Courses</Nav.Link>
-              <Nav.Link href="#link">Elements</Nav.Link>
-              <Nav.Link href="#link">News</Nav.Link>
-              <Nav.Link href="#link">Contact</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
+    <header className="header d-flex flex-row">
+      <div className="header_content d-flex flex-row align-items-center">
+
+        <div className="logo_container">
+          <div className="logo">
+            <img src='./images/Home/logo.png.webp' alt="" />
+            <span>course</span>
+          </div>
+        </div>
+
+        <nav className="main_nav_container">
+          <div className="main_nav">
+            <ul className="main_nav_list">
+              <li className="main_nav_item"><a href="#">home</a></li>
+              <li className="main_nav_item"><a href="#">about us</a></li>
+              <li className="main_nav_item"><a href="courses.html">courses</a></li>
+              <li className="main_nav_item"><a href="elements.html">elements</a></li>
+              <li className="main_nav_item"><a href="news.html">news</a></li>
+              <li className="main_nav_item"><a href="contact.html">contact</a></li>
+            </ul>
+          </div>
+        </nav>
       </div>
-      <div className='contact'>
-        <FiPhoneCall style={{fontSize:"25px",marginRight:"10px"}}/>
-        <span>+994 50 500 50 50</span>
+      <div className="header_side d-flex flex-row justify-content-center align-items-center">
+        <FiPhoneCall style={{ fontSize: "25px", marginRight: "10px", color: 'white' }} />
+        <span>+43 4566 7788 2457</span>
       </div>
-    </Navbar>
+
+      <div className="hamburger_container">
+        <i className="fas fa-bars trans_200"></i>
+      </div>
+    </header>
 
   )
 }

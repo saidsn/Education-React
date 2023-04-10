@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../header/Header';
+import { NavLink } from 'react-router-dom';
 import {BsPinterest} from 'react-icons/bs';
 import {GrLinkedinOption} from 'react-icons/gr';
 import {AiOutlineInstagram} from 'react-icons/ai';
@@ -98,7 +99,7 @@ function Footer() {
                     </div>
                 </div>
 
-                <div class="footer_bar d-flex flex-column flex-sm-row align-items-center">
+                <div class="footer_bar d-flex flex-column flex-sm-row align-items-center justify-content: space-evenly">
                     <div class="footer_copyright">
                         <span>
                             Copyright &copy;
@@ -111,11 +112,11 @@ function Footer() {
                     </div>
                     <div class="footer_social ml-sm-auto">
                         <ul class="menu_social">
-                            <li class="menu_social_item"><a href="#"><BsPinterest/></a></li>
-                            <li class="menu_social_item"><a href="#"><GrLinkedinOption/></a></li>
-                            <li class="menu_social_item"><a href="#"><AiOutlineInstagram/></a></li>
-                            <li class="menu_social_item"><a href="#"><FaFacebookF/></a></li>
-                            <li class="menu_social_item"><a href="#"><AiOutlineTwitter/></a></li>
+                            <li class="menu_social_item"><NavLink to='https://www.pinterest.com'><BsPinterest className='icon'/></NavLink></li>
+                            <li class="menu_social_item"><NavLink to='https://www.linkedin.com'><GrLinkedinOption className='icon'/></NavLink></li>
+                            <li class="menu_social_item"><NavLink to='https://www.instagram.com'><AiOutlineInstagram className='icon'/></NavLink></li>
+                            <li class="menu_social_item"><NavLink to='https://www.facebook.com'><FaFacebookF className='icon'/></NavLink></li>
+                            <li class="menu_social_item"><NavLink to='https://www.twitter.com'><AiOutlineTwitter className='icon'/></NavLink></li>
                         </ul>
                     </div>
                 </div>

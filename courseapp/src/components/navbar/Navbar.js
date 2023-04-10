@@ -1,5 +1,6 @@
 import React from 'react';
 import { FiPhoneCall } from "react-icons/fi";
+import { Link } from 'react-router-dom';
 
 
 function MyNavbar() {
@@ -19,12 +20,12 @@ function MyNavbar() {
         <nav className="main_nav_container">
           <div className="main_nav">
             <ul className="main_nav_list">
-              <li className="main_nav_item"><a href="#">home</a></li>
-              <li className="main_nav_item"><a href="#">about us</a></li>
-              <li className="main_nav_item"><a href="courses.html">courses</a></li>
-              <li className="main_nav_item"><a href="elements.html">elements</a></li>
-              <li className="main_nav_item"><a href="news.html">news</a></li>
-              <li className="main_nav_item"><a href="contact.html">contact</a></li>
+              <Link className="main_nav_item" to="/"><a href="#">home</a></Link>
+              <Link className="main_nav_item" to=""><a href="#">about us</a></Link>
+              <Link className="main_nav_item" to="/Course"><a href="courses.html">courses</a></Link>
+              <Link className="main_nav_item"><a href="elements.html">elements</a></Link>
+              <Link className="main_nav_item" to="/News"><a href="news.html">news</a></Link>
+              <Link className="main_nav_item"><a href="contact.html">contact</a></Link>
             </ul>
           </div>
         </nav>

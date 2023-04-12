@@ -1,11 +1,9 @@
 import React from 'react'
-import Header from '../header/Header'
 
 function Event() {
   return (
     <div className="events page_section">
       <div className="container">
-        <Header/>
         <div className="event_items">
           <div className="row event_item">
             <div className="col">

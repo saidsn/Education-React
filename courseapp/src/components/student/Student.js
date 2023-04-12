@@ -1,18 +1,17 @@
 import React from 'react'
 import Carousel from 'react-bootstrap/Carousel';
-import Header from '../header/Header';
+import Title from '../title/Title';
 
 function Student() {
   return (
 
     <div class="testimonials page_section">
-
       <div class="testimonials_background_container prlx_parent">
         <div class="testimonials_background prlx" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/Home/testimonials_background.jpg.webp)` }}>
         </div>
       </div>
       <div class="container">
-        <Header />
+        <Title />
         <div class="row">
           <div class="col-lg-10 offset-lg-1">
             <div class="testimonials_slider_container">

@@ -1,11 +1,11 @@
 import React from 'react'
-import CourseHeader from '../../components/course-header/CourseHeader';
-import Event from '../../components/event/Event';
+import '../../../src/assets/styles/news.css';
+import Header from '../../components/header/Header';
 
 function News() {
   return (
     <>
-       <h1>Salam</h1>
+       <Header/>
     </>
   )
 }

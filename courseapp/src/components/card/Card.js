@@ -1,12 +1,11 @@
 import React from 'react'
-import Header from '../header/Header';
+
 
 
 function Card() {
   return (
     <div className="popular page_section">
       <div className="container">
-        <Header/>
         <div className="row course_boxes">
           <div className="col-lg-4 course_box">
             <div className="card">

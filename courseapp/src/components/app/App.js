@@ -1,7 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../../src/assets/styles/home.css';
-import '../../../src/assets/styles/courses.css';
 import "aos/dist/aos.css";
 import Navbar from '../navbar/Navbar';
 import Home from '../../pages/home/Home';
@@ -13,7 +11,7 @@ import Footer from '../footer/Footer';
 
 function App() {
   return (
-    <>
+    <div>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -21,7 +19,7 @@ function App() {
         <Route path="/News" element={<News/>} />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 

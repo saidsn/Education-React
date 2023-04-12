@@ -1,11 +1,9 @@
 import React from 'react'
-import Header from '../header/Header';
 
 function Service() {
     return (
         <div className="services page_section">
             <div className="container">
-                <Header />
                 <div className="row services_row">
                     <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
                         <div className="icon_container d-flex flex-column justify-content-end">

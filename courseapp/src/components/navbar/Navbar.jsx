@@ -12,7 +12,7 @@ function MyNavbar() {
 
         <div className="logo_container">
           <div className="logo">
-            <img src='./images/Home/logo.png.webp' alt="" />
+            <img src='./images/logo.png.webp' alt="" />
             <span>course</span>
           </div>
         </div>
@@ -20,12 +20,12 @@ function MyNavbar() {
         <nav className="main_nav_container">
           <div className="main_nav">
             <ul className="main_nav_list">
-              <Link className="main_nav_item" to="/"><a href="#">home</a></Link>
-              <Link className="main_nav_item" to=""><a href="#">about us</a></Link>
-              <Link className="main_nav_item" to="/Course"><a href="courses.html">courses</a></Link>
-              <Link className="main_nav_item"><a href="elements.html">elements</a></Link>
-              <Link className="main_nav_item" to="/News"><a href="news.html">news</a></Link>
-              <Link className="main_nav_item"><a href="contact.html">contact</a></Link>
+              <li className="main_nav_item"><Link to="/">home</Link></li>
+              <li className="main_nav_item"><Link to="/about">about us</Link></li>
+              <li className="main_nav_item"><Link to="/courses">courses</Link></li>
+              <li className="main_nav_item"><Link to="/">elements</Link></li>
+              <li className="main_nav_item"><Link to="/news">news</Link></li>
+              <li className="main_nav_item"><Link to="/">contact</Link></li>
             </ul>
           </div>
         </nav>

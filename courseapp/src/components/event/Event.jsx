@@ -24,7 +24,7 @@ function Event() {
                 </div>
                 <div className="col-lg-4 order-lg-3 order-1">
                   <div className="event_image">
-                    <img src="images/Home/event_1.jpg.webp" alt=""/>
+                    <img src="images/event_1.jpg.webp" alt=""/>
                   </div>
                 </div>
               </div>
@@ -50,7 +50,7 @@ function Event() {
                 </div>
                 <div className="col-lg-4 order-lg-3 order-1">
                   <div className="event_image">
-                    <img src="images/Home/event_2.jpg.webp" alt=""/>
+                    <img src="images/event_2.jpg.webp" alt=""/>
                   </div>
                 </div>
               </div>
@@ -76,7 +76,7 @@ function Event() {
                 </div>
                 <div className="col-lg-4 order-lg-3 order-1">
                   <div className="event_image">
-                    <img src="images/Home/event_3.jpg.webp" alt=""/>
+                    <img src="images/event_3.jpg.webp" alt=""/>
                   </div>
                 </div>
               </div>

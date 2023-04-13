@@ -19,7 +19,7 @@ function Register() {
                     </div>
                     <div className="col-lg-6 nopadding">
                         <div className="search_section d-flex flex-column align-items-center justify-content-center">
-                            <div className="search_background" style={{background:`url(${process.env.PUBLIC_URL}/images/Home/search_background.jpg.webp)`}}></div>
+                            <div className="search_background" style={{background:`url(${process.env.PUBLIC_URL}/images/search_background.jpg.webp)`}}></div>
                             <div className="search_content text-center">
                                 <h1 className="search_title">Search for your course</h1>
                                 <form id="search_form" className="search_form" action="https://preview.colorlib.com/theme/course/post">

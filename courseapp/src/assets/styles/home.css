@@ -780,12 +780,14 @@ section {
 
 .hero_boxes {
 	width: 100%;
-	z-index: 1;
-	bottom: 70px;
-	position: absolute;
+	height: 0;
+	z-index: 9;
+	padding-top: 0;
 }
 
 .hero_boxes_inner {
+	position: absolute;
+	bottom: 80px;
 	left: 0;
 	width: 100%;
 }
@@ -809,7 +811,7 @@ section {
 }
 
 .hero_box:hover .svg{
-	filter: hue-rotate(270deg);
+	filter:brightness(0) invert(1);
 }
 
 
@@ -851,7 +853,7 @@ section {
 }
 
 .page_section {
-	padding-bottom: 117px;
+	padding-bottom: 117px; 
 }
 
 
@@ -1398,7 +1400,7 @@ input:last-of-type {
 .newsletter_submit_btn:focus {
 	border: solid 2px #FFFFFF;
 }
-*******************************
+/*******************************
 15.2 Footer Content
 *********************************/
 

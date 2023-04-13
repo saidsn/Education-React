@@ -7,7 +7,7 @@ function Service() {
                 <div className="row services_row">
                     <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
                         <div className="icon_container d-flex flex-column justify-content-end">
-                            <img src="images/Home/earth-globe.svg" alt="" />
+                            <img src="images/earth-globe.svg" alt="" />
                         </div>
                         <h3>Online Courses</h3>
                         <p>In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin
@@ -15,7 +15,7 @@ function Service() {
                     </div>
                     <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
                         <div className="icon_container d-flex flex-column justify-content-end">
-                            <img src="images/Home/exam.svg" alt="" />
+                            <img src="images/exam.svg" alt="" />
                         </div>
                         <h3>Indoor Courses</h3>
                         <p>In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin
@@ -23,7 +23,7 @@ function Service() {
                     </div>
                     <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
                         <div className="icon_container d-flex flex-column justify-content-end">
-                            <img src="images/Home/books.svg" alt="" />
+                            <img src="images/books.svg" alt="" />
                         </div>
                         <h3>Amazing Library</h3>
                         <p>In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin
@@ -39,7 +39,7 @@ function Service() {
                     </div>
                     <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
                         <div className="icon_container d-flex flex-column justify-content-end">
-                            <img src="images/Home/blackboard.svg" alt="" />
+                            <img src="images/blackboard.svg" alt="" />
                         </div>
                         <h3>Top Programs</h3>
                         <p>In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin
@@ -47,7 +47,7 @@ function Service() {
                     </div>
                     <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
                         <div className="icon_container d-flex flex-column justify-content-end">
-                            <img src="images/Home/mortarboard.svg" alt="" />
+                            <img src="images/mortarboard.svg" alt="" />
                         </div>
                         <h3>Graduate Diploma</h3>
                         <p>In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin

@@ -10,7 +10,6 @@ function Myslider() {
 
     return (
         <div className='main'>
-            <Banner />
             <Carousel>
                 <Carousel.Item>
                     <div className='my-image'>
@@ -20,7 +19,7 @@ function Myslider() {
 
                         <img
                             className="d-block w-100"
-                            src="./images/Home/slider_background.jpg"
+                            src="./images/slider_background.jpg"
                         />
                     </div>
                 </Carousel.Item>
@@ -31,7 +30,7 @@ function Myslider() {
                         </div>
                         <img
                             className="d-block w-100"
-                            src="./images/Home/col-watches.91e22f1d.jpg"
+                            src="./images/col-watches.91e22f1d.jpg"
                         />
                     </div>
                 </Carousel.Item>
@@ -42,7 +41,7 @@ function Myslider() {
                         </div>
                         <img
                             className="d-block w-100"
-                            src="./images/Home/col-women.d48a3fbc.jpg"
+                            src="./images/col-women.d48a3fbc.jpg"
                         />
                     </div>
                 </Carousel.Item>

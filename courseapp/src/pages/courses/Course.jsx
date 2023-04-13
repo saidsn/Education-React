@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../src/assets/styles/courses.css';
+import '../../../src/assets/styles/Courses.css';
 import Header from '../../components/header/Header';
 import Card from '../../components/card/Card';
 import Title from '../../components/title/Title';

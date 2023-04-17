@@ -25,7 +25,7 @@ function MyNavbar() {
               <li className="main_nav_item"><Link to="/courses">courses</Link></li>
               <li className="main_nav_item"><Link to="/">elements</Link></li>
               <li className="main_nav_item"><Link to="/news">news</Link></li>
-              <li className="main_nav_item"><Link to="/">contact</Link></li>
+              <li className="main_nav_item"><Link to="/contact">contact</Link></li>
             </ul>
           </div>
         </nav>

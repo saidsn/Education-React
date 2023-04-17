@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import '../../../src/assets/styles/News.css';
 import Header from '../../components/header/Header';
 import Blog from '../../components/blog/Blog';
@@ -10,26 +11,26 @@ function News() {
   return (
     <>
       <Header />
-      <div class="news-area">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="news_posts">
+      <div className="news-area">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8">
+              <div className="news_posts">
                 <Blog />
                 <Blog />
                 <Blog />
               </div>
-              <div class="news_page_nav">
+              <div className="news_page_nav">
                 <ul>
-                  <li class="active text-center trans_200"><a href="#">01</a></li>
-                  <li class="text-center trans_200"><a href="#">02</a></li>
-                  <li class="text-center trans_200"><a href="#">03</a></li>
+                  <li className="active text-center trans_200"><Link>01</Link></li>
+                  <li className="text-center trans_200"><Link>02</Link></li>
+                  <li className="text-center trans_200"><Link>03</Link></li>
                 </ul>
               </div>
             </div>
 
-            <div class="col-lg-4">
-              <div class="sidebar">
+            <div className="col-lg-4">
+              <div className="sidebar">
                 <Archive />
                 <LatestPosts />
                 <Tags />

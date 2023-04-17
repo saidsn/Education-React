@@ -1,11 +1,13 @@
+import React from 'react'
 import { Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "aos/dist/aos.css";
-import Navbar from '../navbar/Navbar';
+import Navbar  from '../../components/navbar/Navbar';
 import Home from '../../pages/home/Home';
 import Course from '../../pages/courses/Course';
 import News from '../../pages/news/News';
-import Footer from '../footer/Footer';
+import Contact from '../../pages/contact/Contact';
+import Footer from '../../components/footer/Footer';///
 
 
 
@@ -17,8 +19,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/courses" element={<Course />} />
         <Route path="/news" element={<News/>} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
-      <Footer />
+      <Footer />  
     </div>
   );
 }

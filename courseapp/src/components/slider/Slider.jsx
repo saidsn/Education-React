@@ -1,6 +1,5 @@
 import './Slider.scss';
 import Carousel from 'react-bootstrap/Carousel';
-import Banner from '../banner/Banner';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();

@@ -1,6 +1,6 @@
 import React from 'react'
 import Title from '../title/Title';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { BsPinterest } from 'react-icons/bs';
 import { GrLinkedinOption } from 'react-icons/gr';
 import { AiOutlineInstagram } from 'react-icons/ai';
@@ -49,11 +49,11 @@ function Footer() {
                             <div className="footer_column_title">Menu</div>
                             <div className="footer_column_content">
                                 <ul>
-                                    <li className="footer_list_item"><a href="#">Home</a></li>
-                                    <li className="footer_list_item"><a href="#">About Us</a></li>
-                                    <li className="footer_list_item"><a href="courses.html">Courses</a></li>
-                                    <li className="footer_list_item"><a href="news.html">News</a></li>
-                                    <li className="footer_list_item"><a href="contact.html">Contact</a></li>
+                                    <li className="footer_list_item"><Link>Home</Link></li>
+                                    <li className="footer_list_item"><Link>About Us</Link></li>
+                                    <li className="footer_list_item"><Link>Courses</Link></li>
+                                    <li className="footer_list_item"><Link>News</Link></li>
+                                    <li className="footer_list_item"><Link>Contact</Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -62,11 +62,11 @@ function Footer() {
                             <div className="footer_column_title">Usefull Links</div>
                             <div className="footer_column_content">
                                 <ul>
-                                    <li className="footer_list_item"><a href="#">Testimonials</a></li>
-                                    <li className="footer_list_item"><a href="#">FAQ</a></li>
-                                    <li className="footer_list_item"><a href="#">Community</a></li>
-                                    <li className="footer_list_item"><a href="#">Campus Pictures</a></li>
-                                    <li className="footer_list_item"><a href="#">Tuitions</a></li>
+                                    <li className="footer_list_item"><Link>Testimonials</Link></li>
+                                    <li className="footer_list_item"><Link>FAQ</Link></li>
+                                    <li className="footer_list_item"><Link>Community</Link></li>
+                                    <li className="footer_list_item"><Link>Campus Pictrues</Link></li>
+                                    <li className="footer_list_item"><Link>Tuitions</Link></li>
                                 </ul>
                             </div>
                         </div>
@@ -77,13 +77,13 @@ function Footer() {
                                 <ul>
                                     <li className="footer_contact_item">
                                         <div className="footer_contact_icon">
-                                            <img src="images/Home/placeholder.svg" alt="" />
+                                            <img src="images/placeholder.svg" alt="" />
                                         </div>
                                         Blvd Libertad, 34 m05200 Arévalo
                                     </li>
                                     <li className="footer_contact_item">
                                         <div className="footer_contact_icon">
-                                            <img src="images/Home/smartphone.svg" alt="" />
+                                            <img src="images/smartphone.svg" alt="" />
                                         </div>
                                         0034 37483 2445 322
                                     </li>

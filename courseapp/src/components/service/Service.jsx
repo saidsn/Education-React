@@ -2,7 +2,8 @@ import React from 'react'
 
 function Service() {
     return (
-        <div className="services page_section">
+        <div className="services page_section" data-aos="fade-up"
+            data-aos-duration="1200">
             <div className="container">
                 <div className="row services_row">
                     <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">

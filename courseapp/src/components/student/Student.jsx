@@ -3,9 +3,23 @@ import Carousel from 'react-bootstrap/Carousel';
 import Title from '../title/Title';
 
 function Student() {
+
+
+  const directButtons = (direction) => {
+    return (
+      <span
+        className={direction}
+      >
+        {direction}
+      </span>
+    );
+  };
+
+
   return (
 
-    <div className="testimonials page_section">
+    <div className="testimonials page_section" data-aos="fade-up"
+      data-aos-duration="1200">
       <div className="testimonials_background_container prlx_parent">
         <div className="testimonials_background prlx" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/testimonials_background.jpg.webp)` }}>
         </div>
@@ -16,7 +30,10 @@ function Student() {
           <div className="col-lg-10 offset-lg-1">
             <div className="testimonials_slider_container">
               <div className="owl-carousel owl-theme testimonials_slider">
-                <Carousel>
+                <Carousel
+                  nextIcon={directButtons("d-none")}
+                  prevIcon={directButtons("d-none")}
+                >
                   <Carousel.Item>
                     <div className="owl-item">
                       <div className="testimonials_item text-center">

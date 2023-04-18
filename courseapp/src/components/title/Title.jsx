@@ -3,7 +3,8 @@ import React from 'react'
 
 function Title() {
     return (
-        <div className="popular title_section">
+        <div className="popular title_section" data-aos="fade-up"
+            data-aos-anchor-placement="bottom-bottom" data-aos-duration="800">
             <div className="container">
                 <div className="row">
                     <div className="col">

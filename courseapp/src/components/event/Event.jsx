@@ -2,7 +2,8 @@ import React from 'react'
 
 function Event() {
   return (
-    <div className="events page_section">
+    <div className="events page_section" data-aos="fade-up"
+      data-aos-duration="1200">
       <div className="container">
         <div className="event_items">
           <div className="row event_item">
@@ -24,7 +25,7 @@ function Event() {
                 </div>
                 <div className="col-lg-4 order-lg-3 order-1">
                   <div className="event_image">
-                    <img src="images/event_1.jpg.webp" alt=""/>
+                    <img src="images/event_1.jpg.webp" alt="" />
                   </div>
                 </div>
               </div>
@@ -50,7 +51,7 @@ function Event() {
                 </div>
                 <div className="col-lg-4 order-lg-3 order-1">
                   <div className="event_image">
-                    <img src="images/event_2.jpg.webp" alt=""/>
+                    <img src="images/event_2.jpg.webp" alt="" />
                   </div>
                 </div>
               </div>
@@ -76,7 +77,7 @@ function Event() {
                 </div>
                 <div className="col-lg-4 order-lg-3 order-1">
                   <div className="event_image">
-                    <img src="images/event_3.jpg.webp" alt=""/>
+                    <img src="images/event_3.jpg.webp" alt="" />
                   </div>
                 </div>
               </div>

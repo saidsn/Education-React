@@ -4,7 +4,8 @@ import React from 'react'
 
 function Card() {
   return (
-    <div className="popular page_section">
+    <div className="popular page_section" data-aos="fade-up"
+       data-aos-duration="1200">
       <div className="container">
         <div className="row course_boxes">
           <div className="col-lg-4 course_box">

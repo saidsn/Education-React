@@ -13,7 +13,7 @@ import Banner from '../../components/banner/Banner';
 function Home() {
 
   return (
-    <div>
+    <>
      <Slider/>
       <Banner />
       <Title/>
@@ -24,7 +24,7 @@ function Home() {
       <Student/>
       <Title/>
       <Event/>
-    </div>
+    </>
   )
 }
 

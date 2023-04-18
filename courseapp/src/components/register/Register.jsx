@@ -2,14 +2,15 @@ import React from 'react'
 
 function Register() {
     return (
-        <div className="register">
+        <div className="register" data-aos="fade-up"
+            data-aos-duration="1200">
             <div className="container-fluid">
                 <div className="row row-eq-height">
                     <div className="col-lg-6 nopadding">
                         <div className="register_section d-flex flex-column align-items-center justify-content-center">
                             <div className="register_content text-center">
                                 <h1 className="register_title">Register now and get a discount <span>50%</span> discount until 1 January</h1>
-                            
+
                                 <p className="register_text">In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor
                                     nisl ligula vel nunc. Proin quis mi malesuada, finibus tortor fermentum. Aliquam, augue a gravida
                                     rutrum, ante nisl fermentum nulla, vitae tempo.</p>
@@ -19,7 +20,7 @@ function Register() {
                     </div>
                     <div className="col-lg-6 nopadding">
                         <div className="search_section d-flex flex-column align-items-center justify-content-center">
-                            <div className="search_background" style={{background:`url(${process.env.PUBLIC_URL}/images/search_background.jpg.webp)`}}></div>
+                            <div className="search_background" style={{ background: `url(${process.env.PUBLIC_URL}/images/search_background.jpg.webp)` }}></div>
                             <div className="search_content text-center">
                                 <h1 className="search_title">Search for your course</h1>
                                 <form id="search_form" className="search_form" action="https://preview.colorlib.com/theme/course/post">

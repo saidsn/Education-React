@@ -7,8 +7,7 @@ import Home from '../../pages/home/Home';
 import Course from '../../pages/courses/Course';
 import News from '../../pages/news/News';
 import Contact from '../../pages/contact/Contact';
-import Footer from '../../components/footer/Footer';///
-
+import Footer from '../../components/footer/Footer';
 
 
 function App() {

@@ -7,12 +7,29 @@ AOS.init();
 
 function Myslider() {
 
+    const directionButtons = (direction) => {
+        AOS.refreshHard();
+
+        return (
+          <span
+            aria-hidden="true"
+            className={direction === "Next" ? "button-next btn btn-light" : "button-prev btn btn-light"}
+          >
+            {direction}
+          </span>
+        );
+      };
+    
+
     return (
         <div className='main'>
-            <Carousel>
+            <Carousel
+                nextIcon={directionButtons("Next")}
+                prevIcon={directionButtons("Prev")}
+            >
                 <Carousel.Item>
                     <div className='my-image'>
-                        <div className='animation' data-aos="zoom-out-up">
+                        <div className='animation' data-aos="zoom-out-down">
                             Get your <span>Education</span> today!
                         </div>
 

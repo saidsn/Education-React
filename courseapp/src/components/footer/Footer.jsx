@@ -6,6 +6,9 @@ import { GrLinkedinOption } from 'react-icons/gr';
 import { AiOutlineInstagram } from 'react-icons/ai';
 import { FaFacebookF } from 'react-icons/fa';
 import { AiOutlineTwitter } from 'react-icons/ai';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 function Footer() {
     return (

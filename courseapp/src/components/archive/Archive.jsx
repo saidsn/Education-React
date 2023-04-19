@@ -1,9 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+
 
 function Archive() {
   return (
-    <div className="sidebar_section">
+    <div className="sidebar_section" data-aos="fade-up" data-aos-duration="1200">
       <div className="sidebar_section_title">
         <h3>Archives</h3>
       </div>

@@ -1,0 +1,43 @@
+/*********************************
+6. About
+*********************************/
+
+.about
+{
+	width: 100%;
+	background: #FFFFFF;
+	padding-top: 94px;
+	padding-bottom: 111px;
+}
+.about_row:not(:last-child)
+{
+	margin-bottom: 99px;
+}
+.about_content
+{
+	top: 25%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+    padding: 0 20px;
+}
+.about_image
+{
+	width: 100%;
+}
+.about_image img
+{
+	max-width: 100%;
+}
+.about_title
+{
+	font-size: 36px;
+	font-weight: 700;
+	color: #44425a;
+}
+.about_text
+{
+	margin-top: 61px;
+}

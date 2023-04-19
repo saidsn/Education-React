@@ -1,8 +1,11 @@
 import React from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 const LatestPost = () => {
     return (
-        <div className="latest_post">
+        <div className="latest_post" data-aos="fade-up" data-aos-duration="1600">
             <div className="latest_post_image">
                 <img src="./images/latest_1.jpg.webp" alt="" />
             </div>

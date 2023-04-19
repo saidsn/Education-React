@@ -14,7 +14,7 @@ function Home() {
 
   return (
     <>
-     <Slider/>
+      <Slider/>
       <Banner />
       <Title/>
       <Card/>

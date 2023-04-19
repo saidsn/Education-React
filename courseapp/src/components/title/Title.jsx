@@ -1,4 +1,7 @@
 import React from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 
 function Title() {
@@ -17,4 +20,6 @@ function Title() {
         </div>
     )
 }
+
 export default Title;
+ 

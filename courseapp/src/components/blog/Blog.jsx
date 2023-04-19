@@ -1,9 +1,14 @@
 import React from 'react'
 import '../../../src/assets/styles/News.css';
 import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+
+
 function Blog() {
   return (
-    <div className="news_post">
+    <div className="news_post" data-aos="fade-up" data-aos-duration="800">
       <div className="news_post_image">
         <img src="./images/news_1.jpg.webp" alt="" />
       </div>

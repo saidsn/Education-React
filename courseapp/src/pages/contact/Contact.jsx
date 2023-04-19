@@ -2,7 +2,9 @@ import React from 'react'
 import '../../../src/assets/styles/Contact.css'
 import Header from '../../components/header/Header'
 import ContactInfo from '../../components/contactInfo/ContactInfo';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 function Contact() {
     return (
@@ -12,7 +14,7 @@ function Contact() {
                 <div className="container" style={{maxWidth:"1140px"}}>
                     <div className="row">
                         <div className="col-lg-8">
-                            <div className="contact_form">
+                            <div className="contact_form" data-aos="fade-up" data-aos-duration="800">
                                 <div className="contact_title">Get in touch</div>
                                 <div className="contact_form_container">
                                     <form >
@@ -29,7 +31,7 @@ function Contact() {
                             </div>
                         </div>
                         <div className="col-lg-4">
-                            <div className="about">
+                            <div className="about" data-aos="fade-up" data-aos-duration="1200">
                                 <div className="about_title">Join Courses</div>
                                 <p className="about_text">In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl
                                     ligula vel nunc. Proin quis mi malesuada, finibus tortor fermentum. Etiam eu purus nec eros varius
@@ -41,7 +43,7 @@ function Contact() {
 
                     <div className="row">
                         <div className="col">
-                            <div id="google_map">
+                            <div id="google_map" data-aos="fade-up" data-aos-duration="1000">
                                 <div className="map_container">
                                     <div id="map">
                                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d780976.7888206078!2d49.29102349070986!3d40.12689850306108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307db472eb07d1%3A0x529ac68af9a1cec2!2sBaku%20City%20Circuit!5e0!3m2!1sen!2saz!4v1681376530941!5m2!1sen!2saz"

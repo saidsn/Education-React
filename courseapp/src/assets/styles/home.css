@@ -1,45 +1,5 @@
 @charset "utf-8";
-/* CSS Document */
 
-/******************************
-
-COLOR PALETTE
-
-
-
-
-[Table of Contents]
-
-1. Fonts
-2. Body and some general stuff
-3. Header
-	3.1 Logo
-	3.2 Main Nav
-	3.3 Header Side
-	3.4 Hamburger
-4. Menu
-	4.1 Menu Social
-	4.2 Menu copyright
-5. Home
-	5.1 Hero Slider
-	5.2 Hero Slider Navigation
-6. Hero Boxes
-7. Page Section
-8. Buttons
-9. Popular
-10. Register
-11. Search
-	11.1 Search Form
-12. Services
-13. Testimonials
-14. Events
-15. Footer
-	15.1 Newsletter
-	15.2 Footer Content
-	15.3 Footer Copyright
-
-
-******************************/
 
 /***********
 1. Fonts
@@ -351,6 +311,9 @@ section {
 	display: inline-block;
 	padding-left: 76px;
 }
+.logo_container .logo{
+       display: flex;
+}
 
 .logo span {
 	font-family: 'Open Sans', sans-serif;
@@ -368,12 +331,18 @@ section {
 
 .main_nav_container {
 	display: inline-block;
-	margin-left: auto;
-	padding-right: 93px;
+	width: 100%;
 }
 
 .main_nav {
 	margin-top: 7px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.main_nav_list{
+   padding-left: 0;
 }
 
 .main_nav_item {

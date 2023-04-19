@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Slider.scss';
 import Carousel from 'react-bootstrap/Carousel';
 import AOS from 'aos';
@@ -6,7 +6,6 @@ import 'aos/dist/aos.css';
 AOS.init();
 
 function Myslider() {
-
 
     const directionButtons = (direction) => {
         return (
@@ -19,12 +18,9 @@ function Myslider() {
         );
     };
 
-
-
     return (
         <div className='main'>
             <Carousel
-
                 nextIcon={directionButtons("Next")}
                 prevIcon={directionButtons("Prev")}
             >
@@ -68,5 +64,4 @@ function Myslider() {
         </div>
     );
 }
-
 export default Myslider;

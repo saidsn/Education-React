@@ -1,6 +1,9 @@
 import React from 'react';
 import { FiPhoneCall } from "react-icons/fi";
 import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 
 function MyNavbar() {
@@ -9,10 +12,9 @@ function MyNavbar() {
 
     <header className="header d-flex flex-row">
       <div className="header_content d-flex flex-row align-items-center">
-
         <div className="logo_container">
           <div className="logo">
-            <img src='./images/logo.png.webp' alt="" />
+            <img src='./images/logo.png.webp' alt="Logo" />
             <span>course</span>
           </div>
         </div>
@@ -23,7 +25,6 @@ function MyNavbar() {
               <li className="main_nav_item"><Link to="/">home</Link></li>
               <li className="main_nav_item"><Link to="/about">about us</Link></li>
               <li className="main_nav_item"><Link to="/courses">courses</Link></li>
-              <li className="main_nav_item"><Link to="/">elements</Link></li>
               <li className="main_nav_item"><Link to="/news">news</Link></li>
               <li className="main_nav_item"><Link to="/contact">contact</Link></li>
             </ul>

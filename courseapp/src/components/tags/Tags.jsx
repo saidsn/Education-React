@@ -1,8 +1,11 @@
 import React from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 
 const Tags = () => {
   return (
-    <div className="sidebar_section">
+    <div className="sidebar_section" data-aos="fade-up" data-aos-duration="1600">
       <div className="sidebar_section_title">
         <h3>Tags</h3>
       </div>

@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
-function Register() {
+function SearchCourse() {
     return (
         <div className="register" data-aos="fade-up"
             data-aos-duration="1200">
@@ -45,5 +45,5 @@ function Register() {
     )
 }
 
-export default Register;
+export default SearchCourse;
 

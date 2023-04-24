@@ -1,11 +1,11 @@
 import React from 'react';
-import { FiPhoneCall } from "react-icons/fi";
+import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
-
+     
 function MyNavbar() {
 
   return (
@@ -31,9 +31,19 @@ function MyNavbar() {
           </div>
         </nav>
       </div>
+ 
       <div className="header_side d-flex flex-row justify-content-center align-items-center">
-        <FiPhoneCall style={{ fontSize: "25px", marginRight: "10px", color: 'white' }} />
-        <span>+43 4566 7788 2457</span>
+        <Dropdown>
+          <Dropdown.Toggle className='btn btn-light' id="dropdown-basic">
+            My Account
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item ><Link  to = "login">Login</Link></Dropdown.Item>
+            <Dropdown.Item ><Link  to = "register">Register</Link></Dropdown.Item>
+            <Dropdown.Item ><Link  to = "logout">Logout</Link></Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
 
       <div className="hamburger_container">

@@ -2,7 +2,7 @@ import React from 'react'
 import  '../../../src/assets/styles/Home.css';
 import  Slider  from '../../components/slider/Slider';
 import  Card  from '../../components/card/Card';
-import  Register  from '../../components/register/Register';
+import SearchCourse from '../../components/searchCourse/SearchCourse';
 import Service from '../../components/service/Service';
 import Event from '../../components/event/Event';
 import Student from '../../components/student/Student';
@@ -18,7 +18,7 @@ function Home() {
       <Banner />
       <Title/>
       <Card/>
-      <Register/>
+      <SearchCourse/>
       <Title/>
       <Service/>
       <Student/>

@@ -1320,6 +1320,9 @@ input:last-of-type {
 	background: #1a1a1a;
 }
 
+.footer_copyright{
+	color: #a5a5a5;
+}
 .footer .container{
 	max-width: 1200px;
 }

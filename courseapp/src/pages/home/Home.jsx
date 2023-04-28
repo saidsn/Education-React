@@ -16,13 +16,13 @@ function Home() {
     <>
       <Slider/>
       <Banner />
-      <Title/>
+      <Title sectionTitle="Popular Courses" />
       <Card/>
       <SearchCourse/>
-      <Title/>
+      <Title sectionTitle="Our Services" />
       <Service/>
       <Student/>
-      <Title/>
+      <Title sectionTitle="Upcoming Events" />
       <Event/>
     </>
   )

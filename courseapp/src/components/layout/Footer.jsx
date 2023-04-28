@@ -15,7 +15,9 @@ function Footer() {
         <footer className="footer">
             <div className="container">
                 <div className="newsletter">
-                    <Title />
+
+                    <Title sectionTitle="Subscribe to newsletter" />
+
                     <div className="row">
                         <div className="col text-center">
                             <div className="newsletter_form_container mx-auto">

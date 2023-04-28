@@ -29,7 +29,7 @@ function Login() {
 
   return (
     <>
-      <Header/>
+      <Header sectionHeader = "Login"/>
       <div className='container my-5'>
         <ThemeProvider theme={theme}>
           <Grid container component="main" sx={{ height: '100vh' }}>
@@ -69,21 +69,20 @@ function Login() {
                     margin="normal"
                     required
                     fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    autoFocus
+                    id="usrname"
+                    label="Username"
+                    name="username"
+                    autoComplete="off"
                   />
                   <TextField
                     margin="normal"
                     required
                     fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
                     id="password"
-                    autoComplete="current-password"
+                    label="Password"
+                    name="password"
+                    type="password"
+                    autoComplete="off"
                   />
                   <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}

@@ -7,7 +7,7 @@ import Title from '../../components/title/Title';
 function Course() {
   return (
     <div className='course-page'>
-      <Header />
+      <Header sectionHeader = "Courses" />
       <Title />
       <div className='card-area'>
         <Card />

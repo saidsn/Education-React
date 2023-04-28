@@ -10,7 +10,7 @@ import Tags from '../../components/tags/Tags';
 function News() {
   return (
     <>
-      <Header />
+      <Header sectionHeader = "The News" />
       <div className="news-area">
         <div className="container">
           <div className="row">

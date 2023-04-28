@@ -27,7 +27,9 @@ function Student() {
         </div>
       </div>
       <div className="container">
-        <Title />
+
+        <Title sectionTitle="What our students say" />
+
         <div className="row">
           <div className="col-lg-10 offset-lg-1">
             <div className="testimonials_slider_container">

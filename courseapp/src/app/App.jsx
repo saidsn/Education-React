@@ -15,7 +15,7 @@ import Register from '../pages/account/Register';
 
 function App() {
   return (
-    <div>
+    <>
 
         <Navbar />
         <Routes>
@@ -29,7 +29,7 @@ function App() {
         </Routes>
         <Footer />
 
-    </div>
+    </>
   );
 }
 

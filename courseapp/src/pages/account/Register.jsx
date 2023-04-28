@@ -28,7 +28,7 @@ function Register() {
 
   return (
     <>
-      <Header />
+      <Header sectionHeader = "Register" />
       <div className='container my-5'>
         <ThemeProvider theme={theme}>
           <Grid container component="main" sx={{ height: '100vh' }}>

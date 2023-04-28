@@ -9,7 +9,7 @@ AOS.init();
 function Contact() {
     return (
         <>
-            <Header />
+            <Header sectionHeader = "Contact Us"/>
             <div className="contact">
                 <div className="container" style={{maxWidth:"1140px"}}>
                     <div className="row">

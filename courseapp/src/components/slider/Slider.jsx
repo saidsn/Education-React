@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './Slider.scss';
 import Carousel from 'react-bootstrap/Carousel';
 import AOS from 'aos';
@@ -7,61 +8,50 @@ AOS.init();
 
 function Myslider() {
 
-    const directionButtons = (direction) => {
-        return (
-            <span
-                aria-hidden="true"
-                className={direction === "Next" ? "next" : "prev"}
-            >
-                {direction}
-            </span>
-        );
-    };
+  const baseUrl = 'https://localhost:7184';
 
+  const [slider, setSlider] = useState([]);
+
+  async function getAllSlider() {
+    await axios.get(`${baseUrl}/api/Slider/GetAll`).then((res) => {
+      return setSlider(res.data);
+    });
+  }
+
+  useEffect(() => {
+    getAllSlider();
+  }, []);
+
+  const directionButtons = (direction) => {
     return (
-        <div className='main'>
-            <Carousel
-                nextIcon={directionButtons("Next")}
-                prevIcon={directionButtons("Prev")}
-            >
-                <Carousel.Item>
-                    <div className='my-image'>
-                        <div className='animation' data-aos="fade-up"
-                            data-aos-anchor-placement="bottom-bottom" data-aos-duration="800">
-                            Get your <span>Education</span> today!
-                        </div>
-                        <img
-                            className="d-block w-100"
-                            src="./images/slider_background.jpg"
-                        />
-                    </div>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <div className='my-image'>
-                        <div className='animation' data-aos="fade-up"
-                            data-aos-anchor-placement="bottom-bottom" data-aos-duration="800">
-                            Get your <span>Education</span> today!
-                        </div>
-                        <img
-                            className="d-block w-100"
-                            src="./images/col-watches.91e22f1d.jpg"
-                        />
-                    </div>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <div className='my-image'>
-                        <div className='animation' data-aos="fade-up"
-                            data-aos-anchor-placement="bottom-bottom" data-aos-duration="800">
-                            Get your <span>Education</span> today!
-                        </div>
-                        <img
-                            className="d-block w-100"
-                            src="./images/col-women.d48a3fbc.jpg"
-                        />
-                    </div>
-                </Carousel.Item>
-            </Carousel>
-        </div>
+      <span aria-hidden="true" className={direction === 'Next' ? 'next' : 'prev'}>
+        {direction}
+      </span>
     );
+  };
+
+  return (
+    <div className="main">
+      <Carousel nextIcon={directionButtons('Next')} prevIcon={directionButtons('Prev')}>
+        {slider.map((item, index) => {
+          return (
+            <Carousel.Item key={index}>
+              <div className="my-image">
+                <div
+                  className="animation"
+                  data-aos="fade-up"
+                  data-aos-anchor-placement="bottom-bottom"
+                  data-aos-duration="800"
+                  dangerouslySetInnerHTML={{ __html: item.title }}
+                ></div>
+                <img className="d-block w-100" src={`data:image/jpg;base64, ${item.image}`} alt="Slider Image" />
+              </div>
+            </Carousel.Item>
+          );
+        })}
+      </Carousel>
+    </div>
+  );
 }
+
 export default Myslider;

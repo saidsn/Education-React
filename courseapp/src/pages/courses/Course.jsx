@@ -8,7 +8,7 @@ function Course() {
   return (
     <div className='course-page'>
       <Header sectionHeader = "Courses" />
-      <Title />
+      <Title sectionTitle = "Popular Courses"/>
       <div className='card-area'>
         <Card />
         <Card />

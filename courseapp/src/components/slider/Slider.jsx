@@ -33,7 +33,7 @@ function Myslider() {
   return (
     <div className="main">
       <Carousel nextIcon={directionButtons('Next')} prevIcon={directionButtons('Prev')}>
-        {slider.map((item, index) => {
+        {slider.map((slider, index) => {
           return (
             <Carousel.Item key={index}>
               <div className="my-image">
@@ -42,9 +42,9 @@ function Myslider() {
                   data-aos="fade-up"
                   data-aos-anchor-placement="bottom-bottom"
                   data-aos-duration="800"
-                  dangerouslySetInnerHTML={{ __html: item.title }}
+                  dangerouslySetInnerHTML={{ __html: slider.title }}
                 ></div>
-                <img className="d-block w-100" src={`data:image/jpg;base64, ${item.image}`} alt="Slider Image" />
+                <img className="d-block w-100" src={`data:image/jpg;base64, ${slider.image}`} alt="Slider Image" />
               </div>
             </Carousel.Item>
           );

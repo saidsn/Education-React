@@ -258,6 +258,8 @@ section {
 3. Header
 *********************************/
 
+
+
 .header {
 	position: fixed;
 	top: 45px;
@@ -371,6 +373,12 @@ section {
 	color: #ffb606;
 }
 
+.basketIcon{
+   margin-left: 20px;
+   font-size: 30px;
+   color: #fff;
+}
+
 /*********************************
 3.3 Header Side
 *********************************/
@@ -394,6 +402,9 @@ section {
 	color: #FFFFFF;
 	padding-left: 12px;
 }
+
+
+
 
 /*********************************
 3.4 Hamburger

@@ -25,14 +25,14 @@ function AboutUs() {
                             </div>
                         </div>
                         <div className="col-lg-6">
-                            <div className="about_image"><img src="images/about_1.jpg.webp" data-aos="flip-left"
+                            <div className="about_image"><img src="images/about_1.jpg.webp" alt='about' data-aos="flip-left"
                                 data-aos-easing="ease-out-cubic"
                                 data-aos-duration="2000" /></div>
                         </div>
                     </div>
                     <div className="row about_row row-lg-eq-height">
                         <div className="col-lg-6 order-lg-1 order-2">
-                            <div className="about_image"><img src="./images/about_1.jpg.webp" data-aos="flip-left"
+                            <div className="about_image"><img src="./images/about_1.jpg.webp" alt='about' data-aos="flip-left"
                                 data-aos-easing="ease-out-cubic"
                                 data-aos-duration="2000" /></div>
                         </div>

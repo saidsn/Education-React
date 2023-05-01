@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { SlBasket } from 'react-icons/sl';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
@@ -44,7 +45,9 @@ function MyNavbar() {
             <Dropdown.Item ><Link  to = "logout">Logout</Link></Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
+        <Link to="basket"><SlBasket className='basketIcon'/></Link>
       </div>
+ 
 
       <div className="hamburger_container">
         <i className="fas fa-bars trans_200"></i>

@@ -11,6 +11,8 @@ import News from '../pages/news/News';
 import Contact from '../pages/contact/Contact';
 import Login from '../pages/account/Login';
 import Register from '../pages/account/Register';
+import SliderCreate from '../pages/admin/slider/SliderCreate';
+import SliderTable from '../pages/admin/slider/SliderTable';
 
 
 function App() {
@@ -26,7 +28,8 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/SliderCreate" element={<SliderCreate />} />
+          <Route path="/SliderTable" element={<SliderTable />} />
         </Routes>
         <Footer />
 

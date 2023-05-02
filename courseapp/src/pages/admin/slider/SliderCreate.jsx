@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+import { TextField } from "@mui/material";
 import Swal from "sweetalert2";
 import axios from 'axios';
-
-
-
-
-
 
 
 
@@ -13,7 +11,9 @@ function SliderCreate() {
 
   const baseUrl = "http://localhost:7184";
   const [slider, setSlider] = useState([]);
-  const [image, setImage] = useState();
+  const [image, setImage] = useState([]);
+  const [title, setTitle] = useState([]);
+
 
 
   const Success = Swal.mixin({
@@ -106,7 +106,7 @@ function SliderCreate() {
 
       <div
         className="modal fade"
-        id="create-Banner"
+        id="create-Slider"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -115,17 +115,17 @@ function SliderCreate() {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title create-header" id="exampleModalLabel">
-                {t("please fill the blank")}:
+                {("please fill the blank")}:
               </h5>
               <button
                 type="button"
-                className="btn-close Banner-button"
+                className="btn-close Slider-button"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
             <div className="modal-body container addition">
-              <h6 className="addition-title">{t("Create your Banner")}</h6>
+              <h6 className="addition-title">{("Create your Slider")}</h6>
               <div className="row">
                 <div className="col-6"></div>
                 <div className="col-6"></div>
@@ -133,7 +133,7 @@ function SliderCreate() {
               <div className="row mt-2">
                 <div className="col-6"></div>
               </div>
-              <h6 className="mt-4 addition-title">{t("contact")}</h6>
+              <h6 className="mt-4 addition-title">{("contact")}</h6>
 
               <div className="row my-3">
                 <input
@@ -145,18 +145,18 @@ function SliderCreate() {
             <div className="modal-footer">
               <button
                 type="button"
-                onClick={() => CreateBanner()}
+                onClick={() => CreateSlider()}
                 data-bs-dismiss="modal"
                 className="btn btn-outline-primary student-button"
               >
-                {t("save")}
+                {("save")}
               </button>
               <button
                 type="button"
                 data-bs-dismiss="modal"
                 className="btn btn-outline-warning student-button"
               >
-                {t("cancel")}
+                {("cancel")}
               </button>
             </div>
           </div>

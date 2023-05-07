@@ -28,6 +28,7 @@ function MyNavbar() {
               <li className="main_nav_item"><Link to="/courses">courses</Link></li>
               <li className="main_nav_item"><Link to="/news">news</Link></li>
               <li className="main_nav_item"><Link to="/contact">contact</Link></li>
+              <li className="main_nav_item"><Link to="/dashboard">dashboard</Link></li>
             </ul>
           </div>
         </nav>
@@ -40,9 +41,9 @@ function MyNavbar() {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item ><Link  to = "login">Login</Link></Dropdown.Item>
-            <Dropdown.Item ><Link  to = "register">Register</Link></Dropdown.Item>
-            <Dropdown.Item ><Link  to = "logout">Logout</Link></Dropdown.Item>
+            <Dropdown.Item ><Link  to = "/login">Login</Link></Dropdown.Item>
+            <Dropdown.Item ><Link  to = "/register">Register</Link></Dropdown.Item>
+            <Dropdown.Item ><Link  to = "/logout">Logout</Link></Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
         <Link to="basket"><SlBasket className='basketIcon'/></Link>

@@ -8,13 +8,14 @@ AOS.init();
 
 function Myslider() {
 
-  const baseUrl = 'https://localhost:7184';
+  const url = 'https://localhost:7184';
 
   const [slider, setSlider] = useState([]);
 
-  async function getAllSlider() {
-    await axios.get(`${baseUrl}/api/Slider/GetAll`).then((res) => {
-      return setSlider(res.data);
+  const getAllSlider = async () => {
+    await axios.get(`${url}/api/Slider/GetAll`)
+    .then((res) => {
+      setSlider(res.data);
     });
   }
 
@@ -42,8 +43,9 @@ function Myslider() {
                   data-aos="fade-up"
                   data-aos-anchor-placement="bottom-bottom"
                   data-aos-duration="800"
-                  dangerouslySetInnerHTML={{ __html: slider.title }}
+                dangerouslySetInnerHTML={{ __html: slider.title }}
                 ></div>
+                 
                 <img className="d-block w-100" src={`data:image/jpg;base64, ${slider.image}`} alt="Slider Image" />
               </div>
             </Carousel.Item>

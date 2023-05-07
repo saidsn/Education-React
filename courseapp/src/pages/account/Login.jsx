@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Navbar from '../../components/layout/Navbar';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,6 +14,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../../components/header/Header';
+import Footer from '../../components/layout/Footer';
 
 
 const theme = createTheme();
@@ -29,7 +31,8 @@ function Login() {
 
   return (
     <>
-      <Header sectionHeader = "Login"/>
+      <Navbar />
+      <Header sectionHeader="Login" />
       <div className='container my-5'>
         <ThemeProvider theme={theme}>
           <Grid container component="main" sx={{ height: '100vh' }}>
@@ -89,7 +92,7 @@ function Login() {
                     label="Remember me"
                   />
                   <Button
-                    style={{background: '#ffb606'}}
+                    style={{ background: '#ffb606' }}
                     type="submit"
                     fullWidth
                     variant="contained"
@@ -115,6 +118,7 @@ function Login() {
           </Grid>
         </ThemeProvider>
       </div>
+      <Footer />
     </>
 
   );

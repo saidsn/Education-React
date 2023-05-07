@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Navbar from '../../components/layout/Navbar';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,6 +11,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../../components/header/Header';
+import Footer from '../../components/layout/Footer';
 
 
 const theme = createTheme();
@@ -26,7 +28,8 @@ function Register() {
 
   return (
     <>
-      <Header sectionHeader = "Register" />
+      <Navbar />
+      <Header sectionHeader="Register" />
       <div className='container my-5'>
         <ThemeProvider theme={theme}>
           <Grid container component="main" sx={{ height: '100vh' }}>
@@ -71,7 +74,7 @@ function Register() {
                     name="fullname"
                     type="text"
                     autoComplete="off"
-                 
+
                   />
                   <TextField
                     margin="normal"
@@ -130,6 +133,7 @@ function Register() {
           </Grid>
         </ThemeProvider>
       </div>
+      <Footer />
     </>
 
   );

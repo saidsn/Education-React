@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from '../../components/layout/Navbar';
 import { Link } from 'react-router-dom';
 import '../../../src/assets/styles/News.css';
 import Header from '../../components/header/Header';
@@ -6,11 +7,13 @@ import Blog from '../../components/blog/Blog';
 import Archive from '../../components/archive/Archive';
 import LatestPosts from '../../components/latest-posts/Latest-posts';
 import Tags from '../../components/tags/Tags';
+import Footer from '../../components/layout/Footer';
 
 function News() {
   return (
     <>
-      <Header sectionHeader = "The News" />
+      <Navbar />
+      <Header sectionHeader="The News" />
       <div className="news-area">
         <div className="container">
           <div className="row">
@@ -39,7 +42,7 @@ function News() {
           </div>
         </div>
       </div>
-
+      <Footer />
     </>
   )
 }

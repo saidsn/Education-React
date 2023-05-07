@@ -111,8 +111,8 @@ function Footer() {
                             <script data-cfasync="false"
                                 src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
                             <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
-                            with <i className="fa fa-heart" aria-hidden="true"></i> by <a href="https://github.com/saidsn"
-                                target="_blank">Seid Nuraliyev</a>
+                            with <i className="fa fa-heart" aria-hidden="true"></i> by <Link to="https://github.com/saidsn"
+                                target="_blank">Seid Nuraliyev</Link>
                         </span>
                     </div>
                     <div className="footer_social ml-sm-auto">

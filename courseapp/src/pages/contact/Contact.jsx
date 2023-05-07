@@ -1,7 +1,9 @@
 import React from 'react'
+import Navbar from '../../components/layout/Navbar';
 import '../../../src/assets/styles/Contact.css'
 import Header from '../../components/header/Header'
 import ContactInfo from '../../components/contactInfo/ContactInfo';
+import Footer from '../../components/layout/Footer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
@@ -9,9 +11,10 @@ AOS.init();
 function Contact() {
     return (
         <>
-            <Header sectionHeader = "Contact Us"/>
+            <Navbar />
+            <Header sectionHeader="Contact Us" />
             <div className="contact">
-                <div className="container" style={{maxWidth:"1140px"}}>
+                <div className="container" style={{ maxWidth: "1140px" }}>
                     <div className="row">
                         <div className="col-lg-8">
                             <div className="contact_form" data-aos="fade-up" data-aos-duration="800">
@@ -36,7 +39,7 @@ function Contact() {
                                 <p className="about_text">In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl
                                     ligula vel nunc. Proin quis mi malesuada, finibus tortor fermentum. Etiam eu purus nec eros varius
                                     luctus. Praesent finibus risus facilisis ultricies. Etiam eu purus nec eros varius luctus.</p>
-                                <ContactInfo/>
+                                <ContactInfo />
                             </div>
                         </div>
                     </div>
@@ -55,7 +58,7 @@ function Contact() {
                     </div>
                 </div>
             </div>
-
+            <Footer />
         </>
     )
 }

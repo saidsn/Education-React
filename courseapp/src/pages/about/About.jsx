@@ -1,13 +1,17 @@
 import React from 'react'
 import Header from '../../components/header/Header';
 import AboutUs from '../../components/about/AboutUs';
+import Navbar from '../../components/layout/Navbar';
+import Footer from '../../components/layout/Footer';
 
 
 function About() {
   return (
     <>
-      <Header sectionHeader = "About Us"/>
-      <AboutUs/>
+      <Navbar />
+      <Header sectionHeader="About Us" />
+      <AboutUs />
+      <Footer />
     </>
   )
 }

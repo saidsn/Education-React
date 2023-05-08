@@ -14,13 +14,7 @@ function SliderTable() {
 
     const [slider, setSlider] = useState([]);
 
-    //   let token = JSON.parse(localStorage.getItem("token"));
 
-    //   const config = {
-    //     headers: { Authorization: `Bearer ${token}` },
-    //   };
-
-    //sweet alert
     const Success = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -59,10 +53,12 @@ function SliderTable() {
     // Delete Slider
     const DeleteSlider = async (id) => {
         await axios
-            .delete(`${url}/api/Slider/Delete?id = ${id}`)
+
+            .delete(`${url}/api/Slider/Delete?id=${id}`)
             .then(function (response) {
-                Swal.fire("", "Deleted", "success");
+                Swal.fire("", "Deleted Slider", "success");
                 console.log(response);
+                getAllSlider();
             })
             .catch(function (error) {
                 Swal.fire({
@@ -72,11 +68,10 @@ function SliderTable() {
                 });
                 console.log(error);
             });
-        getAllSlider(); 
+   
     };
 
     return (
-
         <div className="container">
             <div className="row">
                 <div className="col-lg-12 grid-margin stretch-card my-5">
@@ -91,6 +86,7 @@ function SliderTable() {
                                 <th>#</th>
                                 <th>Image</th>
                                 <th style={{ textAlign: "center" }}>Title</th>
+                                <th style={{ textAlign: "center" }}>Create date</th>
                                 <th style={{ textAlign: "center" }}>Setting</th>
                             </tr>
                         </thead>
@@ -108,6 +104,11 @@ function SliderTable() {
                                                 src={`data:image/jpeg;base64,${slider.image}`} alt="sliderImage" />
                                         </td>
                                         <td style={{ textAlign: "center" }} className="py-1" dangerouslySetInnerHTML={{ __html: slider.title }}></td>
+                                        <td>{new Date(slider.createDate).toLocaleString('en-US', {hour12: false})}</td>
+
+
+
+
                                         <td style={{ textAlign: "center" }}>
                                             <Link to={`/sliderUpdate/${slider.id}`}>
                                                 <button className="btn btn-warning" style={{ marginRight: "15px" }}>Update</button>

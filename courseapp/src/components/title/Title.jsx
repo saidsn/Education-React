@@ -21,11 +21,6 @@ function Title(props) {
     useEffect(()=>{
         getAllTitle();
     },[]);
- 
-
-    
-
-
 
     return (
         <div className="popular title_section" data-aos="fade-up"

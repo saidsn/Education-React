@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -8,35 +7,11 @@ import axios from "axios";
 
 function SliderTable() {
 
-    let count = 0;
+    let count = 1;
 
     const url = 'https://localhost:7184';
 
     const [slider, setSlider] = useState([]);
-
-
-    const Success = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-        },
-    });
-    const Reject = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener("mouseenter", Swal.stopTimer);
-            toast.addEventListener("mouseleave", Swal.resumeTimer);
-        },
-    });
 
     //Get Slider from Api
     async function getAllSlider() {
@@ -53,22 +28,21 @@ function SliderTable() {
     // Delete Slider
     const DeleteSlider = async (id) => {
         await axios
-
             .delete(`${url}/api/Slider/Delete?id=${id}`)
-            .then(function (response) {
+            .then((res) => {
                 Swal.fire("", "Deleted Slider", "success");
-                console.log(response);
+                console.log(res);
                 getAllSlider();
             })
-            .catch(function (error) {
+            .catch((err) => {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
                 });
-                console.log(error);
+                console.log(err);
             });
-   
+
     };
 
     return (
@@ -104,11 +78,7 @@ function SliderTable() {
                                                 src={`data:image/jpeg;base64,${slider.image}`} alt="sliderImage" />
                                         </td>
                                         <td style={{ textAlign: "center" }} className="py-1" dangerouslySetInnerHTML={{ __html: slider.title }}></td>
-                                        <td>{new Date(slider.createDate).toLocaleString('en-US', {hour12: false})}</td>
-
-
-
-
+                                        <td>{new Date(slider.createDate).toLocaleString('az-AZ', { hour12: false })}</td>
                                         <td style={{ textAlign: "center" }}>
                                             <Link to={`/sliderUpdate/${slider.id}`}>
                                                 <button className="btn btn-warning" style={{ marginRight: "15px" }}>Update</button>

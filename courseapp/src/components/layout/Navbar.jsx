@@ -13,6 +13,7 @@ function MyNavbar() {
 
     <header className="header d-flex flex-row">
       <div className="header_content d-flex flex-row align-items-center">
+        
         <div className="logo_container">
           <div className="logo">
             <img src='./images/logo.png.webp' alt="Logo" />

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Swal from "sweetalert2";
@@ -8,31 +8,37 @@ import axios from 'axios';
 
 
 
-function SliderCreate() {
+
+function SliderUpdate() {
+
+    const { id } = useParams();
 
     const url = 'https://localhost:7184';
+
 
     const [slider, setSlider] = useState([]);
     const [image, setImage] = useState();
     const [title, setTitle] = useState();
 
-    const getAllSlider = async () => {
-        await axios.get(`${url}/api/Slider/GetAll`)
+    const getSlider = async () => {
+        await axios.get(`${url}/api/Slider/Get?id=${id}`)
             .then((res) => {
                 setSlider(res.data);
+                setImage(res.data.image);
+                setTitle(res.data.title);
             });
-    }
+    };
+
 
     useEffect(() => {
-        getAllSlider();
+        getSlider()
     }, []);
 
 
-
-
-    const CreateSlider = async () => {
+    const UpdateSlider = async (e) => {
+        e.preventDefault();
         await axios
-            .post(`${url}/api/Slider/Create`,
+            .put(`${url}/api/Slider/Update/${id}`,
                 {
                     Image: image,
                     Title: title
@@ -41,7 +47,7 @@ function SliderCreate() {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Slider Created',
+                    title: 'Slider Updated',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -52,16 +58,13 @@ function SliderCreate() {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Slider not Created',
+                    title: 'Slider not Updated',
                     showConfirmButton: false,
                     timer: 1500
                 });
                 console.log(err);
             });
-
-
     }
-
 
     const getBase64 = (file) => {
         return new Promise((resolve, reject) => {
@@ -79,24 +82,22 @@ function SliderCreate() {
     };
 
 
-
     return (
-
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
-            <h2 className='my-5' style={{ textAlign: "center" }}>Create Slider</h2>
-            <Form>
+            <h2 className='my-5' style={{ textAlign: "center" }}>Update Slider</h2>
+            <Form onSubmit={(e) => UpdateSlider(e)}>
+                <p>Image</p>
+                <img
+                    style={{
+                        width: "200px",
+                        height: "100px",
+                        marginBottom: "10px",
+                        borderRadius: "unset",
+                    }}
+                    src={`data:image/jpeg;base64,${image}`}
+                    alt=""
+                />
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <p>Image</p>
-                    <img
-                        style={{
-                            width: "200px",
-                            height: "100px",
-                            marginBottom: "10px",
-                            borderRadius: "unset",
-                        }}
-                        src={`data:image/jpeg;base64,${image}`}
-                        alt=""
-                    />
                     <Form.Control type="file" onChange={(e) => base64Img(e.target.files[0])} />
                 </Form.Group>
 
@@ -105,8 +106,8 @@ function SliderCreate() {
                     <Form.Control type="text" onChange={(e) => setTitle(e.target.value)} />
                 </Form.Group>
 
-                <Button variant="outline-primary" type="submit" onClick={() => CreateSlider()}>
-                    Create
+                <Button variant="outline-primary" type="submit">
+                    Update
                 </Button>
                 <Link to="/SliderTable">
                     <Button variant="outline-dark" type="submit" className='mx-2'>
@@ -115,7 +116,8 @@ function SliderCreate() {
                 </Link>
             </Form>
         </div>
+
     )
 }
 
-export default SliderCreate;
+export default SliderUpdate;

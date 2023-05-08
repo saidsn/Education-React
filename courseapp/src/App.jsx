@@ -11,11 +11,13 @@ import Register from './pages/account/Register';
 import SliderCreate from './pages/admin/slider/SliderCreate';
 import SliderTable from './pages/admin/slider/SliderTable';
 import Dashboard from './pages/admin/Dashboardd';
+import SliderUpdate from './pages/admin/slider/SliderUpdate';
+import HeaderTable from './pages/admin/header/HeaderTable';
 
 
 
 function App() {
-  const formattedOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  
   return (
     <>
       <Routes>
@@ -28,6 +30,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/sliderCreate" element={<SliderCreate />} />
         <Route path="/sliderTable" element={<SliderTable />} />
+        <Route path="/sliderUpdate/:id" element={<SliderUpdate />} />
+        <Route path="/headerTable" element={<HeaderTable />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </>

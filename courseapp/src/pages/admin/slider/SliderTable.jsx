@@ -14,7 +14,7 @@ function SliderTable() {
     const [slider, setSlider] = useState([]);
 
     //Get Slider from Api
-    async function getAllSlider() {
+    const getAllSlider = async () => {
         await axios.get(`${url}/api/Slider/GetAll`)
             .then((res) => {
                 setSlider(res.data);

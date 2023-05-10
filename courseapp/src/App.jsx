@@ -13,6 +13,7 @@ import SliderTable from './pages/admin/slider/SliderTable';
 import Dashboard from './pages/admin/Dashboardd';
 import SliderUpdate from './pages/admin/slider/SliderUpdate';
 import HeaderTable from './pages/admin/header/HeaderTable';
+import HeaderCreate from './pages/admin/header/HeaderCreate';
 
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/sliderTable" element={<SliderTable />} />
         <Route path="/sliderUpdate/:id" element={<SliderUpdate />} />
         <Route path="/headerTable" element={<HeaderTable />} />
+        <Route path="/headerCreate" element={<HeaderCreate />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </>

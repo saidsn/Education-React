@@ -15,7 +15,6 @@ function HeaderTable() {
     const getAllHeader = async () => {
         await axios.get(`${url}/api/Header/GetAll`)
             .then((res) => {
-                console.log(res.data[0].title);
                 setHeader(res.data);
             });
     };
@@ -77,10 +76,10 @@ function HeaderTable() {
                                             }}
                                                 src={`data:image/jpeg;base64,${header.image}`} alt="headerImage" />
                                         </td>
-                                        <td style={{ textAlign: "center" }} className="py-1" dangerouslySetInnerHTML={{ __html: header.name }}></td>
+                                        <td style={{ textAlign: "center" }} className="py-1" dangerouslySetInnerHTML={{ __html: header.title }}></td>
                                         <td>{new Date(header.createDate).toLocaleString('az-AZ', { hour12: false })}</td>
                                         <td style={{ textAlign: "center" }}>
-                                            <Link to={`/sliderUpdate/${header.id}`}>
+                                            <Link to={`/headerUpdate/${header.id}`}>
                                                 <button className="btn btn-warning" style={{ marginRight: "15px" }}>Update</button>
                                             </Link>
                                             <button

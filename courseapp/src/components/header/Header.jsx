@@ -8,38 +8,39 @@ function Header(props) {
     const baseUrl = "https://localhost:7184";
 
     const [header, setHeader] = useState([]);
-    
-    async function getAllheader(){
-        await axios.get(`${baseUrl}/api/Header/GetAll`).then((res)=>{
-            return setHeader(res.data)       
+
+    async function getAllheader() {
+        await axios.get(`${baseUrl}/api/Header/GetAll`).then((res) => {
+            return setHeader(res.data)
         })
     };
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         getAllheader();
-    },[]);
+    }, []);
 
 
 
 
 
     return (
-        <div className="home">
-            <div className="home_background_container prlx_parent">
-                <div className="home_background prlx" style={{ background: `url(${process.env.PUBLIC_URL}/images/courses_background.jpg.webp)` }}></div>
-            </div>
-            <div className="home_content">
-                {
-                    header.filter((h)=>h.name === props.sectionHeader).map((header, index)=>{
-                        return(
-                            <h1 key={index}>{header.name}</h1>
-                        )
-                    })
-                }
+        <>
+            {
+                header.filter((h) => h.title === props.sectionHeader).map((header, index) => {
+                    return (
+                        <div className="home" key={index} >
+                            <div className="home_background_container prlx_parent">
+                            <div className="home_background prlx" style={{ background: `url(data:image/png;base64,${header.image})` }}></div>
 
-
-            </div>
-        </div>
+                            </div>
+                            <div className="home_content">
+                                <h1 key={index}>{header.title}</h1>
+                            </div>
+                        </div>
+                    )
+                })
+            }
+        </>
     )
 }
 

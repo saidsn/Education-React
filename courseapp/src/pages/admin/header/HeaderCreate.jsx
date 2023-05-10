@@ -1,38 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Swal from "sweetalert2";
 import axios from 'axios';
+import Swal from "sweetalert2";
 
-
-
-
-function SliderCreate() {
+function HeaderCreate() {
 
     const url = 'https://localhost:7184';
 
-    const [slider, setSlider] = useState([]);
+    const [header, setHeader] = useState([]);
     const [image, setImage] = useState();
     const [title, setTitle] = useState();
 
-    const getAllSlider = async () => {
-        await axios.get(`${url}/api/Slider/GetAll`)
+    const getAllHeader = async () => {
+        await axios.get(`${url}/api/Header/GetAll`)
             .then((res) => {
-                setSlider(res.data);
+                setHeader(res.data);
             });
-    }
+    };
 
     useEffect(() => {
-        getAllSlider();
+        getAllHeader();
     }, []);
 
-
-
-
-    const CreateSlider = async () => {
+    const CreateHeader = async () => {
         await axios
-            .post(`${url}/api/Slider/Create`,
+            .post(`${url}/api/Header/Create`,
                 {
                     Image: image,
                     Title: title
@@ -41,7 +35,7 @@ function SliderCreate() {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Slider Created',
+                    title: 'Header Created',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -52,16 +46,13 @@ function SliderCreate() {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Slider not Created',
+                    title: 'Header not Created',
                     showConfirmButton: false,
                     timer: 1500
                 });
                 console.log(err);
             });
-
-
-    }
-
+    };
 
     const getBase64 = (file) => {
         return new Promise((resolve, reject) => {
@@ -77,14 +68,11 @@ function SliderCreate() {
         getBase64(file).then((result) => {
             setImage(result);
         });
-    };
-
-
+    }
 
     return (
-
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
-            <h2 className='my-5' style={{ textAlign: "center" }}>Create Slider</h2>
+            <h2 className='my-5' style={{ textAlign: "center" }}>Create Header</h2>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p>Image</p>
@@ -96,7 +84,7 @@ function SliderCreate() {
                             borderRadius: "unset",
                         }}
                         src={`data:image/jpeg;base64,${image}`}
-                        alt="slider image"
+                        alt="header image"
                     />
                     <Form.Control type="file" onChange={(e) => base64Img(e.target.files[0])} />
                 </Form.Group>
@@ -106,10 +94,10 @@ function SliderCreate() {
                     <Form.Control type="text" onChange={(e) => setTitle(e.target.value)} />
                 </Form.Group>
 
-                <Button variant="outline-primary" type="submit" onClick={() => CreateSlider()}>
+                <Button variant="outline-primary" type="submit" onClick={() => CreateHeader()}>
                     Create
                 </Button>
-                <Link to="/SliderTable">
+                <Link to="/HeaderTable">
                     <Button variant="outline-dark" type="submit" className='mx-2'>
                         Cancel
                     </Button>
@@ -119,4 +107,5 @@ function SliderCreate() {
     )
 }
 
-export default SliderCreate;
+export default HeaderCreate;
+

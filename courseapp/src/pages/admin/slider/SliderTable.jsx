@@ -56,18 +56,18 @@ function SliderTable() {
                     </Link>
                     <Table striped bordered hover >
                         <thead>
-                            <tr>
+                            <tr style={{ textAlign: "center" }}>
                                 <th>#</th>
                                 <th>Image</th>
-                                <th style={{ textAlign: "center" }}>Title</th>
-                                <th style={{ textAlign: "center" }}>Create date</th>
-                                <th style={{ textAlign: "center" }}>Setting</th>
+                                <th>Title</th>
+                                <th>Create date</th>
+                                <th>Setting</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 slider.map((slider, index) => (
-                                    <tr key={index}>
+                                    <tr key={index} style={{ textAlign: "center" }}>
                                         <td>{count++}</td>
                                         <td>
                                             <img style={{
@@ -77,9 +77,9 @@ function SliderTable() {
                                             }}
                                                 src={`data:image/jpeg;base64,${slider.image}`} alt="sliderImage" />
                                         </td>
-                                        <td style={{ textAlign: "center" }} className="py-1" dangerouslySetInnerHTML={{ __html: slider.title }}></td>
+                                        <td className="py-1" dangerouslySetInnerHTML={{ __html: slider.title }}></td>
                                         <td>{new Date(slider.createDate).toLocaleString('az-AZ', { hour12: false })}</td>
-                                        <td style={{ textAlign: "center" }}>
+                                        <td>
                                             <Link to={`/sliderUpdate/${slider.id}`}>
                                                 <button className="btn btn-warning" style={{ marginRight: "15px" }}>Update</button>
                                             </Link>

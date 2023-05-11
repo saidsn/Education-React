@@ -1,36 +1,37 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
-import axios from 'axios';
 import Swal from "sweetalert2";
+import axios from 'axios';
 
-function HeaderTable() {
+
+
+function TitleTable() {
 
     let count = 1;
 
     const url = 'https://localhost:7184';
 
-    const [header, setHeader] = useState([]);
+    const [title, setTitle] = useState([]);
 
-    const getAllHeader = async () => {
-        await axios.get(`${url}/api/Header/GetAll`)
+    const getAllTitle = async () => {
+        await axios.get(`${url}/api/Title/GetAll`)
             .then((res) => {
-                setHeader(res.data);
+                setTitle(res.data);
             });
     };
 
     useEffect(() => {
-        getAllHeader();
+        getAllTitle();
     }, []);
 
-
-    const DeleteHeader = async (id) => {
+    const DeleteTitle = async (id) => {
         await axios
-            .delete(`${url}/api/Header/Delete?id=${id}`)
+            .delete(`${url}/api/Title/Delete?id=${id}`)
             .then((res) => {
-                Swal.fire("", "Deleted Header", "success");
+                Swal.fire("", "Deleted Title", "success");
                 console.log(res);
-                getAllHeader();
+                getAllTitle();
             })
             .catch((err) => {
                 Swal.fire({
@@ -48,16 +49,14 @@ function HeaderTable() {
         <div className="container">
             <div className="row">
                 <div className="col-lg-12 grid-margin stretch-card my-5">
-                    <h2 className="mx-auto">Header Table</h2>
-
-                    <Link to="/headerCreate">
+                    <h2 className="">Title Table</h2>
+                    <Link to="/TitleCreate">
                         <button className="btn btn-success my-2" style={{ float: "right" }}>Create</button>
                     </Link>
                     <Table striped bordered hover >
                         <thead>
                             <tr style={{ textAlign: "center" }}>
                                 <th>#</th>
-                                <th>Image</th>
                                 <th>Title</th>
                                 <th>Create date</th>
                                 <th>Setting</th>
@@ -65,25 +64,17 @@ function HeaderTable() {
                         </thead>
                         <tbody>
                             {
-                                header.map((header, index) => (
-                                    <tr key={index} style={{ textAlign: "center" }}>
+                                title.map((title, index) => (
+                                    <tr key={index}  style={{ textAlign: "center" }}>
                                         <td>{count++}</td>
+                                        <td className="py-1" dangerouslySetInnerHTML={{ __html: title.name }}></td>
+                                        <td>{new Date(title.createDate).toLocaleString('az-AZ', { hour12: false })}</td>
                                         <td>
-                                            <img style={{
-                                                width: "100px",
-                                                height: "70px",
-                                                borderRadius: "unset",
-                                            }}
-                                                src={`data:image/jpeg;base64,${header.image}`} alt="headerImage" />
-                                        </td>
-                                        <td className="py-1" dangerouslySetInnerHTML={{ __html: header.title }}></td>
-                                        <td>{new Date(header.createDate).toLocaleString('az-AZ', { hour12: false })}</td>
-                                        <td>
-                                            <Link to={`/HeaderUpdate/${header.id}`}>
+                                            <Link to={`/TitleUpdate/${title.id}`}>
                                                 <button className="btn btn-warning" style={{ marginRight: "15px" }}>Update</button>
                                             </Link>
                                             <button
-                                                onClick={() => DeleteHeader(header.id)}
+                                                onClick={() => DeleteTitle(title.id)}
                                                 type="button"
                                                 className="btn btn-danger"
                                             >
@@ -101,4 +92,4 @@ function HeaderTable() {
     )
 }
 
-export default HeaderTable; 
+export default TitleTable;

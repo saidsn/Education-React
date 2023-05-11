@@ -17,6 +17,7 @@ import HeaderCreate from './pages/admin/header/HeaderCreate';
 import HeaderUpdate from './pages/admin/header/HeaderUpdate';
 import TitleTable from './pages/admin/title/TitleTable';
 import TitleCreate from './pages/admin/title/TitleCreate';
+import TitleUpdate from './pages/admin/title/TitleUpdate';
 
 
 
@@ -41,6 +42,7 @@ function App() {
         <Route path='/headerUpdate/:id' element={<HeaderUpdate />} />
         <Route path='/titleTable' element={<TitleTable />} />
         <Route path='/titleCreate' element={<TitleCreate />} />
+        <Route path='/titleUpdate/:id' element={<TitleUpdate />} />
       </Routes>
     </>
   );

@@ -5,86 +5,82 @@ import Form from 'react-bootstrap/Form';
 import Swal from "sweetalert2";
 import axios from 'axios';
 
-
-
-
-
-function SliderUpdate() {
+function HeaderUpdate() {
 
     const { id } = useParams();
 
     const url = 'https://localhost:7184';
 
-
-    const [slider, setSlider] = useState([]);
+    const [header, setHeader] = useState([]);
     const [image, setImage] = useState();
     const [title, setTitle] = useState();
 
-    const getSlider = async () => {
-        await axios.get(`${url}/api/Slider/Get?id=${id}`)
+
+    const getHeader = async () => {
+        await axios.get(`${url}/api/Header/Get?id=${id}`)
             .then((res) => {
-                setSlider(res.data);
+                setHeader(res.data);
                 setImage(res.data.image);
                 setTitle(res.data.title);
             });
     };
 
-
     useEffect(() => {
-        getSlider()
+        getHeader()
     }, []);
 
-
-    const UpdateSlider = async (e) => {
+    const UpdateHeader = async (e) => {
         e.preventDefault();
-        await axios.put(`${url}/api/Slider/Update/${id}`,
+        await axios.put(`${url}/api/Header/Update/${id}`,
             {
                 Image: image,
                 Title: title
             })
-            .then((res) => {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Slider Updated',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                window.location.reload();
-                console.log(res);
-            })
-            .catch((err) => {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Slider not Updated',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                console.log(err);
-            });
-    }
+                .then((res) => {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Header Updated',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    window.location.reload();
+                    console.log(res);
+                })
+                .catch((err) => {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Header not Updated',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    console.log(err);
+                })
+    };
 
     const getBase64 = (file) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = () => resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
-            reader.onerror = (error) => reject(error);
+            reader.onerror = (err) => reject(err);
         });
     }
 
     const base64Img = (file) => {
-        getBase64(file).then((result) => {
-            setImage(result);
+        getBase64(file).then((res) => {
+            setImage(res);
         });
     };
 
 
+
+
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
-            <h2 className='my-5' style={{ textAlign: "center" }}>Update Slider</h2>
-            <Form onSubmit={(e) => UpdateSlider(e)}>
+            <h2 className='my-5' style={{ textAlign: "center" }}>Update Header</h2>
+            <Form onSubmit={(e) => UpdateHeader(e)}>
                 <p>Image</p>
                 <img
                     style={{
@@ -108,15 +104,14 @@ function SliderUpdate() {
                 <Button variant="outline-primary" type="submit">
                     Update
                 </Button>
-                <Link to="/SliderTable">
+                <Link to="/HeaderTable">
                     <Button variant="outline-dark" type="submit" className='mx-2'>
                         Cancel
                     </Button>
                 </Link>
             </Form>
         </div>
-
     )
 }
 
-export default SliderUpdate;
+export default HeaderUpdate;

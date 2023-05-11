@@ -8,12 +8,13 @@ import News from './pages/news/News';
 import Contact from './pages/contact/Contact';
 import Login from './pages/account/Login';
 import Register from './pages/account/Register';
+import Dashboard from './pages/admin/Dashboardd';
 import SliderCreate from './pages/admin/slider/SliderCreate';
 import SliderTable from './pages/admin/slider/SliderTable';
-import Dashboard from './pages/admin/Dashboardd';
 import SliderUpdate from './pages/admin/slider/SliderUpdate';
 import HeaderTable from './pages/admin/header/HeaderTable';
 import HeaderCreate from './pages/admin/header/HeaderCreate';
+import HeaderUpdate from './pages/admin/header/HeaderUpdate';
 
 
 
@@ -29,12 +30,13 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/sliderCreate" element={<SliderCreate />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/sliderTable" element={<SliderTable />} />
+        <Route path="/sliderCreate" element={<SliderCreate />} />
         <Route path="/sliderUpdate/:id" element={<SliderUpdate />} />
         <Route path="/headerTable" element={<HeaderTable />} />
         <Route path="/headerCreate" element={<HeaderCreate />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/headerUpdate/:id" element={<HeaderUpdate />} />
       </Routes>
     </>
   );

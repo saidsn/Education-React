@@ -79,7 +79,7 @@ function HeaderTable() {
                                         <td style={{ textAlign: "center" }} className="py-1" dangerouslySetInnerHTML={{ __html: header.title }}></td>
                                         <td style={{ textAlign: "center" }}>{new Date(header.createDate).toLocaleString('az-AZ', { hour12: false })}</td>
                                         <td style={{ textAlign: "center" }}>
-                                            <Link to={`/headerUpdate/${header.id}`}>
+                                            <Link to={`/HeaderUpdate/${header.id}`}>
                                                 <button className="btn btn-warning" style={{ marginRight: "15px" }}>Update</button>
                                             </Link>
                                             <button

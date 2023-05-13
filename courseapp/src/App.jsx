@@ -20,6 +20,7 @@ import TitleCreate from './pages/admin/title/TitleCreate';
 import TitleUpdate from './pages/admin/title/TitleUpdate';
 import AboutTable from './pages/admin/about/AboutTable'; 
 import AboutCreate from './pages/admin/about/AboutCreate'; 
+import AboutUpdate from './pages/admin/about/AboutUpdate';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         <Route path='/titleUpdate/:id' element={<TitleUpdate />} />
         <Route path='/aboutTable' element={<AboutTable />} />
         <Route path='/aboutCreate' element={<AboutCreate />} />
+        <Route path='/aboutUpdate/:id' element={<AboutUpdate />} />
       </Routes>
     </>
   );

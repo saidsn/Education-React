@@ -2,45 +2,48 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 import axios from 'axios';
 
-function HeaderUpdate() {
+
+function AboutUpdate() {
 
     const { id } = useParams();
 
     const url = 'https://localhost:7184';
 
-    const [header, setHeader] = useState([]);
+    const [about, setAbout] = useState([]);
     const [image, setImage] = useState();
     const [title, setTitle] = useState();
+    const [description, setDescription] = useState();
 
-
-    const getHeader = async () => {
-        await axios.get(`${url}/api/Header/Get?id=${id}`)
+    const getAbout = async () => {
+        await axios.get(`${url}/api/About/Get?id=${id}`)
             .then((res) => {
-                setHeader(res.data);
+                setAbout(res.data);
                 setImage(res.data.image);
                 setTitle(res.data.title);
+                setDescription(res.data.description);
             });
     };
 
     useEffect(() => {
-        getHeader()
+        getAbout()
     }, []);
 
-    const UpdateHeader = async (e) => {
+    const UpdateAbout = async (e) => {
         e.preventDefault();
-        await axios.put(`${url}/api/Header/Update/${id}`,
+        await axios.put(`${url}/api/About/Update/${id}`,
             {
                 Image: image,
-                Title: title
+                Title: title,
+                Description: description
             })
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Header Updated',
+                    title: 'About Updated',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -51,12 +54,12 @@ function HeaderUpdate() {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Header not Updated',
+                    title: 'About not Updated',
                     showConfirmButton: false,
                     timer: 1500
                 });
                 console.log(err);
-            })
+            });
     };
 
     const getBase64 = (file) => {
@@ -64,23 +67,22 @@ function HeaderUpdate() {
             const reader = new FileReader();
             reader.readAsDataURL(file);
 
-            reader.onload = () => resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
+            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
             reader.onerror = (err) => reject(err);
         });
-    }
+    };
 
-    const base64Img = (file) => {
+    const base64Img = async (file) => {
         getBase64(file)
-            .then((res) => {
-                setImage(res);
+            .then((result) => {
+                setImage(result);
             });
-
     };
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
-            <h2 className='my-5' style={{ textAlign: "center" }}>Update Header</h2>
-            <Form onSubmit={(e) => UpdateHeader(e)}>
+            <h2 className='my-5' style={{ textAlign: "center" }}>Update About</h2>
+            <Form onSubmit={(e) => UpdateAbout(e)}>
                 <p>Image</p>
                 <img
                     style={{
@@ -101,10 +103,15 @@ function HeaderUpdate() {
                     <Form.Control type="text" onChange={(e) => setTitle(e.target.value)} />
                 </Form.Group>
 
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control type="text" onChange={(e) => setDescription(e.target.value)} />
+                </Form.Group>
+
                 <Button variant="outline-primary" type="submit">
                     Update
                 </Button>
-                <Link to="/HeaderTable">
+                <Link to="/AboutTable">
                     <Button variant="outline-dark" type="submit" className='mx-2'>
                         Cancel
                     </Button>
@@ -114,4 +121,4 @@ function HeaderUpdate() {
     )
 }
 
-export default HeaderUpdate;
+export default AboutUpdate;

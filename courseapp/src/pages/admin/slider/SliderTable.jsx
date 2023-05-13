@@ -50,11 +50,15 @@ function SliderTable() {
             <div className="row">
                 <div className="col-lg-12 grid-margin stretch-card my-5">
                     <h2 className="mx-auto">Slider Table</h2>
-
-                    <Link to="/sliderCreate">
-                        <button className="btn btn-success my-2" style={{ float: "right" }}>Create</button>
-                    </Link>
-                    <Table striped bordered hover >
+                    <div className='d-flex justify-content-between'>
+                        <Link to="/SliderCreate">
+                            <button className="btn btn-success my-2" style={{ float: "right" }}>Create</button>
+                        </Link>
+                        <Link to="/dashboard">
+                            <button className="btn btn-success my-2" style={{ float: "right" }}>Dashboard</button>
+                        </Link>
+                    </div>
+                    <Table striped bordered hover variant="dark" >
                         <thead>
                             <tr style={{ textAlign: "center" }}>
                                 <th>#</th>
@@ -67,7 +71,7 @@ function SliderTable() {
                         <tbody>
                             {
                                 slider.map((slider, index) => (
-                                    <tr key={index} style={{ textAlign: "center" }}>
+                                    <tr key={index} style={{ textAlign: "center",verticalAlign:"middle" }}>
                                         <td>{count++}</td>
                                         <td>
                                             <img style={{

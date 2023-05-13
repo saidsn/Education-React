@@ -1,39 +1,40 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
-import Swal from "sweetalert2";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import swal from 'sweetalert2';
 import axios from 'axios';
 
-function HeaderTable() {
+
+function AboutTable() {
 
     let count = 1;
 
     const url = 'https://localhost:7184';
 
-    const [header, setHeader] = useState([]);
+    const [about, setAbout] = useState([]);
 
-    const getAllHeader = async () => {
-        await axios.get(`${url}/api/Header/GetAll`)
+    const getAllAbout = async () => {
+        await axios.get(`${url}/api/About/GetAll`)
             .then((res) => {
-                setHeader(res.data);
+                setAbout(res.data);
             });
-    };
+    }
 
     useEffect(() => {
-        getAllHeader();
-    }, []);
+        getAllAbout();
+    }, [about]);
 
-
-    const DeleteHeader = async (id) => {
+    const DeleteAbout = async (id) => {
         await axios
-            .delete(`${url}/api/Header/Delete?id=${id}`)
+            .delete(`${url}/api/About/Delete?id=${id}`)
             .then((res) => {
-                Swal.fire("", "Deleted Header", "success");
+                swal.fire("", "Deleted About", "success");
                 console.log(res);
-                getAllHeader();
+                getAllAbout();
             })
             .catch((err) => {
-                Swal.fire({
+                swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
@@ -48,9 +49,9 @@ function HeaderTable() {
         <div className="container">
             <div className="row">
                 <div className="col-lg-12 grid-margin stretch-card my-5">
-                    <h2 className="mx-auto">Header Table</h2>
+                    <h2 className="mx-auto">About Table</h2>
                     <div className='d-flex justify-content-between'>
-                        <Link to="/HeaderCreate">
+                        <Link to="/AboutCreate">
                             <button className="btn btn-success my-2" style={{ float: "right" }}>Create</button>
                         </Link>
                         <Link to="/dashboard">
@@ -63,13 +64,14 @@ function HeaderTable() {
                                 <th>#</th>
                                 <th>Image</th>
                                 <th>Title</th>
-                                <th>Create date</th>
+                               
+                                <th>Description</th>
                                 <th>Setting</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                header.map((header, index) => (
+                                about.map((about, index) => (
                                     <tr key={index} style={{ textAlign: "center",verticalAlign:"middle" }}>
                                         <td>{count++}</td>
                                         <td>
@@ -78,22 +80,22 @@ function HeaderTable() {
                                                 height: "70px",
                                                 borderRadius: "unset",
                                             }}
-                                                src={`data:image/jpeg;base64,${header.image}`} alt="headerImage" />
+                                                src={`data:image/jpeg;base64,${about.image}`} alt="aboutImage" />
                                         </td>
-                                        <td className="py-1" dangerouslySetInnerHTML={{ __html: header.title }}></td>
-                                        <td>{new Date(header.createDate).toLocaleString('az-AZ', { hour12: false })}</td>
+                                        <td className="py-1" dangerouslySetInnerHTML={{ __html: about.title }}></td>
+                                      
+                                        <td style={{width:"50%"}}>{about.description}</td>
                                         <td>
-                                            <Link to={`/HeaderUpdate/${header.id}`}>
+                                            <Link to={`/AboutUpdate/${about.id}`}>
                                                 <button className="btn btn-warning" style={{ marginRight: "15px" }}>Update</button>
                                             </Link>
                                             <button
-                                                onClick={() => DeleteHeader(header.id)}
+                                                onClick={() => DeleteAbout(about.id)}
                                                 type="button"
                                                 className="btn btn-danger"
                                             >
                                                 Delete
                                             </button>
-
                                         </td>
                                     </tr>
                                 ))}
@@ -105,4 +107,6 @@ function HeaderTable() {
     )
 }
 
-export default HeaderTable; 
+export default AboutTable;
+
+

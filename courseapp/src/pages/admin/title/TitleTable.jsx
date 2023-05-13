@@ -50,10 +50,15 @@ function TitleTable() {
             <div className="row">
                 <div className="col-lg-12 grid-margin stretch-card my-5">
                     <h2 className="">Title Table</h2>
-                    <Link to="/TitleCreate">
-                        <button className="btn btn-success my-2" style={{ float: "right" }}>Create</button>
-                    </Link>
-                    <Table striped bordered hover >
+                    <div className='d-flex justify-content-between'>
+                        <Link to="/TitleCreate">
+                            <button className="btn btn-success my-2" style={{ float: "right" }}>Create</button>
+                        </Link>
+                        <Link to="/dashboard">
+                            <button className="btn btn-success my-2" style={{ float: "right" }}>Dashboard</button>
+                        </Link>
+                    </div>
+                    <Table striped bordered hover variant="dark">
                         <thead>
                             <tr style={{ textAlign: "center" }}>
                                 <th>#</th>
@@ -65,7 +70,7 @@ function TitleTable() {
                         <tbody>
                             {
                                 title.map((title, index) => (
-                                    <tr key={index}  style={{ textAlign: "center" }}>
+                                    <tr key={index} style={{ textAlign: "center",verticalAlign:"middle" }}>
                                         <td>{count++}</td>
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: title.name }}></td>
                                         <td>{new Date(title.createDate).toLocaleString('az-AZ', { hour12: false })}</td>

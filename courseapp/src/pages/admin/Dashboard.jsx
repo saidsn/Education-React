@@ -12,7 +12,7 @@ function Dashboard() {
                 <div className='row'>
                     <div className='col-lg-12 grid-margin stretch-card my-5'>
                         <h2 className="">Dashboard</h2>
-                        <Table striped bordered hover>
+                        <Table striped bordered hover variant='dark'>
                             <thead>
                                 <tr style={{ textAlign: "center" }}>
                                     <th scope="col">#</th>

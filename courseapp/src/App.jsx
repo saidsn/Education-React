@@ -8,7 +8,7 @@ import News from './pages/news/News';
 import Contact from './pages/contact/Contact';
 import Login from './pages/account/Login';
 import Register from './pages/account/Register';
-import Dashboard from './pages/admin/Dashboardd';
+import Dashboard from './pages/admin/Dashboard';
 import SliderCreate from './pages/admin/slider/SliderCreate';
 import SliderTable from './pages/admin/slider/SliderTable';
 import SliderUpdate from './pages/admin/slider/SliderUpdate';
@@ -18,7 +18,8 @@ import HeaderUpdate from './pages/admin/header/HeaderUpdate';
 import TitleTable from './pages/admin/title/TitleTable';
 import TitleCreate from './pages/admin/title/TitleCreate';
 import TitleUpdate from './pages/admin/title/TitleUpdate';
-import AboutTable from './pages/admin/about/AboutTable';  
+import AboutTable from './pages/admin/about/AboutTable'; 
+import AboutCreate from './pages/admin/about/AboutCreate'; 
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route path='/titleCreate' element={<TitleCreate />} />
         <Route path='/titleUpdate/:id' element={<TitleUpdate />} />
         <Route path='/aboutTable' element={<AboutTable />} />
+        <Route path='/aboutCreate' element={<AboutCreate />} />
       </Routes>
     </>
   );

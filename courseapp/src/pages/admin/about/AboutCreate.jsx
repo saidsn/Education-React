@@ -5,37 +5,39 @@ import { Link } from 'react-router-dom';
 import Swal from "sweetalert2";
 import axios from 'axios';
 
-function HeaderCreate() {
+function AboutCreate() {
 
     const url = 'https://localhost:7184';
 
-    const [header, setHeader] = useState([]);
+    const [about, setAbout] = useState([]);
     const [image, setImage] = useState();
     const [title, setTitle] = useState();
+    const [description, setDescription] = useState();
 
-    const getAllHeader = async () => {
-        await axios.get(`${url}/api/Header/GetAll`)
+    const getAllAbout = async () => {
+        await axios.get(`${url}/api/About/GetAll`)
             .then((res) => {
-                setHeader(res.data);
+                setAbout(res.data);
             });
-    };
+    }
 
     useEffect(() => {
-        getAllHeader();
+        getAllAbout();
     }, []);
 
-    const CreateHeader = async () => {
+    const CreateAbout = async () => {
         await axios
-            .post(`${url}/api/Header/Create`,
+            .post(`${url}/api/About/Create`,
                 {
                     Image: image,
-                    Title: title
+                    Title: title,
+                    Description: description
                 })
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Header Created',
+                    title: 'About Created',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -46,7 +48,7 @@ function HeaderCreate() {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Header not Created',
+                    title: 'About not Created',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -62,17 +64,18 @@ function HeaderCreate() {
             reader.onload = () => resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
             reader.onerror = (error) => reject(error);
         });
-    }
+    };
 
     const base64Img = (file) => {
         getBase64(file).then((result) => {
             setImage(result);
         });
-    }
+    };
+
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
-            <h2 className='my-5' style={{ textAlign: "center" }}>Create Header</h2>
+            <h2 className='my-5' style={{ textAlign: "center" }}>Create About</h2>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p>Image</p>
@@ -84,7 +87,7 @@ function HeaderCreate() {
                             borderRadius: "unset",
                         }}
                         src={`data:image/jpeg;base64,${image}`}
-                        alt="header image"
+                        alt="about image"
                     />
                     <Form.Control type="file" onChange={(e) => base64Img(e.target.files[0])} />
                 </Form.Group>
@@ -94,10 +97,15 @@ function HeaderCreate() {
                     <Form.Control type="text" onChange={(e) => setTitle(e.target.value)} />
                 </Form.Group>
 
-                <Button variant="outline-primary" type="submit" onClick={() => CreateHeader()}>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control type="text" onChange={(e) => setDescription(e.target.value)} />
+                </Form.Group>
+
+                <Button variant="outline-primary" type="submit" onClick={() => CreateAbout()}>
                     Create
                 </Button>
-                <Link to="/HeaderTable">
+                <Link to="/AboutTable">
                     <Button variant="outline-dark" type="submit" className='mx-2'>
                         Cancel
                     </Button>
@@ -107,5 +115,4 @@ function HeaderCreate() {
     )
 }
 
-export default HeaderCreate;
-
+export default AboutCreate;

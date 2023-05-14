@@ -21,6 +21,8 @@ import TitleUpdate from './pages/admin/title/TitleUpdate';
 import AboutTable from './pages/admin/about/AboutTable'; 
 import AboutCreate from './pages/admin/about/AboutCreate'; 
 import AboutUpdate from './pages/admin/about/AboutUpdate';
+import BannerTable from './pages/admin/banner/BannerTable';
+import BannerCreate from './pages/admin/banner/BannerCreate';
 
 
 function App() {
@@ -48,6 +50,8 @@ function App() {
         <Route path='/aboutTable' element={<AboutTable />} />
         <Route path='/aboutCreate' element={<AboutCreate />} />
         <Route path='/aboutUpdate/:id' element={<AboutUpdate />} />
+        <Route path='/bannerTable' element={<BannerTable />} />
+        <Route path='/bannerCreate' element={<BannerCreate />} />
       </Routes>
     </>
   );

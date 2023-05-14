@@ -17,7 +17,7 @@ function Banner() {
                                 <img className='svg' src="images/earth-globe.svg" alt="" />
                                 <div className="hero_box_content">
                                     <h2 className="hero_box_title">Online Courses</h2>
-                                    <NavLink className='hero_box_link' to="https://github.com/saidsn">View More</NavLink>
+                                    <NavLink className='hero_box_link' to="/courses">View More</NavLink>
                                 </div>
                             </div>
                         </div>

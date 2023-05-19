@@ -1,62 +1,45 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
 function Service() {
+
+    const url = 'https://localhost:7184';
+
+    const [service, setService] = useState([]);
+
+    const getAllService = async () => {
+        await axios.get(`${url}/api/Service/GetAll`)
+            .then((res) => {
+                setService(res.data);
+            });
+    };
+
+    useEffect(() => {
+        getAllService();
+    }, []);
+
+
     return (
         <div className="services page_section" data-aos="fade-up"
             data-aos-duration="1200">
             <div className="container">
                 <div className="row services_row">
-                    <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
-                        <div className="icon_container d-flex flex-column justify-content-end">
-                            <img src="images/earth-globe.svg" alt="" />
-                        </div>
-                        <h3>Online Courses</h3>
-                        <p>In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin
-                            quis mi malesuada, finibus tortor fermentum.</p>
-                    </div>
-                    <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
-                        <div className="icon_container d-flex flex-column justify-content-end">
-                            <img src="images/exam.svg" alt="" />
-                        </div>
-                        <h3>Indoor Courses</h3>
-                        <p>In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin
-                            quis mi malesuada, finibus tortor fermentum.</p>
-                    </div>
-                    <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
-                        <div className="icon_container d-flex flex-column justify-content-end">
-                            <img src="images/books.svg" alt="" />
-                        </div>
-                        <h3>Amazing Library</h3>
-                        <p>In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin
-                            quis mi malesuada, finibus tortor fermentum.</p>
-                    </div>
-                    <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
-                        <div className="icon_container d-flex flex-column justify-content-end">
-                            <img src="images/professor.svg" alt="" />
-                        </div>
-                        <h3>Exceptional Professors</h3>
-                        <p>In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin
-                            quis mi malesuada, finibus tortor fermentum.</p>
-                    </div>
-                    <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
-                        <div className="icon_container d-flex flex-column justify-content-end">
-                            <img src="images/blackboard.svg" alt="" />
-                        </div>
-                        <h3>Top Programs</h3>
-                        <p>In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin
-                            quis mi malesuada, finibus tortor fermentum.</p>
-                    </div>
-                    <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
-                        <div className="icon_container d-flex flex-column justify-content-end">
-                            <img src="images/mortarboard.svg" alt="" />
-                        </div>
-                        <h3>Graduate Diploma</h3>
-                        <p>In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin
-                            quis mi malesuada, finibus tortor fermentum.</p>
-                    </div>
+                    {
+                        service.map((item, index) => {
+                            return (
+                                <div key={index} className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+                                    <div className="icon_container d-flex flex-column justify-content-end">
+                                        <img src={`data:image/svg+xml;base64, ${item.image}`} alt="" />
+                                    </div>
+                                    <h3>{item.title}</h3>
+                                    <p>{item.description}</p>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
         </div>

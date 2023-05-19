@@ -24,6 +24,7 @@ import AboutUpdate from './pages/admin/about/AboutUpdate';
 import BannerTable from './pages/admin/banner/BannerTable';
 import BannerCreate from './pages/admin/banner/BannerCreate';
 import BannerUpdate from './pages/admin/banner/BannerUpdate';
+import ServiceTable from './pages/admin/service/ServiceTable';
 
 
 function App() {
@@ -54,6 +55,7 @@ function App() {
         <Route path='/bannerTable' element={<BannerTable />} />
         <Route path='/bannerCreate' element={<BannerCreate />} />
         <Route path='/bannerUpdate/:id' element={<BannerUpdate />} />
+        <Route path='/serviceTable' element={<ServiceTable />} />
       </Routes>
     </>
   );

@@ -76,6 +76,17 @@ function Dashboard() {
                                         </Link>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th scope="row">6</th>
+                                    <td>
+                                        <h3>Service</h3>
+                                    </td>
+                                    <td>
+                                        <Link to="/ServiceTable">
+                                            <Button variant="outline-primary">Manage</Button>
+                                        </Link>
+                                    </td>
+                                </tr>
                             </tbody>
                         </Table>
                     </div>

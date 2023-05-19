@@ -62,6 +62,7 @@ function ServiceTable() {
                                 <th>#</th>
                                 <th>Image</th>
                                 <th>Title</th>
+                                <th>Description</th>
                                 <th>Create date</th>
                                 <th>Setting</th>
                             </tr>
@@ -77,9 +78,10 @@ function ServiceTable() {
                                                 height: "70px",
                                                 borderRadius: "unset",
                                             }}
-                                                src={`data:image/svg+xml;base64,${service.image}`} alt="serviceImage" />
+                                                src={`data:image/svg+xml;base64,${service.image}`} alt="serviceSvg" />
                                         </td>
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: service.title }}></td>
+                                        <td style={{width:"50%"}}>{service.description}</td>
                                         <td>{new Date(service.createDate).toLocaleString('az-AZ', { hour12: false })}</td>
                                         <td>
                                             <Link to={`/ServiceUpdate/${service.id}`}>

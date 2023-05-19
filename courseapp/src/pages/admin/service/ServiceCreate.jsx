@@ -2,40 +2,43 @@ import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import axios from 'axios';
 
-function BannerCreate() {
+
+function ServiceCreate() {
 
     const url = 'https://localhost:7184';
 
-    const [banner, setBanner] = useState([]);
+    const [service, setService] = useState([]);
     const [svg, setSvg] = useState();
     const [title, setTitle] = useState();
+    const [description, setDescription] = useState();
 
-    const getAllBanner = async () => {
-        await axios.get(`${url}/api/Banner/GetAll`)
+    const getAllService = async () => {
+        await axios.get(`${url}/api/Service/GetAll`)
             .then((res) => {
-                setBanner(res.data);
+                setService(res.data);
             });
     }
 
     useEffect(() => {
-        getAllBanner();
+        getAllService();
     }, []);
 
-    const CreateBanner = async () => {
+    const CreateService = async () => {
         await axios
-            .post(`${url}/api/Banner/Create`,
+            .post(`${url}/api/Service/Create`,
                 {
                     Image: svg,
-                    Title: title
+                    Title: title,
+                    Description: description
                 })
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Banner Created',
+                    title: 'Service Created',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -46,7 +49,7 @@ function BannerCreate() {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Banner not Created',
+                    title: 'Service not Created',
                     showConfirmButton: false,
                     timer: 1500
                 });
@@ -54,30 +57,31 @@ function BannerCreate() {
             });
     }
 
-
     const getBase64 = (file) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
 
-            reader.onload = () => resolve(reader.result.replace("data:", "").replace(/^.+,/, "")); 
+            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
             reader.onerror = (error) => reject(error);
         });
     }
 
-    const base64Svg = (file) => {
+    const base64Svg = async (file) => {
         getBase64(file)
-            .then((result) => {
-                setSvg(result);
+            .then(base64 => {
+                setSvg(base64);
             })
-            .catch((err) => {
+            .catch(err => {
                 console.log(err);
             });
     }
 
+
+
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
-            <h2 className='my-5' style={{ textAlign: "center" }}>Create Banner</h2>
+            <h2 className='my-5' style={{ textAlign: "center" }}>Create Service</h2>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p>Image</p>
@@ -89,7 +93,7 @@ function BannerCreate() {
                             borderRadius: "unset",
                         }}
                         src={`data:image/svg+xml;base64,${svg}`}
-                        alt="bannerSvg"
+                        alt="serviceSvg"
                     />
                     <Form.Control type="file" onChange={(e) => base64Svg(e.target.files[0])} />
                 </Form.Group>
@@ -99,10 +103,15 @@ function BannerCreate() {
                     <Form.Control type="text" onChange={(e) => setTitle(e.target.value)} />
                 </Form.Group>
 
-                <Button variant="outline-primary" type="submit" onClick={() => CreateBanner()}>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control type="text" onChange={(e) => setDescription(e.target.value)} />
+                </Form.Group>
+
+                <Button variant="outline-primary" type="submit" onClick={() => CreateService()}>
                     Create
                 </Button>
-                <Link to="/BannerTable">
+                <Link to="/ServiceTable">
                     <Button variant="outline-dark" type="submit" className='mx-2'>
                         Cancel
                     </Button>
@@ -112,4 +121,4 @@ function BannerCreate() {
     )
 }
 
-export default BannerCreate;
+export default ServiceCreate;

@@ -35,7 +35,7 @@ function Service() {
                     </div>
                     <div className="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
                         <div className="icon_container d-flex flex-column justify-content-end">
-                            <img src="images/Home/professor.svg" alt="" />
+                            <img src="images/professor.svg" alt="" />
                         </div>
                         <h3>Exceptional Professors</h3>
                         <p>In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin

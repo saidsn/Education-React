@@ -20,6 +20,7 @@ function BannerUpdate() {
             .then((res) => {
                 setBanner(res.data);
                 setSvg(res.data.image);
+                setTitle(res.data.title);
             });
     }
 
@@ -27,7 +28,8 @@ function BannerUpdate() {
         getBanner();
     }, []);
 
-    const UpdateBanner = async () => {
+    const UpdateBanner = async (e) => {
+        e.preventDefault();
         await axios
             .put(`${url}/api/Banner/Update/${id}`,
                 {
@@ -42,7 +44,7 @@ function BannerUpdate() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                window.location.href = "/BannerTable";
+                window.location.reload();
                 console.log(res);
             })
             .catch((err) => {
@@ -91,7 +93,7 @@ function BannerUpdate() {
                         borderRadius: "unset",
                     }}
                     src={`data:image/svg+xml;base64,${svg}`}
-                    alt=""
+                    alt="bannerIamge"
                 />
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Control type="file" onChange={(e) => base64Svg(e.target.files[0])} />

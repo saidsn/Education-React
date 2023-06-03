@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Swal from "sweetalert2";
 import axios from 'axios';
 
 function TitleCreate() {
+
+    const navigate = useNavigate();
 
     const url = 'https://localhost:7184';
 
@@ -23,12 +25,13 @@ function TitleCreate() {
         getAllTitle();
     }, []);
 
-    const CreateTitle = async () => {
-        await axios
-            .post(`${url}/api/Title/Create`,
-                {
-                    Name: name,
-                })
+    const newTitle = {
+        name
+    }
+
+    const CreateTitle = async (e) => {
+        e.preventDefault();
+        await axios.post(`${url}/api/Title/Create`, newTitle)
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -37,7 +40,6 @@ function TitleCreate() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                window.location.reload();
                 console.log(res);
             })
             .catch((err) => {
@@ -50,6 +52,8 @@ function TitleCreate() {
                 });
                 console.log(err);
             });
+
+        navigate('/TitleTable');
     }
 
 
@@ -57,13 +61,13 @@ function TitleCreate() {
 
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
             <h2 className='my-5' style={{ textAlign: "center" }}>Create Title</h2>
-            <Form>
+            <Form onSubmit={(e) => CreateTitle(e)}>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Name</Form.Label>
                     <Form.Control type="text" onChange={(e) => setName(e.target.value)} />
                 </Form.Group>
 
-                <Button variant="outline-primary" type="submit" onClick={() => CreateTitle()}>
+                <Button variant="outline-primary" type="submit" >
                     Create
                 </Button>
                 <Link to="/TitleTable">

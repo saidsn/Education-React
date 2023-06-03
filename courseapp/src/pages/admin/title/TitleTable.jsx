@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
 import Swal from "sweetalert2";
+import moment from 'moment';
 import axios from 'axios';
 
 
@@ -64,6 +65,7 @@ function TitleTable() {
                                 <th>#</th>
                                 <th>Title</th>
                                 <th>Create date</th>
+                                <th>Update date</th>
                                 <th>Setting</th>
                             </tr>
                         </thead>
@@ -73,7 +75,8 @@ function TitleTable() {
                                     <tr key={index} style={{ textAlign: "center",verticalAlign:"middle" }}>
                                         <td>{count++}</td>
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: title.name }}></td>
-                                        <td>{new Date(title.createDate).toLocaleString('az-AZ', { hour12: false })}</td>
+                                        <td>{moment(title.createDate).format('DD-MM-YYYY HH:mm:ss')}</td>
+                                        <td>{moment(title.updateDate).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td>
                                             <Link to={`/TitleUpdate/${title.id}`}>
                                                 <button className="btn btn-warning" style={{ marginRight: "15px" }}>Update</button>

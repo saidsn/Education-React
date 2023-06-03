@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import moment from 'moment';
 import axios from "axios";
 
 
@@ -13,7 +14,7 @@ function SliderTable() {
 
     const [slider, setSlider] = useState([]);
 
-    //Get Slider from Api
+    
     const getAllSlider = async () => {
         await axios.get(`${url}/api/Slider/GetAll`)
             .then((res) => {
@@ -25,7 +26,7 @@ function SliderTable() {
         getAllSlider();
     }, []);
 
-    // Delete Slider
+
     const DeleteSlider = async (id) => {
         await axios
             .delete(`${url}/api/Slider/Delete?id=${id}`)
@@ -65,6 +66,7 @@ function SliderTable() {
                                 <th>Image</th>
                                 <th>Title</th>
                                 <th>Create date</th>
+                                <th>Update date</th>
                                 <th>Setting</th>
                             </tr>
                         </thead>
@@ -82,7 +84,8 @@ function SliderTable() {
                                                 src={`data:image/jpeg;base64,${slider.image}`} alt="sliderImage" />
                                         </td>
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: slider.title }}></td>
-                                        <td>{new Date(slider.createDate).toLocaleString('az-AZ', { hour12: false })}</td>
+                                        <td>{moment(slider.createDate).format('DD-MM-YYYY HH:mm:ss')}</td>
+                                        <td>{moment(slider.updateDate).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td>
                                             <Link to={`/sliderUpdate/${slider.id}`}>
                                                 <button className="btn btn-warning" style={{ marginRight: "15px" }}>Update</button>
@@ -103,72 +106,6 @@ function SliderTable() {
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-        // <div className="col-lg-12 grid-margin stretch-card">
-        //     <div className="card">
-        //         <div className="card-body">
-        //             {/* <h4 className="card-title d-flex justify-content-between">
-        //                 Slider
-        //                 <SliderCreate />
-        //             </h4> */}
-        //             <h2 style={{textAlign:"center"}} className="my-5">Slider Table</h2>
-        //             <table className="table table-striped">
-        //                 <thead>
-        //                     <tr>
-        //                         <th>#</th>
-        //                         <th> Slider Image </th>
-        //                         <th> Slider Title </th>
-        //                         {/* <th> Slider Create Date </th> */}
-        //                         <th> Settings </th>
-        //                     </tr>
-        //                 </thead>
-        //                 <tbody>
-        //                     {slider.map((slider, index) => (
-        //                         <tr key={index}>
-        //                             <td>{++count}</td>
-        //                             <td className="py-1">
-        //                                 <img
-        //                                     style={{
-        //                                         width: "100px",
-        //                                         height: "70px",
-        //                                         borderRadius: "unset",
-        //                                     }}
-        //                                     src={`data:image/jpeg;base64,${slider.image}`}
-        //                                     alt=""
-        //                                 />
-        //                             </td>
-        //                             <td className="py-1" dangerouslySetInnerHTML={{ __html: slider.title }}></td>
-        //                             {/* <td className="py-1">{slider.createDate}</td> */}
-        //                             <td>
-        //                                 <Link to={`/sliderUpdate/${slider.id}`}>
-        //                                     <button className="btn btn-primary" style={{ marginRight: "15px" }}>Update</button>
-        //                                 </Link>
-        //                                 <button
-        //                                     onClick={() => DeleteSlider(slider.id)}
-        //                                     type="button"
-        //                                     className="btn btn-warning"
-        //                                 >
-        //                                     Delete
-        //                                 </button>
-        //                             </td>
-        //                         </tr>
-        //                     ))}
-        //                 </tbody>
-        //             </table>
-        //         </div>
-        //     </div>
-        // </div>
     );
 }
 

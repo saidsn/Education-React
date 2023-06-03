@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
-import Swal from "sweetalert2";
+import moment from 'moment';
 import axios from 'axios';
 
 
@@ -26,20 +26,13 @@ function ContactTable() {
         getAllContact();
     }, []);
 
-
-   
-    console.log(contact);
     
-
     return (
         <div className="container">
             <div className="row">
                 <div className="col-lg-12 grid-margin stretch-card my-5">
                     <h2 className="mx-auto">Contact Table</h2>
                     <div className='d-flex justify-content-between'>
-                        <Link to="/ContactCreate">
-                            <button className="btn btn-success my-2" style={{ float: "right" }}>Create</button>
-                        </Link>
                         <Link to="/dashboard">
                             <button className="btn btn-success my-2" style={{ float: "right" }}>Dashboard</button>
                         </Link>
@@ -52,6 +45,7 @@ function ContactTable() {
                                 <th>Email</th>
                                 <th>Message</th>
                                 <th>Create Date</th>
+                                <th>Update Date</th>
                                 <th>Setting</th>
                             </tr>
                         </thead>
@@ -63,14 +57,13 @@ function ContactTable() {
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: contact.name }}></td>
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: contact.email }}></td>
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: contact.message }}></td>
-                                        <td>{new Date(contact.createDate).toLocaleString('az-AZ', { hour12: false })}</td>
+                                        <td>{moment(contact.createDate).format('DD-MM-YYYY HH:mm:ss')}</td>
+                                        <td>{moment(contact.updateDate).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td>
                                             <Link to={`/ContactUpdate/${contact.id}`}>
                                                 <button className="btn btn-warning" style={{ marginRight: "15px" }}>Update</button>
                                             </Link>
                                         </td>
-
-
                                     </tr>
                                 ))}
                         </tbody>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Swal from "sweetalert2";
@@ -8,6 +8,8 @@ import axios from 'axios';
 function HeaderUpdate() {
 
     const { id } = useParams();
+
+    const navigate = useNavigate();
 
     const url = 'https://localhost:7184';
 
@@ -29,13 +31,15 @@ function HeaderUpdate() {
         getHeader()
     }, []);
 
+
+    const newHeader = {
+        image,
+        title
+    }
+
     const UpdateHeader = async (e) => {
         e.preventDefault();
-        await axios.put(`${url}/api/Header/Update/${id}`,
-            {
-                Image: image,
-                Title: title
-            })
+        await axios.put(`${url}/api/Header/Update/${id}`, newHeader)
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -44,7 +48,6 @@ function HeaderUpdate() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                window.location.reload();
                 console.log(res);
             })
             .catch((err) => {
@@ -57,6 +60,8 @@ function HeaderUpdate() {
                 });
                 console.log(err);
             })
+
+        navigate('/HeaderTable');
     };
 
     const getBase64 = (file) => {
@@ -93,12 +98,18 @@ function HeaderUpdate() {
                     alt=""
                 />
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Control type="file" onChange={(e) => base64Img(e.target.files[0])} />
+                    <Form.Control
+                        type="file"
+                        onChange={(e) => base64Img(e.target.files[0])}
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" onChange={(e) => setTitle(e.target.value)} />
+                    <Form.Control
+                        type="text"
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
                 </Form.Group>
 
                 <Button variant="outline-primary" type="submit">

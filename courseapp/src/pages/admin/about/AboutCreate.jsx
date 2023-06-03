@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
 import Swal from "sweetalert2";
 import axios from 'axios';
 
 function AboutCreate() {
+
+    const navigate = useNavigate();
 
     const url = 'https://localhost:7184';
 
@@ -25,14 +27,16 @@ function AboutCreate() {
         getAllAbout();
     }, []);
 
+
+    const newAbout = {
+        image,
+        title,
+        description
+    }
+
     const CreateAbout = async () => {
         await axios
-            .post(`${url}/api/About/Create`,
-                {
-                    Image: image,
-                    Title: title,
-                    Description: description
-                })
+            .post(`${url}/api/About/Create`, newAbout)
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -54,6 +58,8 @@ function AboutCreate() {
                 });
                 console.log(err);
             });
+
+        navigate('/AboutTable');
     };
 
     const getBase64 = (file) => {

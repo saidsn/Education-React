@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import moment from 'moment';
 import axios from 'axios';
 
 function ServiceTable() {
@@ -64,6 +65,7 @@ function ServiceTable() {
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Create date</th>
+                                <th>Update date</th>
                                 <th>Setting</th>
                             </tr>
                         </thead>
@@ -82,7 +84,8 @@ function ServiceTable() {
                                         </td>
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: service.title }}></td>
                                         <td style={{width:"50%"}}>{service.description}</td>
-                                        <td>{new Date(service.createDate).toLocaleString('az-AZ', { hour12: false })}</td>
+                                        <td>{moment(service.createDate).format('DD-MM-YYYY HH:mm:ss')}</td>
+                                        <td>{moment(service.updateDate).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td>
                                             <Link to={`/ServiceUpdate/${service.id}`}>
                                                 <button className="btn btn-warning" style={{ marginRight: "15px" }}>Update</button>

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
 function BannerCreate() {
+
+    const navigate = useNavigate();
 
     const url = 'https://localhost:7184';
 
@@ -24,13 +26,14 @@ function BannerCreate() {
         getAllBanner();
     }, []);
 
+    const newBanner = {
+        svg,
+        title
+    };
+
     const CreateBanner = async () => {
         await axios
-            .post(`${url}/api/Banner/Create`,
-                {
-                    Image: svg,
-                    Title: title
-                })
+            .post(`${url}/api/Banner/Create`, newBanner)
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -52,6 +55,8 @@ function BannerCreate() {
                 });
                 console.log(err);
             });
+
+            navigate('/BannerTable');
     }
 
 

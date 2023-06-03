@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import swal from 'sweetalert2';
+import moment from 'moment';
 import axios from 'axios';
 
 
@@ -64,8 +65,8 @@ function AboutTable() {
                                 <th>#</th>
                                 <th>Image</th>
                                 <th>Title</th>
-                               
                                 <th>Description</th>
+                                <th>Create Date</th>
                                 <th>Setting</th>
                             </tr>
                         </thead>
@@ -85,6 +86,7 @@ function AboutTable() {
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: about.title }}></td>
                                       
                                         <td style={{width:"50%"}}>{about.description}</td>
+                                        <td>{moment(about.createDate).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td>
                                             <Link to={`/AboutUpdate/${about.id}`}>
                                                 <button className="btn btn-warning" style={{ marginRight: "15px" }}>Update</button>

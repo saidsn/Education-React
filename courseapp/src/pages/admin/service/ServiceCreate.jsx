@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
 import Swal from "sweetalert2";
 import axios from 'axios';
 
 
 function ServiceCreate() {
+
+    const navigate = useNavigate();
 
     const url = 'https://localhost:7184';
 
@@ -26,14 +28,15 @@ function ServiceCreate() {
         getAllService();
     }, []);
 
+    const newService = {
+        svg,
+        title,
+        description
+    }
+
     const CreateService = async () => {
         await axios
-            .post(`${url}/api/Service/Create`,
-                {
-                    Image: svg,
-                    Title: title,
-                    Description: description
-                })
+            .post(`${url}/api/Service/Create`, newService)
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -55,6 +58,8 @@ function ServiceCreate() {
                 });
                 console.log(err);
             });
+
+        navigate('/ServiceTable');
     }
 
     const getBase64 = (file) => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Swal from "sweetalert2";
@@ -9,6 +9,8 @@ import axios from 'axios';
 
 
 function SliderCreate() {
+
+    const navigate = useNavigate();
 
     const url = 'https://localhost:7184';
 
@@ -27,16 +29,14 @@ function SliderCreate() {
         getAllSlider();
     }, []);
 
-
-
+    const newSlider = {
+        image,
+        title
+    }
 
     const CreateSlider = async () => {
         await axios
-            .post(`${url}/api/Slider/Create`,
-                {
-                    Image: image,
-                    Title: title
-                })
+            .post(`${url}/api/Slider/Create`, newSlider)
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -59,7 +59,7 @@ function SliderCreate() {
                 console.log(err);
             });
 
-
+        navigate('/SliderTable');
     }
 
 

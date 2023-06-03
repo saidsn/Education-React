@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Swal from 'sweetalert2';
@@ -8,6 +8,8 @@ import axios from 'axios';
 function BannerUpdate() {
 
     const { id } = useParams();
+
+    const navigate = useNavigate();
 
     const url = 'https://localhost:7184';
 
@@ -28,14 +30,14 @@ function BannerUpdate() {
         getBanner();
     }, []);
 
+    const newBanner = {
+        svg,
+        title
+    };
+
     const UpdateBanner = async (e) => {
         e.preventDefault();
-        await axios
-            .put(`${url}/api/Banner/Update/${id}`,
-                {
-                    Image: svg,
-                    Title: title
-                })
+        await axios.put(`${url}/api/Banner/Update/${id}`, newBanner)
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -44,7 +46,6 @@ function BannerUpdate() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                window.location.reload();
                 console.log(res);
             })
             .catch((err) => {
@@ -57,6 +58,8 @@ function BannerUpdate() {
                 });
                 console.log(err);
             });
+
+        navigate('/BannerTable');
     }
 
     const getBase64 = (file) => {
@@ -64,7 +67,7 @@ function BannerUpdate() {
             const reader = new FileReader();
             reader.readAsDataURL(file);
 
-            reader.onload = () => resolve(reader.result.replace("data:", "").replace(/^.+,/, "")); 
+            reader.onload = () => resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
             reader.onerror = (error) => reject(error);
         });
     }
@@ -96,12 +99,18 @@ function BannerUpdate() {
                     alt="bannerIamge"
                 />
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Control type="file" onChange={(e) => base64Svg(e.target.files[0])} />
+                    <Form.Control
+                        type="file"
+                        onChange={(e) => base64Svg(e.target.files[0])}
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" onChange={(e) => setTitle(e.target.value)} />
+                    <Form.Control
+                        type="text"
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
                 </Form.Group>
 
                 <Button variant="outline-primary" type="submit">

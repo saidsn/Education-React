@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Swal from "sweetalert2";
@@ -8,6 +8,8 @@ import axios from 'axios';
 function TitleUpdate() {
 
     const { id } = useParams();
+
+    const navigate = useNavigate();
 
     const url = 'https://localhost:7184';
 
@@ -26,12 +28,13 @@ function TitleUpdate() {
         getTitle()
     }, []);
 
+    const newTitle = {
+        name
+    }
+
     const UpdateTitle = async (e) => {
         e.preventDefault();
-        await axios.put(`${url}/api/Title/Update/${id}`,
-            {
-                Name: name,
-            })
+        await axios.put(`${url}/api/Title/Update/${id}`, newTitle)
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -40,7 +43,6 @@ function TitleUpdate() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                window.location.reload();
                 console.log(res);
             })
             .catch((err) => {
@@ -53,6 +55,8 @@ function TitleUpdate() {
                 });
                 console.log(err);
             });
+
+        navigate('/TitleTable');
     }
 
     return (
@@ -61,7 +65,10 @@ function TitleUpdate() {
             <Form onSubmit={(e) => UpdateTitle(e)}>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" onChange={(e) => setName(e.target.value)} />
+                    <Form.Control
+                        type="text"
+                        onChange={(e) => setName(e.target.value)}
+                    />
                 </Form.Group>
 
                 <Button variant="outline-primary" type="submit">

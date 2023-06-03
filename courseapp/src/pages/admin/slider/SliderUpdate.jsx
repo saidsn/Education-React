@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Swal from "sweetalert2";
@@ -9,8 +9,9 @@ function SliderUpdate() {
 
     const { id } = useParams();
 
-    const url = 'https://localhost:7184';
+    const navigate = useNavigate();
 
+    const url = 'https://localhost:7184';
 
     const [slider, setSlider] = useState([]);
     const [image, setImage] = useState();
@@ -30,14 +31,15 @@ function SliderUpdate() {
         getSlider()
     }, []);
 
+    const newSlider = {
+        image,
+        title
+    }
+
 
     const UpdateSlider = async (e) => {
         e.preventDefault();
-        await axios.put(`${url}/api/Slider/Update/${id}`,
-            {
-                Image: image,
-                Title: title
-            })
+        await axios.put(`${url}/api/Slider/Update/${id}`, newSlider)
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -46,7 +48,6 @@ function SliderUpdate() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                window.location.reload();
                 console.log(res);
             })
             .catch((err) => {
@@ -59,6 +60,8 @@ function SliderUpdate() {
                 });
                 console.log(err);
             });
+
+        navigate('/SliderTable');
     }
 
     const getBase64 = (file) => {
@@ -94,12 +97,18 @@ function SliderUpdate() {
                     alt=""
                 />
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Control type="file" onChange={(e) => base64Img(e.target.files[0])} />
+                    <Form.Control
+                        type="file"
+                        onChange={(e) => base64Img(e.target.files[0])}
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" onChange={(e) => setTitle(e.target.value)} />
+                    <Form.Control
+                        type="text"
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
                 </Form.Group>
 
                 <Button variant="outline-primary" type="submit">

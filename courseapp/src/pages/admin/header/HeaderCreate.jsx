@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
 import Swal from "sweetalert2";
 import axios from 'axios';
 
 function HeaderCreate() {
+
+    const navigate = useNavigate();
 
     const url = 'https://localhost:7184';
 
@@ -24,13 +26,14 @@ function HeaderCreate() {
         getAllHeader();
     }, []);
 
+    const newHeader = {
+        image,
+        title
+    }
+
     const CreateHeader = async () => {
         await axios
-            .post(`${url}/api/Header/Create`,
-                {
-                    Image: image,
-                    Title: title
-                })
+            .post(`${url}/api/Header/Create`, newHeader)
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -52,6 +55,8 @@ function HeaderCreate() {
                 });
                 console.log(err);
             });
+
+        navigate('/HeaderTable');
     };
 
     const getBase64 = (file) => {

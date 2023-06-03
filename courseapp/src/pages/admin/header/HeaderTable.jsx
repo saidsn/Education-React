@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
 import Swal from "sweetalert2";
+import moment from 'moment';
 import axios from 'axios';
 
 function HeaderTable() {
@@ -64,6 +65,7 @@ function HeaderTable() {
                                 <th>Image</th>
                                 <th>Title</th>
                                 <th>Create date</th>
+                                <th>Update date</th>
                                 <th>Setting</th>
                             </tr>
                         </thead>
@@ -81,7 +83,8 @@ function HeaderTable() {
                                                 src={`data:image/jpeg;base64,${header.image}`} alt="headerImage" />
                                         </td>
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: header.title }}></td>
-                                        <td>{new Date(header.createDate).toLocaleString('az-AZ', { hour12: false })}</td>
+                                        <td>{moment(header.createDate).format('DD-MM-YYYY HH:mm:ss')}</td>
+                                        <td>{moment(header.updateDate).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td>
                                             <Link to={`/HeaderUpdate/${header.id}`}>
                                                 <button className="btn btn-warning" style={{ marginRight: "15px" }}>Update</button>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
-import Swal from "sweetalert2";
+import swal from "sweetalert2";
 import moment from 'moment';
 import axios from 'axios';
 
@@ -26,22 +26,21 @@ function BannerTable() {
     }, []);
 
     const DeleteBanner = async (id) => {
-        await axios
-            .delete(`${url}/api/Banner/Delete?id=${id}`)
+        await axios.delete(`${url}/api/Banner/Delete?id=${id}`)
             .then((res) => {
-                Swal.fire("", "Deleted Banner", "success");
+                swal.fire("", "Deleted Banner", "success");
                 console.log(res);
                 getAllBanner();
             })
             .catch((err) => {
-                Swal.fire({
+                swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: "Something went wrong!",
                 });
                 console.log(err);
             });
-    }
+    };
 
 
     return (
@@ -79,7 +78,9 @@ function BannerTable() {
                                                 height: "70px",
                                                 borderRadius: "unset",
                                             }}
-                                                src={`data:image/svg+xml;base64,${banner.image}`} alt="bannerImage" />
+                                                src={`data:image/svg+xml;base64,${banner.image}`}
+                                                alt="bannerimage"
+                                            />
                                         </td>
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: banner.title }}></td>
                                         <td>{moment(banner.createDate).format('DD-MM-YYYY HH:mm:ss')}</td>

@@ -6,8 +6,6 @@ import Swal from "sweetalert2";
 import axios from 'axios';
 
 
-
-
 function SliderCreate() {
 
     const navigate = useNavigate();
@@ -23,7 +21,7 @@ function SliderCreate() {
             .then((res) => {
                 setSlider(res.data);
             });
-    }
+    };
 
     useEffect(() => {
         getAllSlider();
@@ -32,11 +30,11 @@ function SliderCreate() {
     const newSlider = {
         image,
         title
-    }
+    };
 
-    const CreateSlider = async () => {
-        await axios
-            .post(`${url}/api/Slider/Create`, newSlider)
+    const CreateSlider = async (e) => {
+        e.preventDefault();
+        await axios.post(`${url}/api/Slider/Create`, newSlider)
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -45,7 +43,6 @@ function SliderCreate() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                window.location.reload();
                 console.log(res);
             })
             .catch((err) => {
@@ -60,32 +57,30 @@ function SliderCreate() {
             });
 
         navigate('/SliderTable');
-    }
-
+    };
 
     const getBase64 = (file) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
 
-            reader.onload = () => resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
+            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
             reader.onerror = (error) => reject(error);
         });
-    }
+    };
 
     const base64Img = (file) => {
         getBase64(file).then((result) => {
             setImage(result);
+            console.log(result);
         });
     };
 
 
-
     return (
-
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
             <h2 className='my-5' style={{ textAlign: "center" }}>Create Slider</h2>
-            <Form>
+            <Form onSubmit={(e) => CreateSlider(e)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p>Image</p>
                     <img
@@ -98,15 +93,24 @@ function SliderCreate() {
                         src={`data:image/jpeg;base64,${image}`}
                         alt="slider image"
                     />
-                    <Form.Control type="file" onChange={(e) => base64Img(e.target.files[0])} />
+                    <Form.Control
+                        type="file"
+                        onChange={(e) => base64Img(e.target.files[0])}
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" onChange={(e) => setTitle(e.target.value)} />
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter Title"
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = 'Enter Title'}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
                 </Form.Group>
 
-                <Button variant="outline-primary" type="submit" onClick={() => CreateSlider()}>
+                <Button variant="outline-primary" type="submit">
                     Create
                 </Button>
                 <Link to="/SliderTable">

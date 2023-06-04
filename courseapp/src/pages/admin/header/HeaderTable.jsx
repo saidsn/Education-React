@@ -24,7 +24,6 @@ function HeaderTable() {
         getAllHeader();
     }, []);
 
-
     const DeleteHeader = async (id) => {
         await axios
             .delete(`${url}/api/Header/Delete?id=${id}`)
@@ -41,8 +40,7 @@ function HeaderTable() {
                 });
                 console.log(err);
             });
-    }
-
+    };
 
 
     return (

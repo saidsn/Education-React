@@ -18,12 +18,11 @@ function ServiceTable() {
             .then((res) => {
                 setService(res.data);
             });
-    }
+    };
 
     useEffect(() => {
         getAllService();
     }, []);
-
 
     const DeleteService = async (id) => {
         await axios
@@ -41,7 +40,7 @@ function ServiceTable() {
                 });
                 console.log(err);
             });
-    }
+    };
 
 
     return (
@@ -83,7 +82,7 @@ function ServiceTable() {
                                                 src={`data:image/svg+xml;base64,${service.image}`} alt="serviceSvg" />
                                         </td>
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: service.title }}></td>
-                                        <td style={{width:"50%"}}>{service.description}</td>
+                                        <td style={{width:"40%"}}>{service.description}</td>
                                         <td>{moment(service.createDate).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td>{moment(service.updateDate).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td>

@@ -22,7 +22,7 @@ function TitleUpdate() {
                 setTitle(res.data);
                 setName(res.data.name);
             });
-    }
+    };
 
     useEffect(() => {
         getTitle()
@@ -30,7 +30,7 @@ function TitleUpdate() {
 
     const newTitle = {
         name
-    }
+    };
 
     const UpdateTitle = async (e) => {
         e.preventDefault();
@@ -57,7 +57,8 @@ function TitleUpdate() {
             });
 
         navigate('/TitleTable');
-    }
+    };
+
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
@@ -67,6 +68,10 @@ function TitleUpdate() {
                     <Form.Label>Name</Form.Label>
                     <Form.Control
                         type="text"
+                        name={name}
+                        placeholder={name}
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = name}
                         onChange={(e) => setName(e.target.value)}
                     />
                 </Form.Group>

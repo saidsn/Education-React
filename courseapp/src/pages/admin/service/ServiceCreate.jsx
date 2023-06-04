@@ -22,21 +22,21 @@ function ServiceCreate() {
             .then((res) => {
                 setService(res.data);
             });
-    }
+    };
 
     useEffect(() => {
         getAllService();
     }, []);
 
     const newService = {
-        svg,
-        title,
-        description
-    }
+        Image: svg,
+        Title: title,
+        Description: description
+    };
 
-    const CreateService = async () => {
-        await axios
-            .post(`${url}/api/Service/Create`, newService)
+    const CreateService = async (e) => {
+        e.preventDefault();
+        await axios.post(`${url}/api/Service/Create`, newService)
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -45,7 +45,6 @@ function ServiceCreate() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                window.location.reload();
                 console.log(res);
             })
             .catch((err) => {
@@ -60,7 +59,7 @@ function ServiceCreate() {
             });
 
         navigate('/ServiceTable');
-    }
+    };
 
     const getBase64 = (file) => {
         return new Promise((resolve, reject) => {
@@ -70,24 +69,19 @@ function ServiceCreate() {
             reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
             reader.onerror = (error) => reject(error);
         });
-    }
+    };
 
     const base64Svg = async (file) => {
-        getBase64(file)
-            .then(base64 => {
-                setSvg(base64);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    }
-
+        getBase64(file).then(base64 => {
+            setSvg(base64);
+        })
+    };
 
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
             <h2 className='my-5' style={{ textAlign: "center" }}>Create Service</h2>
-            <Form>
+            <Form onSubmit={(e) => CreateService(e)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p>Image</p>
                     <img
@@ -100,20 +94,35 @@ function ServiceCreate() {
                         src={`data:image/svg+xml;base64,${svg}`}
                         alt="serviceSvg"
                     />
-                    <Form.Control type="file" onChange={(e) => base64Svg(e.target.files[0])} />
+                    <Form.Control
+                        type="file"
+                        onChange={(e) => base64Svg(e.target.files[0])}
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" onChange={(e) => setTitle(e.target.value)} />
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter Title"
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = 'Enter Title'}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control type="text" onChange={(e) => setDescription(e.target.value)} />
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter Description"
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = 'Enter Description'}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
                 </Form.Group>
 
-                <Button variant="outline-primary" type="submit" onClick={() => CreateService()}>
+                <Button variant="outline-primary" type="submit">
                     Create
                 </Button>
                 <Link to="/ServiceTable">

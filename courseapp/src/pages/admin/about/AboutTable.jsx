@@ -20,15 +20,14 @@ function AboutTable() {
             .then((res) => {
                 setAbout(res.data);
             });
-    }
+    };
 
     useEffect(() => {
         getAllAbout();
-    }, [about]);
+    }, []);
 
     const DeleteAbout = async (id) => {
-        await axios
-            .delete(`${url}/api/About/Delete?id=${id}`)
+        await axios.delete(`${url}/api/About/Delete?id=${id}`)
             .then((res) => {
                 swal.fire("", "Deleted About", "success");
                 console.log(res);
@@ -42,8 +41,7 @@ function AboutTable() {
                 });
                 console.log(err);
             });
-    }
-
+    };
 
 
     return (
@@ -73,7 +71,7 @@ function AboutTable() {
                         <tbody>
                             {
                                 about.map((about, index) => (
-                                    <tr key={index} style={{ textAlign: "center",verticalAlign:"middle" }}>
+                                    <tr key={index} style={{ textAlign: "center", verticalAlign: "middle" }}>
                                         <td>{count++}</td>
                                         <td>
                                             <img style={{
@@ -81,11 +79,13 @@ function AboutTable() {
                                                 height: "70px",
                                                 borderRadius: "unset",
                                             }}
-                                                src={`data:image/jpeg;base64,${about.image}`} alt="aboutImage" />
+                                                src={`data:image/jpeg;base64,${about.image}`}
+                                                alt="aboutImage"
+                                            />
                                         </td>
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: about.title }}></td>
-                                      
-                                        <td style={{width:"50%"}}>{about.description}</td>
+
+                                        <td style={{ width: "50%" }}>{about.description}</td>
                                         <td>{moment(about.createDate).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td>
                                             <Link to={`/AboutUpdate/${about.id}`}>

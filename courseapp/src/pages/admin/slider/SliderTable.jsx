@@ -13,19 +13,17 @@ function SliderTable() {
     const url = 'https://localhost:7184';
 
     const [slider, setSlider] = useState([]);
-
     
     const getAllSlider = async () => {
         await axios.get(`${url}/api/Slider/GetAll`)
             .then((res) => {
                 setSlider(res.data);
             });
-    }
+    };
 
     useEffect(() => {
         getAllSlider();
     }, []);
-
 
     const DeleteSlider = async (id) => {
         await axios
@@ -43,9 +41,9 @@ function SliderTable() {
                 });
                 console.log(err);
             });
-
     };
 
+    
     return (
         <div className="container">
             <div className="row">

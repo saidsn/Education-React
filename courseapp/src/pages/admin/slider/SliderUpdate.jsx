@@ -26,7 +26,6 @@ function SliderUpdate() {
             });
     };
 
-
     useEffect(() => {
         getSlider()
     }, []);
@@ -34,8 +33,7 @@ function SliderUpdate() {
     const newSlider = {
         image,
         title
-    }
-
+    };
 
     const UpdateSlider = async (e) => {
         e.preventDefault();
@@ -62,17 +60,17 @@ function SliderUpdate() {
             });
 
         navigate('/SliderTable');
-    }
+    };
 
     const getBase64 = (file) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
 
-            reader.onload = () => resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
+            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
             reader.onerror = (error) => reject(error);
         });
-    }
+    };
 
     const base64Img = (file) => {
         getBase64(file).then((result) => {
@@ -107,6 +105,10 @@ function SliderUpdate() {
                     <Form.Label>Title</Form.Label>
                     <Form.Control
                         type="text"
+                        name={title}
+                        placeholder={title}
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </Form.Group>

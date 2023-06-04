@@ -5,8 +5,6 @@ import moment from 'moment';
 import axios from 'axios';
 
 
-
-
 function ContactTable() {
 
     let count = 1;
@@ -20,7 +18,7 @@ function ContactTable() {
             .then((res) => {
                 setContact(res.data);
             });
-    }
+    };
 
     useEffect(() => {
         getAllContact();

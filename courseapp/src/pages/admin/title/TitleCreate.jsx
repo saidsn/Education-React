@@ -19,7 +19,7 @@ function TitleCreate() {
             .then((res) => {
                 setTitle(res.data);
             });
-    }
+    };
 
     useEffect(() => {
         getAllTitle();
@@ -27,7 +27,7 @@ function TitleCreate() {
 
     const newTitle = {
         name
-    }
+    };
 
     const CreateTitle = async (e) => {
         e.preventDefault();
@@ -54,17 +54,22 @@ function TitleCreate() {
             });
 
         navigate('/TitleTable');
-    }
+    };
 
 
     return (
-
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
             <h2 className='my-5' style={{ textAlign: "center" }}>Create Title</h2>
             <Form onSubmit={(e) => CreateTitle(e)}>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" onChange={(e) => setName(e.target.value)} />
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter Name"
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = "Enter Name"}
+                        onChange={(e) => setName(e.target.value)}
+                    />
                 </Form.Group>
 
                 <Button variant="outline-primary" type="submit" >

@@ -77,10 +77,9 @@ function AboutUpdate() {
     };
 
     const base64Img = async (file) => {
-        getBase64(file)
-            .then((result) => {
-                setImage(result);
-            });
+        getBase64(file).then((result) => {
+            setImage(result);
+        });
     };
 
     return (
@@ -109,6 +108,10 @@ function AboutUpdate() {
                     <Form.Label>Title</Form.Label>
                     <Form.Control
                         type="text"
+                        name={title}
+                        placeholder={title}
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </Form.Group>
@@ -117,6 +120,10 @@ function AboutUpdate() {
                     <Form.Label>Description</Form.Label>
                     <Form.Control
                         type="text"
+                        name={description}
+                        placeholder={description}
+                        onFocus={(e) => { e.target.placeholder = ''; }}
+                        onBlur={(e) => { e.target.placeholder = description; }}
                         onChange={(e) => setDescription(e.target.value)}
                     />
                 </Form.Group>

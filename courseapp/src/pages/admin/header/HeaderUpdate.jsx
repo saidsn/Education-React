@@ -31,11 +31,10 @@ function HeaderUpdate() {
         getHeader()
     }, []);
 
-
     const newHeader = {
         image,
         title
-    }
+    };
 
     const UpdateHeader = async (e) => {
         e.preventDefault();
@@ -69,18 +68,17 @@ function HeaderUpdate() {
             const reader = new FileReader();
             reader.readAsDataURL(file);
 
-            reader.onload = () => resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
+            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
             reader.onerror = (err) => reject(err);
         });
-    }
+    };
 
     const base64Img = (file) => {
-        getBase64(file)
-            .then((res) => {
-                setImage(res);
-            });
-
+        getBase64(file).then((res) => {
+            setImage(res);
+        });
     };
+
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
@@ -108,6 +106,10 @@ function HeaderUpdate() {
                     <Form.Label>Title</Form.Label>
                     <Form.Control
                         type="text"
+                        name={title}
+                        placeholder={title}
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </Form.Group>

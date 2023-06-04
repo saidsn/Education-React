@@ -24,15 +24,15 @@ function BannerUpdate() {
                 setSvg(res.data.image);
                 setTitle(res.data.title);
             });
-    }
+    };
 
     useEffect(() => {
         getBanner();
     }, []);
 
     const newBanner = {
-        svg,
-        title
+        Image: svg,
+        Title: title
     };
 
     const UpdateBanner = async (e) => {
@@ -60,27 +60,23 @@ function BannerUpdate() {
             });
 
         navigate('/BannerTable');
-    }
+    };
 
     const getBase64 = (file) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
 
-            reader.onload = () => resolve(reader.result.replace("data:", "").replace(/^.+,/, ""));
+            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
             reader.onerror = (error) => reject(error);
         });
-    }
+    };
 
     const base64Svg = (file) => {
-        getBase64(file)
-            .then((result) => {
-                setSvg(result);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
+        getBase64(file).then((result) => {
+            setSvg(result);
+        })
+    };
 
 
     return (
@@ -109,6 +105,10 @@ function BannerUpdate() {
                     <Form.Label>Title</Form.Label>
                     <Form.Control
                         type="text"
+                        name={title}
+                        placeholder={title}
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </Form.Group>

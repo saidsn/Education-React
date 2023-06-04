@@ -18,7 +18,7 @@ function TitleTable() {
     const getAllTitle = async () => {
         await axios.get(`${url}/api/Title/GetAll`)
             .then((res) => {
-                setTitle(res.data);
+                setTitle(res.data)
             });
     };
 
@@ -42,8 +42,7 @@ function TitleTable() {
                 });
                 console.log(err);
             });
-    }
-
+    };
 
 
     return (

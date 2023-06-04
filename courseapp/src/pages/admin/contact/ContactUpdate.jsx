@@ -27,7 +27,7 @@ function ContactUpdate() {
                 setEmail(res.data.email);
                 setMessage(res.data.message);
             });
-    }
+    };
 
     useEffect(() => {
         getContact()
@@ -37,7 +37,7 @@ function ContactUpdate() {
         name,
         email,
         message
-    }
+    };
 
     const UpdateContact = async (e) => {
         e.preventDefault();
@@ -61,8 +61,8 @@ function ContactUpdate() {
                 console.log(err);
             });
 
-            navigate('/ContactTable');
-    }
+        navigate('/ContactTable');
+    };
 
 
     return (
@@ -74,10 +74,10 @@ function ContactUpdate() {
                     <Form.Control
                         type="text"
                         name={name}
-                        onChange={(e) => setName(e.target.value)}
-                        onFocus={(e) => { e.target.placeholder = ''; }}
-                        onBlur={(e) => { e.target.placeholder = name; }}
                         placeholder={name}
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = name}
+                        onChange={(e) => setName(e.target.value)}
                     />
 
                 </Form.Group>

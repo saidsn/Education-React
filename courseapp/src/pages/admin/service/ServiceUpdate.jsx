@@ -26,17 +26,18 @@ function ServiceUpdate() {
                 setTitle(res.data.title);
                 setDescription(res.data.description);
             });
-    }
+    };
 
     useEffect(() => {
         getService();
+
     }, []);
 
     const newService = {
-        svg,
-        title,
-        description
-    }
+        Image: svg,
+        Title: title,
+        Description: description
+    };
 
     const UpdateService = async (e) => {
         e.preventDefault();
@@ -63,8 +64,7 @@ function ServiceUpdate() {
             });
 
         navigate('/ServiceTable');
-    }
-
+    };
 
     const getBase64 = (file) => {
         return new Promise((resolve, reject) => {
@@ -74,17 +74,14 @@ function ServiceUpdate() {
             reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
             reader.onerror = (error) => reject(error);
         });
-    }
+    };
 
     const base64Svg = (file) => {
-        getBase64(file)
-            .then((result) => {
-                setSvg(result);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
+        getBase64(file).then((result) => {
+            setSvg(result);
+        })
+    };
+
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
@@ -112,13 +109,24 @@ function ServiceUpdate() {
                     <Form.Label>Title</Form.Label>
                     <Form.Control
                         type="text"
+                        name={title}
+                        placeholder={title}
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control type="text" onChange={(e) => setDescription(e.target.value)} />
+                    <Form.Control
+                        type="text"
+                        name={description}
+                        placeholder={description}
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
                 </Form.Group>
 
                 <Button variant="outline-primary" type="submit">

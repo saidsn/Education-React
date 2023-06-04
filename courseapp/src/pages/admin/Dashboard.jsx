@@ -24,39 +24,6 @@ function Dashboard() {
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>
-                                        <h3>Slider</h3>
-                                    </td>
-                                    <td>
-                                        <Link to="/SliderTable">
-                                            <Button variant="outline-primary">Manage</Button>
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>
-                                        <h3>Header</h3>
-                                    </td>
-                                    <td>
-                                        <Link to="/HeaderTable">
-                                            <Button variant="outline-primary">Manage</Button>
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>
-                                        <h3>Title</h3>
-                                    </td>
-                                    <td>
-                                        <Link to="/TitleTable">
-                                            <Button variant="outline-primary">Manage</Button>
-                                        </Link>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>
                                         <h3>About</h3>
                                     </td>
                                     <td>
@@ -66,7 +33,7 @@ function Dashboard() {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">5</th>
+                                    <th scope="row">2</th>
                                     <td>
                                         <h3>Banner</h3>
                                     </td>
@@ -77,7 +44,29 @@ function Dashboard() {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">6</th>
+                                    <th scope="row">3</th>
+                                    <td>
+                                        <h3>Contact</h3>
+                                    </td>
+                                    <td>
+                                        <Link to="/ContactTable">
+                                            <Button variant="outline-primary">Manage</Button>
+                                        </Link>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>
+                                        <h3>Header</h3>
+                                    </td>
+                                    <td>
+                                        <Link to="/HeaderTable">
+                                            <Button variant="outline-primary">Manage</Button>
+                                        </Link>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
                                     <td>
                                         <h3>Service</h3>
                                     </td>
@@ -88,12 +77,23 @@ function Dashboard() {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">7</th>
+                                    <th scope="row">6</th>
                                     <td>
-                                        <h3>Contact</h3>
+                                        <h3>Slider</h3>
                                     </td>
                                     <td>
-                                        <Link to="/ContactTable">
+                                        <Link to="/SliderTable">
+                                            <Button variant="outline-primary">Manage</Button>
+                                        </Link>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">7</th>
+                                    <td>
+                                        <h3>Title</h3>
+                                    </td>
+                                    <td>
+                                        <Link to="/TitleTable">
                                             <Button variant="outline-primary">Manage</Button>
                                         </Link>
                                     </td>

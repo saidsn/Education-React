@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
@@ -20,20 +20,20 @@ function BannerCreate() {
             .then((res) => {
                 setBanner(res.data);
             });
-    }
+    };
 
     useEffect(() => {
         getAllBanner();
     }, []);
 
     const newBanner = {
-        svg,
-        title
+        Image: svg,
+        Title: title
     };
 
-    const CreateBanner = async () => {
-        await axios
-            .post(`${url}/api/Banner/Create`, newBanner)
+    const CreateBanner = async (e) => {
+        e.preventDefault();
+        await axios.post(`${url}/api/Banner/Create`, newBanner)
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -42,7 +42,6 @@ function BannerCreate() {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                window.location.reload();
                 console.log(res);
             })
             .catch((err) => {
@@ -56,8 +55,8 @@ function BannerCreate() {
                 console.log(err);
             });
 
-            navigate('/BannerTable');
-    }
+        navigate('/BannerTable');
+    };
 
 
     const getBase64 = (file) => {
@@ -65,25 +64,22 @@ function BannerCreate() {
             const reader = new FileReader();
             reader.readAsDataURL(file);
 
-            reader.onload = () => resolve(reader.result.replace("data:", "").replace(/^.+,/, "")); 
+            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
             reader.onerror = (error) => reject(error);
         });
-    }
+    };
 
     const base64Svg = (file) => {
-        getBase64(file)
-            .then((result) => {
-                setSvg(result);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
+        getBase64(file).then((result) => {
+            setSvg(result);
+        })
+    };
+
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
             <h2 className='my-5' style={{ textAlign: "center" }}>Create Banner</h2>
-            <Form>
+            <Form onSubmit={(e) => CreateBanner(e)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p>Image</p>
                     <img
@@ -96,15 +92,23 @@ function BannerCreate() {
                         src={`data:image/svg+xml;base64,${svg}`}
                         alt="bannerSvg"
                     />
-                    <Form.Control type="file" onChange={(e) => base64Svg(e.target.files[0])} />
+                    <Form.Control
+                        type="file"
+                        onChange={(e) => base64Svg(e.target.files[0])} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" onChange={(e) => setTitle(e.target.value)} />
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter Title"
+                        onFocus={(e) => e.target.placeholder = ''}
+                        onBlur={(e) => e.target.placeholder = 'Enter Title'}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
                 </Form.Group>
 
-                <Button variant="outline-primary" type="submit" onClick={() => CreateBanner()}>
+                <Button variant="outline-primary" type="submit">
                     Create
                 </Button>
                 <Link to="/BannerTable">

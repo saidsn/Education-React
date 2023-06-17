@@ -84,7 +84,6 @@ function AboutTable() {
                                             />
                                         </td>
                                         <td className="py-1" dangerouslySetInnerHTML={{ __html: about.title }}></td>
-
                                         <td style={{ width: "50%" }}>{about.description}</td>
                                         <td>{moment(about.createDate).format('DD-MM-YYYY HH:mm:ss')}</td>
                                         <td>

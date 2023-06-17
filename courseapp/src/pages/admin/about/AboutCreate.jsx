@@ -13,6 +13,7 @@ function AboutCreate() {
 
     const [about, setAbout] = useState([]);
     const [image, setImage] = useState();
+    const [showImage, setShowImage] = useState(null);
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();
 
@@ -29,14 +30,24 @@ function AboutCreate() {
 
 
     const newAbout = {
-        image,
-        title,
-        description
+        photo: image,
+        title: title,
+        description: description
     }
 
     const CreateAbout = async (e) => {
         e.preventDefault();
-        await axios.post(`${url}/api/About/Create`, newAbout)
+
+        const formData = new FormData();
+        for (const [key, value] of Object.entries(newAbout)) {
+            formData.append(key, value);
+        }
+
+        await axios.post(`${url}/api/About/Create`, formData, {
+            headers: {
+                Accept: "*/*"
+            }
+        })
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -61,22 +72,10 @@ function AboutCreate() {
         navigate('/AboutTable');
     };
 
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-
-            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
-            reader.onerror = (error) => reject(error);
-        });
+    const fileUploadHandler = (e) => {
+        setImage(e.target.files[0]);
+        setShowImage(URL.createObjectURL(e.target.files[0]));
     };
-
-    const base64Img = (file) => {
-        getBase64(file).then((result) => {
-            setImage(result);
-        });
-    };
-
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
@@ -84,6 +83,8 @@ function AboutCreate() {
             <Form onSubmit={(e) => CreateAbout(e)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p>Image</p>
+
+                    {showImage !== null ? 
                     <img
                         style={{
                             width: "200px",
@@ -91,12 +92,12 @@ function AboutCreate() {
                             marginBottom: "10px",
                             borderRadius: "unset",
                         }}
-                        src={`data:image/jpeg;base64,${image}`}
+                        src={showImage}
                         alt="aboutImage"
-                    />
+                    /> : null}
                     <Form.Control
                         type="file"
-                        onChange={(e) => base64Img(e.target.files[0])}
+                        onChange={(e) => fileUploadHandler(e)}
                     />
                 </Form.Group>
 

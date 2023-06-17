@@ -74,7 +74,7 @@ function ServiceCreate() {
     const base64Svg = async (file) => {
         getBase64(file).then(base64 => {
             setSvg(base64);
-        })
+        });
     };
 
 

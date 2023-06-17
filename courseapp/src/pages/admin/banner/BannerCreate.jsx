@@ -72,7 +72,7 @@ function BannerCreate() {
     const base64Svg = (file) => {
         getBase64(file).then((result) => {
             setSvg(result);
-        })
+        });
     };
 
 

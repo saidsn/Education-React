@@ -72,7 +72,6 @@ function SliderCreate() {
     const base64Img = (file) => {
         getBase64(file).then((result) => {
             setImage(result);
-            console.log(result);
         });
     };
 

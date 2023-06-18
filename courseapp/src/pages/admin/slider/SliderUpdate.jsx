@@ -15,10 +15,11 @@ function SliderUpdate() {
 
     const [slider, setSlider] = useState([]);
     const [image, setImage] = useState();
+    const [showImage, setShowImage] = useState(null);
     const [title, setTitle] = useState();
 
     const getSlider = async () => {
-        await axios.get(`${url}/api/Slider/Get?id=${id}`)
+        await axios.get(`${url}/api/Slider/GetById?id=${id}`)
             .then((res) => {
                 setSlider(res.data);
                 setImage(res.data.image);
@@ -31,13 +32,23 @@ function SliderUpdate() {
     }, []);
 
     const newSlider = {
-        image,
-        title
+        photo: image,
+        title: title
     };
 
     const UpdateSlider = async (e) => {
         e.preventDefault();
-        await axios.put(`${url}/api/Slider/Update/${id}`, newSlider)
+
+        const formData = new FormData();
+        for (const [key, value] of Object.entries(newSlider)) {
+            formData.append(key, value);
+        };
+
+        await axios.put(`${url}/api/Slider/Update/${id}`, formData, {
+            headers: {
+                Accept: "*/*"
+            }
+        })
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -62,42 +73,34 @@ function SliderUpdate() {
         navigate('/SliderTable');
     };
 
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-
-            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
-            reader.onerror = (error) => reject(error);
-        });
+    const fileUploadHandler = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+        setShowImage(URL.createObjectURL(file));
     };
-
-    const base64Img = (file) => {
-        getBase64(file).then((result) => {
-            setImage(result);
-        });
-    };
-
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
             <h2 className='my-5' style={{ textAlign: "center" }}>Update Slider</h2>
             <Form onSubmit={(e) => UpdateSlider(e)}>
                 <p>Image</p>
-                <img
-                    style={{
-                        width: "200px",
-                        height: "100px",
-                        marginBottom: "10px",
-                        borderRadius: "unset",
-                    }}
-                    src={`data:image/jpeg;base64,${image}`}
-                    alt=""
-                />
+                {
+                    image !== null ?
+                        <img
+                            style={{
+                                width: "200px",
+                                height: "100px",
+                                marginBottom: "10px",
+                                borderRadius: "unset",
+                            }}
+                            src={`data:image/png;base64,${image}`}
+                            alt="sliderImage"
+                        /> : null
+                }
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Control
                         type="file"
-                        onChange={(e) => base64Img(e.target.files[0])}
+                        onChange={(e) => fileUploadHandler(e)}
                     />
                 </Form.Group>
 

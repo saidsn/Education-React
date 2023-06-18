@@ -14,6 +14,7 @@ function ServiceCreate() {
 
     const [service, setService] = useState([]);
     const [svg, setSvg] = useState();
+    const [showSvg, setShowSvg] = useState(null);
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();
 
@@ -29,14 +30,24 @@ function ServiceCreate() {
     }, []);
 
     const newService = {
-        Image: svg,
-        Title: title,
-        Description: description
+        photo: svg,
+        title: title,
+        description: description
     };
 
     const CreateService = async (e) => {
         e.preventDefault();
-        await axios.post(`${url}/api/Service/Create`, newService)
+
+        const formData = new FormData();
+        for (const [key, value] of Object.entries(newService)) {
+            formData.append(key, value);
+        };
+
+        await axios.post(`${url}/api/Service/Create`, formData, {
+            headers: {
+                Accept: "*/*"
+            }
+        })
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -61,22 +72,11 @@ function ServiceCreate() {
         navigate('/ServiceTable');
     };
 
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-
-            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
-            reader.onerror = (error) => reject(error);
-        });
+    const fileUploadHandler = (e) => {
+        const file = e.target.files[0];
+        setSvg(file);
+        setShowSvg(URL.createObjectURL(file));
     };
-
-    const base64Svg = async (file) => {
-        getBase64(file).then(base64 => {
-            setSvg(base64);
-        });
-    };
-
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
@@ -84,19 +84,22 @@ function ServiceCreate() {
             <Form onSubmit={(e) => CreateService(e)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p>Image</p>
-                    <img
-                        style={{
-                            width: "200px",
-                            height: "100px",
-                            marginBottom: "10px",
-                            borderRadius: "unset",
-                        }}
-                        src={`data:image/svg+xml;base64,${svg}`}
-                        alt="serviceSvg"
-                    />
+                    {
+                        showSvg !== null ?
+                            <img
+                                style={{
+                                    width: "200px",
+                                    height: "100px",
+                                    marginBottom: "10px",
+                                    borderRadius: "unset",
+                                }}
+                                src={showSvg}
+                                alt="serviceSvg"
+                            /> : null
+                    }
                     <Form.Control
                         type="file"
-                        onChange={(e) => base64Svg(e.target.files[0])}
+                        onChange={(e) => fileUploadHandler(e)}
                     />
                 </Form.Group>
 

@@ -15,11 +15,12 @@ function ServiceUpdate() {
 
     const [service, setService] = useState([]);
     const [svg, setSvg] = useState();
+    const [showSvg, setShowSvg] = useState(null);
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();
 
     const getService = async () => {
-        await axios.get(`${url}/api/Service/Get?id=${id}`)
+        await axios.get(`${url}/api/Service/GetById?id=${id}`)
             .then((res) => {
                 setService(res.data);
                 setSvg(res.data.image);
@@ -30,18 +31,27 @@ function ServiceUpdate() {
 
     useEffect(() => {
         getService();
-
     }, []);
 
     const newService = {
-        Image: svg,
-        Title: title,
-        Description: description
+        photo: svg,
+        title: title,
+        description: description
     };
 
     const UpdateService = async (e) => {
         e.preventDefault();
-        await axios.put(`${url}/api/Service/Update/${id}`, newService)
+
+        const formData = new FormData();
+        for (const [key, value] of Object.entries(newService)) {
+            formData.append(key, value);
+        };
+
+        await axios.put(`${url}/api/Service/Update/${id}`, formData, {
+            headers: {
+                Accept: "*/*"
+            }
+        })
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -66,42 +76,34 @@ function ServiceUpdate() {
         navigate('/ServiceTable');
     };
 
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-
-            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
-            reader.onerror = (error) => reject(error);
-        });
+    const fileUploadHandler = (e) => {
+        const file = e.target.files[0];
+        setSvg(file);
+        setShowSvg(URL.createObjectURL(file));
     };
-
-    const base64Svg = (file) => {
-        getBase64(file).then((result) => {
-            setSvg(result);
-        });
-    };
-
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
             <h2 className='my-5' style={{ textAlign: "center" }}>Update Service</h2>
             <Form onSubmit={(e) => UpdateService(e)}>
                 <p>Image</p>
-                <img
-                    style={{
-                        width: "200px",
-                        height: "100px",
-                        marginBottom: "10px",
-                        borderRadius: "unset",
-                    }}
-                    src={`data:image/svg+xml;base64,${svg}`}
-                    alt="serviceIamge"
-                />
+                {
+                    svg !== null ?
+                        <img
+                            style={{
+                                width: "200px",
+                                height: "100px",
+                                marginBottom: "10px",
+                                borderRadius: "unset",
+                            }}
+                            src={`data:image/svg+xml;base64,${svg}`}
+                            alt="serviceSvg"
+                        /> : null
+                }
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Control
                         type="file"
-                        onChange={(e) => base64Svg(e.target.files[0])}
+                        onChange={(e) => fileUploadHandler(e)}
                     />
                 </Form.Group>
 

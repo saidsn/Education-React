@@ -15,11 +15,12 @@ function HeaderUpdate() {
 
     const [header, setHeader] = useState([]);
     const [image, setImage] = useState();
+    const [showImage, setShowImage] = useState(null);
     const [title, setTitle] = useState();
 
 
     const getHeader = async () => {
-        await axios.get(`${url}/api/Header/Get?id=${id}`)
+        await axios.get(`${url}/api/Header/GetById?id=${id}`)
             .then((res) => {
                 setHeader(res.data);
                 setImage(res.data.image);
@@ -32,13 +33,23 @@ function HeaderUpdate() {
     }, []);
 
     const newHeader = {
-        image,
-        title
+        photo: image,
+        title: title
     };
 
     const UpdateHeader = async (e) => {
         e.preventDefault();
-        await axios.put(`${url}/api/Header/Update/${id}`, newHeader)
+
+        const formData = new FormData();
+        for (const [key, value] of Object.entries(newHeader)) {
+            formData.append(key, value);
+        };
+
+        await axios.put(`${url}/api/Header/Update/${id}`, formData, {
+            headers: {
+                Accept: "*/*"
+            }
+        })
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -63,42 +74,34 @@ function HeaderUpdate() {
         navigate('/HeaderTable');
     };
 
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-
-            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
-            reader.onerror = (err) => reject(err);
-        });
+    const fileUploadHandler = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+        setShowImage(URL.createObjectURL(file));
     };
-
-    const base64Img = (file) => {
-        getBase64(file).then((res) => {
-            setImage(res);
-        });
-    };
-
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
             <h2 className='my-5' style={{ textAlign: "center" }}>Update Header</h2>
             <Form onSubmit={(e) => UpdateHeader(e)}>
                 <p>Image</p>
-                <img
-                    style={{
-                        width: "200px",
-                        height: "100px",
-                        marginBottom: "10px",
-                        borderRadius: "unset",
-                    }}
-                    src={`data:image/jpeg;base64,${image}`}
-                    alt=""
-                />
+                {
+                    image !== null ?
+                        <img
+                            style={{
+                                width: "200px",
+                                height: "100px",
+                                marginBottom: "10px",
+                                borderRadius: "unset",
+                            }}
+                            src={`data:image/png;base64,${image}`}
+                            alt=""
+                        /> : null
+                }
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Control
                         type="file"
-                        onChange={(e) => base64Img(e.target.files[0])}
+                        onChange={(e) => fileUploadHandler(e)}
                     />
                 </Form.Group>
 

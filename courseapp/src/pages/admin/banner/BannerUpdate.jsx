@@ -15,10 +15,11 @@ function BannerUpdate() {
 
     const [banner, setBanner] = useState([]);
     const [svg, setSvg] = useState();
+    const [showSvg, setShowSvg] = useState(null);
     const [title, setTitle] = useState();
 
     const getBanner = async () => {
-        await axios.get(`${url}/api/Banner/Get?id=${id}`)
+        await axios.get(`${url}/api/Banner/GetById?id=${id}`)
             .then((res) => {
                 setBanner(res.data);
                 setSvg(res.data.image);
@@ -31,13 +32,23 @@ function BannerUpdate() {
     }, []);
 
     const newBanner = {
-        Image: svg,
-        Title: title
+        photo: svg,
+        title: title
     };
 
     const UpdateBanner = async (e) => {
         e.preventDefault();
-        await axios.put(`${url}/api/Banner/Update/${id}`, newBanner)
+
+        const formData = new FormData();
+        for (const [key, value] of Object.entries(newBanner)) {
+            formData.append(key, value);
+        };
+
+        await axios.put(`${url}/api/Banner/Update/${id}`, formData, {
+            headers: {
+                Accept: "*/*"
+            }
+        })
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -62,42 +73,34 @@ function BannerUpdate() {
         navigate('/BannerTable');
     };
 
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-
-            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
-            reader.onerror = (error) => reject(error);
-        });
+    const fileUploadHandler = (e) => {
+        const file = e.target.files[0];
+        setSvg(file);
+        setShowSvg(URL.createObjectURL(file));
     };
-
-    const base64Svg = (file) => {
-        getBase64(file).then((result) => {
-            setSvg(result);
-        });
-    };
-
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
             <h2 className='my-5' style={{ textAlign: "center" }}>Update Banner</h2>
             <Form onSubmit={(e) => UpdateBanner(e)}>
                 <p>Image</p>
-                <img
-                    style={{
-                        width: "200px",
-                        height: "100px",
-                        marginBottom: "10px",
-                        borderRadius: "unset",
-                    }}
-                    src={`data:image/svg+xml;base64,${svg}`}
-                    alt="bannerIamge"
-                />
+                {
+                    svg !== null ?
+                        <img
+                            style={{
+                                width: "200px",
+                                height: "100px",
+                                marginBottom: "10px",
+                                borderRadius: "unset",
+                            }}
+                            src={`data:image/svg+xml;base64,${svg}`}
+                            alt="bannerIamge"
+                        /> : null
+                }
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Control
                         type="file"
-                        onChange={(e) => base64Svg(e.target.files[0])}
+                        onChange={(e) => fileUploadHandler(e)}
                     />
                 </Form.Group>
 

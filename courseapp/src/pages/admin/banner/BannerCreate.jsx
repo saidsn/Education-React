@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
@@ -13,6 +13,7 @@ function BannerCreate() {
 
     const [banner, setBanner] = useState([]);
     const [svg, setSvg] = useState();
+    const [showSvg, setShowSvg] = useState(null);
     const [title, setTitle] = useState();
 
     const getAllBanner = async () => {
@@ -27,13 +28,23 @@ function BannerCreate() {
     }, []);
 
     const newBanner = {
-        Image: svg,
-        Title: title
+        photo: svg,
+        title: title
     };
 
     const CreateBanner = async (e) => {
         e.preventDefault();
-        await axios.post(`${url}/api/Banner/Create`, newBanner)
+
+        const formData = new FormData();
+        for (const [key, value] of Object.entries(newBanner)) {
+            formData.append(key, value);
+        };
+
+        await axios.post(`${url}/api/Banner/Create`, formData, {
+            headers: {
+                Accept: "*/*"
+            }
+        })
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -58,23 +69,11 @@ function BannerCreate() {
         navigate('/BannerTable');
     };
 
-
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-
-            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
-            reader.onerror = (error) => reject(error);
-        });
-    };
-
-    const base64Svg = (file) => {
-        getBase64(file).then((result) => {
-            setSvg(result);
-        });
-    };
-
+    const fileUploadHandler = (e) => {
+        const file = e.target.files[0];
+        setSvg(file);
+        setShowSvg(URL.createObjectURL(file));
+    }
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
@@ -82,19 +81,22 @@ function BannerCreate() {
             <Form onSubmit={(e) => CreateBanner(e)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p>Image</p>
-                    <img
-                        style={{
-                            width: "200px",
-                            height: "100px",
-                            marginBottom: "10px",
-                            borderRadius: "unset",
-                        }}
-                        src={`data:image/svg+xml;base64,${svg}`}
-                        alt="bannerSvg"
-                    />
+                    {showSvg !== null ?
+                        <img
+                            style={{
+                                width: "200px",
+                                height: "100px",
+                                marginBottom: "10px",
+                                borderRadius: "unset",
+                            }}
+                            src={showSvg}
+                            alt="bannerSvg"
+                        /> : null
+                    }
                     <Form.Control
                         type="file"
-                        onChange={(e) => base64Svg(e.target.files[0])} />
+                        onChange={(e) => fileUploadHandler(e)}
+                    />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">

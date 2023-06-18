@@ -13,6 +13,7 @@ function HeaderCreate() {
 
     const [header, setHeader] = useState([]);
     const [image, setImage] = useState();
+    const [showImage, setShowImage] = useState(null);
     const [title, setTitle] = useState();
 
     const getAllHeader = async () => {
@@ -27,13 +28,23 @@ function HeaderCreate() {
     }, []);
 
     const newHeader = {
-        image,
-        title
+        photo: image,
+        title: title
     };
 
     const CreateHeader = async (e) => {
         e.preventDefault();
-        await axios.post(`${url}/api/Header/Create`, newHeader)
+
+        const formData = new FormData();
+        for (const [key, value] of Object.entries(newHeader)) {
+            formData.append(key, value);
+        };
+
+        await axios.post(`${url}/api/Header/Create`, formData, {
+            headers: {
+                Accept: "*/*"
+            }
+        })
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -58,20 +69,10 @@ function HeaderCreate() {
         navigate('/HeaderTable');
     };
 
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-
-            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
-            reader.onerror = (error) => reject(error);
-        });
-    };
-
-    const base64Img = (file) => {
-        getBase64(file).then((result) => {
-            setImage(result);
-        });
+    const fileUploadHandler = async (e) => {
+        const files = e.target.files[0];
+        setImage(files);
+        setShowImage(URL.createObjectURL(files));
     };
 
     return (
@@ -80,19 +81,22 @@ function HeaderCreate() {
             <Form onSubmit={(e) => CreateHeader(e)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p>Image</p>
-                    <img
-                        style={{
-                            width: "200px",
-                            height: "100px",
-                            marginBottom: "10px",
-                            borderRadius: "unset",
-                        }}
-                        src={`data:image/jpeg;base64,${image}`}
-                        alt="header image"
-                    />
+                    {
+                        showImage !== null ?
+                            <img
+                                style={{
+                                    width: "200px",
+                                    height: "100px",
+                                    marginBottom: "10px",
+                                    borderRadius: "unset",
+                                }}
+                                src={showImage}
+                                alt="header image"
+                            /> : null
+                    }
                     <Form.Control
                         type="file"
-                        onChange={(e) => base64Img(e.target.files[0])}
+                        onChange={(e) => fileUploadHandler(e)}
                     />
                 </Form.Group>
 

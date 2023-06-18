@@ -22,7 +22,7 @@ function AboutCreate() {
             .then((res) => {
                 setAbout(res.data);
             });
-    }
+    };
 
     useEffect(() => {
         getAllAbout();
@@ -33,7 +33,7 @@ function AboutCreate() {
         photo: image,
         title: title,
         description: description
-    }
+    };
 
     const CreateAbout = async (e) => {
         e.preventDefault();
@@ -41,7 +41,7 @@ function AboutCreate() {
         const formData = new FormData();
         for (const [key, value] of Object.entries(newAbout)) {
             formData.append(key, value);
-        }
+        };
 
         await axios.post(`${url}/api/About/Create`, formData, {
             headers: {
@@ -73,8 +73,9 @@ function AboutCreate() {
     };
 
     const fileUploadHandler = (e) => {
-        setImage(e.target.files[0]);
-        setShowImage(URL.createObjectURL(e.target.files[0]));
+        const file = e.target.files[0];
+        setImage(file);
+        setShowImage(URL.createObjectURL(file));
     };
 
     return (
@@ -83,18 +84,18 @@ function AboutCreate() {
             <Form onSubmit={(e) => CreateAbout(e)}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <p>Image</p>
-
-                    {showImage !== null ? 
-                    <img
-                        style={{
-                            width: "200px",
-                            height: "100px",
-                            marginBottom: "10px",
-                            borderRadius: "unset",
-                        }}
-                        src={showImage}
-                        alt="aboutImage"
-                    /> : null}
+                    {showImage !== null ?
+                        <img
+                            style={{
+                                width: "200px",
+                                height: "100px",
+                                marginBottom: "10px",
+                                borderRadius: "unset",
+                            }}
+                            src={showImage}
+                            alt="aboutImage"
+                        /> : null
+                    }
                     <Form.Control
                         type="file"
                         onChange={(e) => fileUploadHandler(e)}

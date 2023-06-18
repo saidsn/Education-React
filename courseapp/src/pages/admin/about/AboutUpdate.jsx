@@ -16,11 +16,12 @@ function AboutUpdate() {
 
     const [about, setAbout] = useState([]);
     const [image, setImage] = useState();
+    const [showImage, setShowImage] = useState(null);
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();
 
     const getAbout = async () => {
-        await axios.get(`${url}/api/About/Get?id=${id}`)
+        await axios.get(`${url}/api/About/GetById?id=${id}`)
             .then((res) => {
                 setAbout(res.data);
                 setImage(res.data.image);
@@ -34,14 +35,24 @@ function AboutUpdate() {
     }, []);
 
     const newAbout = {
-        image,
-        title,
-        description
+        photo: image,
+        title: title,
+        description: description
     }
 
     const UpdateAbout = async (e) => {
         e.preventDefault();
-        await axios.put(`${url}/api/About/Update/${id}`, newAbout)
+
+        const formData = new FormData();
+        for (const [key, value] of Object.entries(newAbout)) {
+            formData.append(key, value);
+        };
+
+        await axios.put(`${url}/api/About/Update/${id}`, formData, {
+            headers: {
+                Accept: "*/*"
+            }
+        })
             .then((res) => {
                 Swal.fire({
                     position: 'top-end',
@@ -66,41 +77,34 @@ function AboutUpdate() {
         navigate('/AboutTable');
     };
 
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-
-            reader.onload = () => resolve(reader.result.replace(/^data:.+;base64,/, ''));
-            reader.onerror = (err) => reject(err);
-        });
-    };
-
-    const base64Img = async (file) => {
-        getBase64(file).then((result) => {
-            setImage(result);
-        });
+    const fileUploadHandler = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+        setShowImage(URL.createObjectURL(file));
     };
 
     return (
         <div className="create-btn-area container" style={{ maxWidth: "500px" }}>
             <h2 className='my-5' style={{ textAlign: "center" }}>Update About</h2>
             <Form onSubmit={(e) => UpdateAbout(e)}>
-                <p>Image</p>
-                <img
-                    style={{
-                        width: "200px",
-                        height: "100px",
-                        marginBottom: "10px",
-                        borderRadius: "unset",
-                    }}
-                    src={`data:image/jpeg;base64,${image}`}
-                    alt=""
-                />
+                <h3>Image</h3>
+                {
+                    image !== null ?
+                        <img
+                            style={{
+                                width: "200px",
+                                height: "100px",
+                                marginBottom: "10px",
+                                borderRadius: "unset",
+                            }}
+                            src={`data:image/png;base64,${image}`}
+                            alt="aboutImage"
+                        /> : null
+                }
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Control
                         type="file"
-                        onChange={(e) => base64Img(e.target.files[0])}
+                        onChange={(e) => fileUploadHandler(e)}
                     />
                 </Form.Group>
 
@@ -139,6 +143,7 @@ function AboutUpdate() {
             </Form>
         </div>
     )
+
 }
 
 export default AboutUpdate;

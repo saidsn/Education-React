@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/layout/Navbar';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -15,18 +16,89 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../../components/header/Header';
 import Footer from '../../components/layout/Footer';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 
 const theme = createTheme();
 
 function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+  const navigate = useNavigate();
+
+  const url = 'https://localhost:7184';
+
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    function parseJwt(token) {
+      var base64Url = token.split(".")[1];
+      var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      var jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map(function (c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join("")
+      );
+      return JSON.parse(jsonPayload);
+    };
+
+    const exsistUser = {
+      email: Email,
+      password: Password
+    };
+
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(exsistUser)) {
+      formData.append(key, value);
+    };
+
+    await axios.post(`${url}/api/Account/Login`, formData, {
+      headers: {
+        Accept: "*/*"
+      }
+    })
+      .then((res) => {
+        if (res.status === 200 || res.data.status == "success") {
+          let userDecode = parseJwt(res.data)[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ];
+          if (userDecode === "Member") {
+            Swal.fire({
+              position: 'top-end',
+              icon: 'error',
+              title: 'You are not authorized to access this page',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }else{
+            localStorage.setItem("token", JSON.stringify(res.data));
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Signed in succesfully!',
+              showConfirmButton: false,
+              timer: 1500
+            });
+            navigate("/");
+          }
+        } else {
+          Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Email or password is wrong!',
+            showConfirmButton: false,
+            timer: 1500
+          });
+          console.log(res);
+        }
+      })
   };
 
   return (
@@ -65,17 +137,19 @@ function Login() {
                   <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                  Sign in
+                  Login
                 </Typography>
                 <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                   <TextField
                     margin="normal"
                     required
                     fullWidth
-                    id="usrname"
-                    label="Username"
-                    name="username"
+                    id="email"
+                    label="Email"
+                    name="email"
                     autoComplete="off"
+                    value={Email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <TextField
                     margin="normal"
@@ -86,6 +160,8 @@ function Login() {
                     name="password"
                     type="password"
                     autoComplete="off"
+                    value={Password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}
@@ -107,7 +183,7 @@ function Login() {
                       </Link>
                     </Grid>
                     <Grid item>
-                      <Link href="#" variant="body2">
+                      <Link to="/Register" href="#" variant="body2">
                         {"Don't have an account? Sign Up"}
                       </Link>
                     </Grid>

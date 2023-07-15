@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/layout/Navbar';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -12,19 +13,67 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../../components/header/Header';
 import Footer from '../../components/layout/Footer';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 
 const theme = createTheme();
 
 function Register() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+  const navigate = useNavigate();
+
+  const url = 'https://localhost:7184';
+
+  const [FullName, setFullName] = useState("");
+  const [Username, setUsername] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [ConfirmPassword, setConfirmPassword] = useState("");
+
+  const newUser = {
+    fullname: FullName,
+    username: Username,
+    email: Email,
+    password: Password,
+    confirmPassword: ConfirmPassword
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(newUser)) {
+      formData.append(key, value);
+    };
+
+    await axios.post(`${url}/api/Account/Register`, formData, {
+      headers: {
+        Accept: "*/*"
+      }
+    })
+      .then((res) => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'User Created',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        console.log(res);
+      })
+      .catch((err) => {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'User Not Created',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        console.log(err);
+      });
+  };
+
 
   return (
     <>
@@ -62,9 +111,9 @@ function Register() {
                   <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                  Sign up
+                  Register
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }} >
                   <TextField
                     margin="normal"
                     required
@@ -73,18 +122,9 @@ function Register() {
                     label="Fullname"
                     name="fullname"
                     type="text"
-                    autoComplete="off"
-
-                  />
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    type="email"
-                    autoComplete="off"
+                    // autoComplete="off"
+                    value={FullName}
+                    onChange={(e) => setFullName(e.target.value)}
                   />
                   <TextField
                     margin="normal"
@@ -94,7 +134,21 @@ function Register() {
                     label="Username"
                     name="username"
                     type="text"
-                    autoComplete="off"
+                    // autoComplete="off"
+                    value={Username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    type="email"
+                    // autoComplete="off"
+                    value={Email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <TextField
                     margin="normal"
@@ -104,7 +158,9 @@ function Register() {
                     label="Password"
                     name="password"
                     type="password"
-                    autoComplete="off"
+                    // autoComplete="off"
+                    value={Password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <TextField
                     margin="normal"
@@ -114,19 +170,11 @@ function Register() {
                     label="Confirm Password"
                     name="confirmPassword"
                     type="password"
-                    autoComplete="off"
+                    // autoComplete="off"
+                    value={ConfirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
-
-                  <Button
-                    style={{ background: '#ffb606' }}
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                  >
-                    Sign Up
-                  </Button>
-
+                  <button id="contact_send_btn" type="submit" className="contact_send_btn trans_200">Sign Up</button>
                 </Box>
               </Box>
             </Grid>
@@ -135,7 +183,6 @@ function Register() {
       </div>
       <Footer />
     </>
-
   );
 }
 export default Register;

@@ -6,6 +6,7 @@ import '../../../src/assets/styles/Contact.css'
 import Header from '../../components/header/Header'
 import ContactInfo from '../../components/contactInfo/ContactInfo';
 import Footer from '../../components/layout/Footer';
+import Swal from 'sweetalert2';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
@@ -29,10 +30,24 @@ function Contact() {
         await axios
             .post(`${url}/api/Contact/Create`, newMessage)
             .then((res) => {
-                console.log(res.data)
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Successfly Contacted',
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  console.log(res);
             })
             .catch((err) => {
-                console.log(err)
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'User Not Created',
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  console.log(err);
             });
 
         setName("");

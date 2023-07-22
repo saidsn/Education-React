@@ -7,6 +7,7 @@ import Course from './pages/courses/Course';
 import News from './pages/news/News';
 import Contact from './pages/contact/Contact';
 import Login from './pages/account/Login';
+
 import Register from './pages/account/Register';
 import Dashboard from './pages/admin/Dashboard';
 import SliderCreate from './pages/admin/slider/SliderCreate';
@@ -29,6 +30,7 @@ import ServiceCreate from './pages/admin/service/ServiceCreate';
 import ServiceUpdate from './pages/admin/service/ServiceUpdate';
 import ContactTable from './pages/admin/contact/ContactTable';
 import ContactUpdate from './pages/admin/contact/ContactUpdate';
+import ForgotPassword from './pages/account/ForgotPassword';
 
 
 function App() {
@@ -43,6 +45,7 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/forgotPassword' element={<ForgotPassword />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/sliderTable' element={<SliderTable />} />
         <Route path='/sliderCreate' element={<SliderCreate />} />

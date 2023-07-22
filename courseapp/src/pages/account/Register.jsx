@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/layout/Navbar';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
@@ -56,9 +55,9 @@ function Register() {
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: 'User Created',
+          title: 'Please Check Your Email',
           showConfirmButton: false,
-          timer: 1500
+          timer: 3000
         });
         console.log(res);
       })

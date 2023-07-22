@@ -20,7 +20,7 @@ function ContactUpdate() {
     const [message, setMessage] = useState();
 
     const getContact = async () => {
-        await axios.get(`${url}/api/Contact/Get?id=${id}`)
+        await axios.get(`${url}/api/Contact/GetById?id=${id}`)
             .then((res) => {
                 setContact(res.data);
                 setName(res.data.name);

@@ -17,7 +17,7 @@ function TitleUpdate() {
     const [name, setName] = useState();
 
     const getTitle = async () => {
-        await axios.get(`${url}/api/Title/Get?id=${id}`)
+        await axios.get(`${url}/api/Title/GetById?id=${id}`)
             .then((res) => {
                 setTitle(res.data);
                 setName(res.data.name);

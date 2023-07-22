@@ -18,7 +18,6 @@ function HeaderUpdate() {
     const [showImage, setShowImage] = useState(null);
     const [title, setTitle] = useState();
 
-
     const getHeader = async () => {
         await axios.get(`${url}/api/Header/GetById?id=${id}`)
             .then((res) => {

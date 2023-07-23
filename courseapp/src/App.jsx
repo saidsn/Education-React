@@ -31,6 +31,7 @@ import ServiceUpdate from './pages/admin/service/ServiceUpdate';
 import ContactTable from './pages/admin/contact/ContactTable';
 import ContactUpdate from './pages/admin/contact/ContactUpdate';
 import ForgotPassword from './pages/account/ForgotPassword';
+import ResetPassword from './pages/account/ResetPassword';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/forgotPassword' element={<ForgotPassword />} />
+        <Route path='/resetPassword' element={<ResetPassword />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/sliderTable' element={<SliderTable />} />
         <Route path='/sliderCreate' element={<SliderCreate />} />

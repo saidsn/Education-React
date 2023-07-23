@@ -62,13 +62,17 @@ function Register() {
         console.log(res);
       })
       .catch((err) => {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          title: 'User Not Created',
-          showConfirmButton: false,
-          timer: 1500
-        });
+        if (err.response && err.response.data && err.response.data.errors) {
+          const errors = err.response.data.errors;
+          const errorMessage = errors.join('\n');
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            text: errorMessage, 
+            showConfirmButton: false,
+            timer: 3000
+          });
+        }
         console.log(err);
       });
   };

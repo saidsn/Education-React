@@ -43,9 +43,8 @@ function ForgotPassword() {
           icon: "success",
           title: "Please check your email",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 2000,
         });
-        console.log(response);
       })
       .catch((err) => {
         Swal.fire({
@@ -55,7 +54,6 @@ function ForgotPassword() {
           showConfirmButton: false,
           timer: 1500
         });
-        console.log(err);
       });
   }
 
@@ -77,7 +75,7 @@ function ForgotPassword() {
             id="email"
             label="Email"
             name="email"
-            autoComplete="off"
+            autoComplete="on"
             value={Email}
             onChange={(e) => setEmail(e.target.value)}
           />

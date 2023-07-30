@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -13,8 +12,6 @@ import axios from 'axios';
 
 
 function ForgotPassword() {
-
-  const navigate = useNavigate();
 
   const url = 'https://localhost:7184';
 
@@ -37,7 +34,7 @@ function ForgotPassword() {
         Accept: "*/*"
       }
     })
-      .then(function (response) {
+      .then(() => {
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -46,7 +43,7 @@ function ForgotPassword() {
           timer: 2000,
         });
       })
-      .catch((err) => {
+      .catch(() => {
         Swal.fire({
           position: 'top-end',
           icon: 'error',

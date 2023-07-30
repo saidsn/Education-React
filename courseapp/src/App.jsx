@@ -7,7 +7,6 @@ import Course from './pages/courses/Course';
 import News from './pages/news/News';
 import Contact from './pages/contact/Contact';
 import Login from './pages/account/Login';
-
 import Register from './pages/account/Register';
 import Dashboard from './pages/admin/Dashboard';
 import SliderCreate from './pages/admin/slider/SliderCreate';

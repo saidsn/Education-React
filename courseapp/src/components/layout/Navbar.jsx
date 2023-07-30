@@ -1,19 +1,44 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SlBasket } from 'react-icons/sl';
+import axios from 'axios';
+import swal from 'sweetalert2';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
-     
+
 function MyNavbar() {
+
+  const url = 'https://localhost:7184';
+
+  const navigate = useNavigate();
+
+  const Logout = async () => {
+
+    await axios.get(`${url}/api/Account/Logout}`)
+      .then((res) => {
+        swal.fire("", "Logout successfully", "success");
+        navigate("/");
+      })
+      .catch((err) => {
+        swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+        console.log(err);
+      });
+  };
+
+
 
   return (
 
     <header className="header d-flex flex-row">
       <div className="header_content d-flex flex-row align-items-center">
-        
+
         <div className="logo_container">
           <div className="logo">
             <img src='./images/logo.png.webp' alt="Logo" />
@@ -34,7 +59,7 @@ function MyNavbar() {
           </div>
         </nav>
       </div>
- 
+
       <div className="header_side d-flex flex-row justify-content-center align-items-center">
         <Dropdown>
           <Dropdown.Toggle className='btn btn-light' id="dropdown-basic">
@@ -42,14 +67,14 @@ function MyNavbar() {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item ><Link  to = "/login">Login</Link></Dropdown.Item>
-            <Dropdown.Item ><Link  to = "/register">Register</Link></Dropdown.Item>
-            <Dropdown.Item ><Link  to = "/logout">Logout</Link></Dropdown.Item>
+            <Dropdown.Item ><Link to="/login">Login</Link></Dropdown.Item>
+            <Dropdown.Item ><Link to="/register">Register</Link></Dropdown.Item>
+            <Dropdown.Item onClick={() => Logout()} ><Link>Logout</Link></Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
-        <Link to="basket"><SlBasket className='basketIcon'/></Link>
+        <Link to="basket"><SlBasket className='basketIcon' /></Link>
       </div>
- 
+
 
       <div className="hamburger_container">
         <i className="fas fa-bars trans_200"></i>

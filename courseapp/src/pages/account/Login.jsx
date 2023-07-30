@@ -31,7 +31,7 @@ function Login() {
   const [Password, setPassword] = useState("");
 
 
-  const handleSubmit = async (e) => {
+  const Submit = async (e) => {
     e.preventDefault();
 
     function parseJwt(token) {
@@ -138,7 +138,7 @@ function Login() {
                 <Typography component="h1" variant="h5">
                   Login
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <Box component="form" noValidate onSubmit={Submit} sx={{ mt: 1 }}>
                   <TextField
                     margin="normal"
                     required

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/layout/Navbar';
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -20,8 +19,6 @@ const theme = createTheme();
 
 function Register() {
 
-  const navigate = useNavigate();
-
   const url = 'https://localhost:7184';
 
   const [FullName, setFullName] = useState("");
@@ -38,7 +35,7 @@ function Register() {
     confirmPassword: ConfirmPassword
   };
 
-  const handleSubmit = async (e) => {
+  const Submit = async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
@@ -64,19 +61,12 @@ function Register() {
       .catch((err) => {
         if (err.response && err.response.data && err.response.data.errors) {
           const errors = err.response.data.errors;
-          const errorMessage = errors.join('\n');
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            text: errorMessage, 
-            showConfirmButton: false,
-            timer: 3000
-          });
+          const errorMessage = errors.join("\n");
+          alert("Validation Errors:\n" + errorMessage);
         }
         console.log(err);
       });
   };
-
 
   return (
     <>
@@ -116,7 +106,7 @@ function Register() {
                 <Typography component="h1" variant="h5">
                   Register
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }} >
+                <Box component="form" noValidate onSubmit={Submit} sx={{ mt: 1 }} >
                   <TextField
                     margin="normal"
                     required
@@ -125,7 +115,7 @@ function Register() {
                     label="Fullname"
                     name="fullname"
                     type="text"
-                    // autoComplete="off"
+                    autoComplete="off"
                     value={FullName}
                     onChange={(e) => setFullName(e.target.value)}
                   />
@@ -137,7 +127,7 @@ function Register() {
                     label="Username"
                     name="username"
                     type="text"
-                    // autoComplete="off"
+                    autoComplete="off"
                     value={Username}
                     onChange={(e) => setUsername(e.target.value)}
                   />
@@ -149,7 +139,7 @@ function Register() {
                     label="Email Address"
                     name="email"
                     type="email"
-                    // autoComplete="off"
+                    autoComplete="off"
                     value={Email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -161,7 +151,7 @@ function Register() {
                     label="Password"
                     name="password"
                     type="password"
-                    // autoComplete="off"
+                    autoComplete="off"
                     value={Password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
@@ -173,7 +163,7 @@ function Register() {
                     label="Confirm Password"
                     name="confirmPassword"
                     type="password"
-                    // autoComplete="off"
+                    autoComplete="off"
                     value={ConfirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />

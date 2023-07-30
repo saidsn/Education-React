@@ -52,16 +52,15 @@ function ResetPassword() {
             showConfirmButton: false,
             timer: 4000,
           });
-          navigate(`/login`);
+          navigate("/login");
         })
         .catch((err) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Something went wrong',
-            showConfirmButton: false,
-            timer: 1500
-          });
+          if (err.response && err.response.data && err.response.data.errors) {
+            const errors = err.response.data.errors;
+            const errorMessage = errors.join("\n");
+            alert(errorMessage);
+          }
+          console.log(err);
         });
     }else {
       Swal.fire({
@@ -92,6 +91,7 @@ function ResetPassword() {
             id="password"
             label="Password"
             name="password"
+            type="password"
             autoComplete="off"
             value={Password}
             onChange={(e) => setPassword(e.target.value)}
@@ -100,9 +100,10 @@ function ResetPassword() {
             margin="normal"
             required
             fullWidth
-            id="password"
-            label="Password"
-            name="password"
+            id="confirmPassword"
+            label="confirmPassword"
+            name="confirmPassword"
+            type="password"
             autoComplete="off"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}

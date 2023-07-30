@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dropdown } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { SlBasket } from 'react-icons/sl';
@@ -6,6 +6,7 @@ import axios from 'axios';
 import swal from 'sweetalert2';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { red } from '@mui/material/colors';
 AOS.init();
 
 
@@ -15,23 +16,34 @@ function MyNavbar() {
 
   const navigate = useNavigate();
 
-  const Logout = async () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    await axios.get(`${url}/api/Account/Logout}`)
-      .then((res) => {
-        swal.fire("", "Logout successfully", "success");
-        navigate("/");
-      })
-      .catch((err) => {
-        swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-        });
-        console.log(err);
-      });
+  let token = localStorage.getItem("token");
+
+  const handleOpen = () => {
+    if (token != null) setIsLoggedIn(true);
   };
 
+  const Logout = async (e) => {
+    e.preventDefault();
+
+    let removeToken = localStorage.removeItem("token");
+
+    if (removeToken == null || removeToken == undefined) {
+      setIsLoggedIn(false);
+      navigate("/");
+      swal.fire("", "Logout successfully", "success");
+    }
+    else swal.fire("", "Logout failed", "error");
+  };
+
+  useEffect(() => {
+    handleOpen();
+  })
+
+  const style = {
+    color: 'black'
+  }
 
 
   return (
@@ -67,9 +79,18 @@ function MyNavbar() {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item ><Link to="/login">Login</Link></Dropdown.Item>
-            <Dropdown.Item ><Link to="/register">Register</Link></Dropdown.Item>
-            <Dropdown.Item onClick={() => Logout()} ><Link>Logout</Link></Dropdown.Item>
+            {isLoggedIn ? (
+              <Dropdown.Item onClick={(e) => Logout(e)}><Link style={style}>Logout</Link></Dropdown.Item>
+            ) : (
+              <>
+                <Dropdown.Item>
+                  <Link style={style} to="/login">Login</Link>
+                </Dropdown.Item>
+                <Dropdown.Item>
+                  <Link style={style} to="/register">Register</Link>
+                </Dropdown.Item>
+              </>
+            )}
           </Dropdown.Menu>
         </Dropdown>
         <Link to="basket"><SlBasket className='basketIcon' /></Link>

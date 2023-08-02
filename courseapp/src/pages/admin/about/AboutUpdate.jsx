@@ -15,10 +15,10 @@ function AboutUpdate() {
     const url = 'https://localhost:7184';
 
     const [about, setAbout] = useState([]);
-    const [image, setImage] = useState();
+    const [image, setImage] = useState("");
     const [showImage, setShowImage] = useState(null);
-    const [title, setTitle] = useState();
-    const [description, setDescription] = useState();
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
 
     const getAbout = async () => {
         await axios.get(`${url}/api/About/GetById?id=${id}`)

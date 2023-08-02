@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { JwtContext } from '../../Context/Context';
 import Navbar from '../../components/layout/Navbar';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -30,23 +31,10 @@ function Login() {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
 
+  const {ParseJwt} = useContext(JwtContext);
 
-  const Submit = async (e) => {
+  const SignIn = async (e) => {
     e.preventDefault();
-
-    function parseJwt(token) {
-      var base64Url = token.split(".")[1];
-      var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-      var jsonPayload = decodeURIComponent(
-        atob(base64)
-          .split("")
-          .map(function (c) {
-            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-          })
-          .join("")
-      );
-      return JSON.parse(jsonPayload);
-    };
 
     const exsistUser = {
       email: Email,
@@ -64,8 +52,8 @@ function Login() {
       }
     })
       .then((res) => {
-        if (res.status === 200 || res.data.status == "success") {
-          let userDecode = parseJwt(res.data)[
+        if (res.status === 200 || res.data.status === "success") {
+          let userDecode = ParseJwt(res.data)[
             "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
           ];
           if (userDecode === "Member") {
@@ -76,8 +64,9 @@ function Login() {
               showConfirmButton: false,
               timer: 1500
             });
-          }else{
+            } else {
             localStorage.setItem("token", JSON.stringify(res.data));
+            console.log(res.data)
             Swal.fire({
               position: 'top-end',
               icon: 'success',
@@ -85,7 +74,7 @@ function Login() {
               showConfirmButton: false,
               timer: 1500
             });
-            navigate("/");
+            navigate('/');
           }
         } else {
           Swal.fire({
@@ -95,7 +84,6 @@ function Login() {
             showConfirmButton: false,
             timer: 1500
           });
-          console.log(res);
         }
       })
   };
@@ -138,7 +126,7 @@ function Login() {
                 <Typography component="h1" variant="h5">
                   Login
                 </Typography>
-                <Box component="form" noValidate onSubmit={Submit} sx={{ mt: 1 }}>
+                <Box component="form" noValidate onSubmit={SignIn} sx={{ mt: 1 }}>
                   <TextField
                     margin="normal"
                     required
@@ -146,7 +134,7 @@ function Login() {
                     id="email"
                     label="Email"
                     name="email"
-                    autoComplete="off"
+                    // autoComplete="off"
                     value={Email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -158,7 +146,7 @@ function Login() {
                     label="Password"
                     name="password"
                     type="password"
-                    autoComplete="off"
+                    // autoComplete="off"
                     value={Password}
                     onChange={(e) => setPassword(e.target.value)}
                   />

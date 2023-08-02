@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { JwtContext } from '../../Context/Context';
 import { Dropdown } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { SlBasket } from 'react-icons/sl';
-import axios from 'axios';
 import swal from 'sweetalert2';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { red } from '@mui/material/colors';
 AOS.init();
 
 
@@ -18,11 +17,7 @@ function MyNavbar() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  let token = localStorage.getItem("token");
-
-  const handleOpen = () => {
-    if (token != null) setIsLoggedIn(true);
-  };
+  const {ParseJwt} = useContext(JwtContext);
 
   const Logout = async (e) => {
     e.preventDefault();
@@ -37,17 +32,26 @@ function MyNavbar() {
     else swal.fire("", "Logout failed", "error");
   };
 
+  const token = JSON.parse(localStorage.getItem("token"));
+  let userName = "";
+  if (token != null) {
+    userName = ParseJwt(token)["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]
+  }
+
+  const handleOpen = () => {
+    setIsLoggedIn(token != null);
+  };
+
   useEffect(() => {
-    handleOpen();
-  })
+    handleOpen()
+  }, [])
+
 
   const style = {
     color: 'black'
   }
 
-
   return (
-
     <header className="header d-flex flex-row">
       <div className="header_content d-flex flex-row align-items-center">
 
@@ -80,7 +84,10 @@ function MyNavbar() {
 
           <Dropdown.Menu>
             {isLoggedIn ? (
-              <Dropdown.Item onClick={(e) => Logout(e)}><Link style={style}>Logout</Link></Dropdown.Item>
+              <>
+                <Dropdown.Item ><Link style={style}>{userName}</Link></Dropdown.Item>
+                <Dropdown.Item onClick={(e) => Logout(e)}><Link style={style}>Logout</Link></Dropdown.Item>
+              </>
             ) : (
               <>
                 <Dropdown.Item>
@@ -95,8 +102,6 @@ function MyNavbar() {
         </Dropdown>
         <Link to="basket"><SlBasket className='basketIcon' /></Link>
       </div>
-
-
       <div className="hamburger_container">
         <i className="fas fa-bars trans_200"></i>
       </div>

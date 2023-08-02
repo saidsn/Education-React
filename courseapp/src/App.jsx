@@ -36,7 +36,6 @@ import ResetPassword from './pages/account/ResetPassword';
 function App() {
   
   return (
-    <>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
@@ -69,7 +68,6 @@ function App() {
         <Route path='/contactTable' element={<ContactTable />} />
         <Route path='/contactUpdate/:id' element={<ContactUpdate />} />
       </Routes>
-    </>
   );
 }
 

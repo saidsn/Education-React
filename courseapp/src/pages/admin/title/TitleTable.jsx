@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 
-function TitleTable() {
+const TitleTable = () => {
 
     let count = 1;
 

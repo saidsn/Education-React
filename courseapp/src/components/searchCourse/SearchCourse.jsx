@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
-function SearchCourse() {
+const SearchCourse = () => {
     return (
         <div className="register" data-aos="fade-up"
             data-aos-duration="1200">

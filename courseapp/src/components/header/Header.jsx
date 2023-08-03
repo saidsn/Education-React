@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 
-function Header(props) {
+const Header = (props) => {
 
     const baseUrl = "https://localhost:7184";
 
@@ -27,7 +27,7 @@ function Header(props) {
                     return (
                         <div className="home" key={index} >
                             <div className="home_background_container prlx_parent">
-                            <div className="home_background prlx" style={{ background: `url(data:image/png;base64,${header.image})` }}></div>
+                                <div className="home_background prlx" style={{ background: `url(data:image/png;base64,${header.image})` }}></div>
 
                             </div>
                             <div className="home_content">

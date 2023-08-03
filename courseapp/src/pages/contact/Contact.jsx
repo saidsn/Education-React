@@ -11,7 +11,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
-function Contact() {
+const Contact = () => {
 
     const url = 'https://localhost:7184';
 

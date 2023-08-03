@@ -4,7 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
-function Service() {
+const Service = () => {
 
     const url = 'https://localhost:7184';
 

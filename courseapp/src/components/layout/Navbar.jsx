@@ -9,7 +9,7 @@ import 'aos/dist/aos.css';
 AOS.init();
 
 
-function MyNavbar() {
+const MyNavbar = () => {
 
   const url = 'https://localhost:7184';
 
@@ -17,20 +17,9 @@ function MyNavbar() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const {ParseJwt} = useContext(JwtContext);
+  const { ParseJwt } = useContext(JwtContext);
 
-  const Logout = async (e) => {
-    e.preventDefault();
 
-    let removeToken = localStorage.removeItem("token");
-
-    if (removeToken == null || removeToken == undefined) {
-      setIsLoggedIn(false);
-      navigate("/");
-      swal.fire("", "Logout successfully", "success");
-    }
-    else swal.fire("", "Logout failed", "error");
-  };
 
   const token = JSON.parse(localStorage.getItem("token"));
   let userName = "";
@@ -45,6 +34,19 @@ function MyNavbar() {
   useEffect(() => {
     handleOpen()
   }, [])
+
+  const Logout = async (e) => {
+    e.preventDefault();
+
+    let removeToken = localStorage.removeItem("token");
+
+    if (removeToken == null || removeToken == undefined) {
+      setIsLoggedIn(false);
+      navigate("/");
+      swal.fire("", "Logout successfully", "success");
+    }
+    else swal.fire("", "Logout failed", "error");
+  };
 
 
   const style = {

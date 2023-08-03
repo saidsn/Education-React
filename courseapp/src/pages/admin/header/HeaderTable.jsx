@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import moment from 'moment';
 import axios from 'axios';
 
-function HeaderTable() {
+const HeaderTable = () => {
 
     let count = 1;
 

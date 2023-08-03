@@ -6,7 +6,7 @@ import 'aos/dist/aos.css';
 AOS.init();
 
 
-function Banner() {
+const Banner = () => {
 
     const url = 'https://localhost:7184';
 

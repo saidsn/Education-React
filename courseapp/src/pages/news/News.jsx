@@ -9,7 +9,7 @@ import LatestPosts from '../../components/latest-posts/Latest-posts';
 import Tags from '../../components/tags/Tags';
 import Footer from '../../components/layout/Footer';
 
-function News() {
+const News = () => {
   return (
     <>
       <Navbar />

@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Swal from "sweetalert2";
 import axios from 'axios';
 
-function TitleCreate() {
+const TitleCreate = () => {
 
     const navigate = useNavigate();
 

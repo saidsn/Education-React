@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import axios from 'axios';
 
 
-function SliderCreate() {
+const SliderCreate = () => {
 
     const navigate = useNavigate();
 

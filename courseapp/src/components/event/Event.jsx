@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
-function Event() {
+const Event = () => {
   return (
     <div className="events page_section" data-aos="fade-up"
       data-aos-duration="1200">

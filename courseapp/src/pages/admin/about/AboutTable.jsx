@@ -7,7 +7,7 @@ import moment from 'moment';
 import axios from 'axios';
 
 
-function AboutTable() {
+const AboutTable = () => {
 
     let count = 1;
 

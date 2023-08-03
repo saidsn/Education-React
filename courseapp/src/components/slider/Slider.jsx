@@ -6,7 +6,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
-function Myslider() {
+const Myslider = () => {
 
   const url = 'https://localhost:7184';
 

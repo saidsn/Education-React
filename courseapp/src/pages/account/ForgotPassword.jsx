@@ -11,7 +11,7 @@ import axios from 'axios';
 
 
 
-function ForgotPassword() {
+const ForgotPassword = () => {
 
   const url = 'https://localhost:7184';
 

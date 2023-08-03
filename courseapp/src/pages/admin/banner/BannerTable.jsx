@@ -6,7 +6,7 @@ import moment from 'moment';
 import axios from 'axios';
 
 
-function BannerTable() {
+const BannerTable = () => {
 
     let count = 1;
 

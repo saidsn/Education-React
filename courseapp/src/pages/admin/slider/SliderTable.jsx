@@ -6,7 +6,7 @@ import moment from 'moment';
 import axios from "axios";
 
 
-function SliderTable() {
+const SliderTable = () => {
 
     let count = 1;
 

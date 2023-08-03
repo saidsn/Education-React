@@ -4,7 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
-function ContactInfo() {
+const ContactInfo = () => {
     return (
         <>
             <div className="contact_info">
@@ -25,8 +25,8 @@ function ContactInfo() {
                         <div className="contact_info_icon">
                             <img src="images/envelope.svg" alt="" />
                         </div>
-                        <Link className="__cf_email__" to="https://www.linkedin.com/in/s%C9%99id-nuraliyev-a156b4232" style={{color:"#a5a5a5"}}>LinkedIn</Link>
-                           
+                        <Link className="__cf_email__" to="https://www.linkedin.com/in/s%C9%99id-nuraliyev-a156b4232" style={{ color: "#a5a5a5" }}>LinkedIn</Link>
+
                     </li>
                 </ul>
             </div>

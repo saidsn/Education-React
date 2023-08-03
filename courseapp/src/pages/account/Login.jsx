@@ -22,7 +22,7 @@ import axios from 'axios';
 
 const theme = createTheme();
 
-function Login() {
+const Login = () => {
 
   const navigate = useNavigate();
 

@@ -10,7 +10,7 @@ import Footer from '../../components/layout/Footer';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
-function ResetPassword() {
+const ResetPassword = () => {
 
   const navigate = useNavigate();
 

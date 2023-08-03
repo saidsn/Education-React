@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 
 
-function ContactUpdate() {
+const ContactUpdate = () => {
 
     const { id } = useParams();
 

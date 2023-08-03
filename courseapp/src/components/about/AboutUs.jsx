@@ -5,7 +5,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
-function AboutUs() {
+const AboutUs = () => {
     const url = 'https://localhost:7184';
 
     const [about, setAbout] = useState([]);

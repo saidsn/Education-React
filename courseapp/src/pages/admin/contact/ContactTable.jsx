@@ -5,7 +5,7 @@ import moment from 'moment';
 import axios from 'axios';
 
 
-function ContactTable() {
+const ContactTable = () => {
 
     let count = 1;
 

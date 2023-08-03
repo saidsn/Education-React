@@ -2,11 +2,11 @@ import React from 'react'
 import Navbar from '../../components/layout/Navbar';
 import '../../../src/assets/styles/Courses.css';
 import Header from '../../components/header/Header';
-import Card from '../../components/card/Card';
+import Course from '../../components/course/Course';
 import Title from '../../components/title/Title';
 import Footer from '../../components/layout/Footer';
 
-function Course() {
+const CoursePage = () => {
   return (
     <>
       <Navbar />
@@ -14,9 +14,9 @@ function Course() {
         <Header sectionHeader="Courses" />
         <Title sectionTitle="Popular Courses" />
         <div className='card-area'>
-          <Card />
-          <Card />
-          <Card />
+          <Course />
+          <Course />
+          <Course />
         </div>
       </div>
       <Footer />
@@ -25,4 +25,4 @@ function Course() {
   )
 }
 
-export default Course;
+export default CoursePage;

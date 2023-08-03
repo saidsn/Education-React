@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 
 
-function Dashboard() {
+const Dashboard = () => {
 
     return (
         <>

@@ -10,7 +10,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
-function Footer() {
+const Footer = () => {
     return (
         <footer className="footer">
             <div className="container">

@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
-function BannerCreate() {
+const BannerCreate = () => {
 
     const navigate = useNavigate();
 

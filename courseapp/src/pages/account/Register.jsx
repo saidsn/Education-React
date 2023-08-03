@@ -17,7 +17,7 @@ import axios from 'axios';
 
 const theme = createTheme();
 
-function Register() {
+const Register = () => {
 
   const url = 'https://localhost:7184';
 

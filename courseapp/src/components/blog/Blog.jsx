@@ -6,7 +6,7 @@ import 'aos/dist/aos.css';
 AOS.init();
 
 
-function Blog() {
+const Blog = () => {
   return (
     <div className="news_post" data-aos="fade-up" data-aos-duration="800">
       <div className="news_post_image">

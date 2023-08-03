@@ -5,7 +5,7 @@ import 'aos/dist/aos.css';
 AOS.init();
 
 
-function Archive() {
+const Archive = () => {
   return (
     <div className="sidebar_section" data-aos="fade-up" data-aos-duration="1200">
       <div className="sidebar_section_title">

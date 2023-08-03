@@ -5,7 +5,7 @@ import 'aos/dist/aos.css';
 AOS.init();
 
 
-function Title(props) {
+const Title = (props) => {
 
     const baseUrl = "https://localhost:7184";
 
@@ -16,7 +16,6 @@ function Title(props) {
             return setTitle(res.data)
         })
     };
-
 
     useEffect(()=>{
         getAllTitle();

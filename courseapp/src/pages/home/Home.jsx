@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../../components/layout/Navbar';
 import '../../../src/assets/styles/Home.css';
 import Slider from '../../components/slider/Slider';
-import Course from '../../components/course/Course';
+import Course from '../../components/ok/Course';
 import SearchCourse from '../../components/searchCourse/SearchCourse';
 import Service from '../../components/service/Service';
 import Event from '../../components/event/Event';

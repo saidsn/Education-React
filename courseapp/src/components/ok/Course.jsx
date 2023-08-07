@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -15,8 +14,9 @@ const Course = () => {
   const getAllCourse = async () => {
     await axios.get(`${url}/api/Course/GetAll`)
       .then((res) => {
+        console.log(res.data);
         const coursesWithAuthors = res.data.map(courseItem => {
-          return { ...courseItem, authors: courseItem.authorName };
+          return { ...courseItem, authors: courseItem.authors };
         });
         setCourse(coursesWithAuthors);
       });
@@ -24,7 +24,7 @@ const Course = () => {
 
   useEffect(() => {
     getAllCourse();
-  })
+  }, [])
 
   return (
     <div className="popular page_section" data-aos="fade-up"
@@ -45,13 +45,13 @@ const Course = () => {
                     </div>
                     <div className="price_box d-flex flex-row align-items-center">
                       {
-                        item.authorName.map((authorname, index) => {
+                        item.authors.map((author, index) => {
                           return (
                             <>
-                            <div key={index} className="course_author_image">
-                              {/* <img src={`data:image/png;base64,${author.image}`} alt="" /> */}
-                            </div>
-                            <div className="course_author_name">{authorname}, <span>Author</span></div>
+                              <div key={index} className="course_author_image image">
+                                <img src={`data:image/png;base64,${author.image}`} alt="" />
+                              </div>
+                              <div className="course_author_name">{author.name}, <span>Author</span></div>
                             </>
                           )
                         })
